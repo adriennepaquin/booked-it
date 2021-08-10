@@ -12,6 +12,7 @@ function PageContent() {
         <div>
             PageContent
             <SideBar />
+            {/* this second routing is not working */}
             <Route path="/auditions">
                 <Auditions />
             </Route>
