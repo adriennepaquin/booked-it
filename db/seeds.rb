@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "destroying data"
-User.destroy_all
+User.delete_all
 User.reset_pk_sequence
 Location.destroy_all
 Location.reset_pk_sequence
@@ -55,81 +55,6 @@ Location.create!([{
 }])
 puts "created #{Location.count} locations"
 
-UserAudition.create!([{
-    user_id: 1,
-    audition_id: 1
-},
-{
-    user_id: 2,
-    audition_id: 2
-},
-{
-    user_id: 2,
-    audition_id: 3
-},
-{
-    user_id: 1,
-    audition_id: 4
-}])
-puts "created #{UserAudition.count} user/auditions"
-
-Audition.create!([{
-    date: 2020/01/06,
-    time: "12:10 pm",
-    appointment: false,
-    location_id: 1,
-    producer: "Penn Shakes Festival",
-    monologue_id: 1,
-    casting_id: 1,
-    shows: "Midsummer, Sense & Sensibility, Henry 4 etc",
-    outfit: "green jumpsuit, brown boots",
-    response: "'very funny' after I was done",
-    callback: false,
-    booked: false
-},
-{
-    date: 2020/01/08,
-    time: "10:50 am",
-    appointment: false,
-    location_id: 1,
-    producer: "Public Theatre Mobile Unit",
-    monologue_id: 1,
-    casting_id: 1,
-    shows: "Cymbeline",
-    outfit: "black skinny jeans, navy tank, black boots",
-    callback: false,
-    booked: false
-},
-{
-    date: 2020/01/09,
-    time: "11:10 am",
-    appointment: false,
-    location_id: 1,
-    producer: "Theatre at Monmouth",
-    monologue_id: 1,
-    casting_id: 1,
-    shows: "Cymbeline, Julius Caesar etc",
-    outfit: "blue skinny jeans, green tank, brown boots",
-    response: "Dawn remembered and was like you are changed! Laughed at Ros, asked for second. Callback in the room",
-    callback: true,
-    booked: false
-},
-{
-    date: 2020/01/27,
-    time: "12:10 pm",
-    appointment: false,
-    location_id: 2,
-    producer: "Westport County Playhouse",
-    monologue_id: 2,
-    casting_id: 2,
-    shows: "Antigone",
-    outfit: "black skinny jeans, light blue top, black boots",
-    response: "lost it in the first couple lines because SO LOUD outside (they were super understanding) and seemed to dig the monologue",
-    callback: false,
-    booked: false
-}])
-puts "created #{Audition.count} auditions"
-
 Casting.create!([{
     agency: "none",
     notes: "in house casting"
@@ -139,44 +64,6 @@ Casting.create!([{
     notes: "none"
 }])
 puts "created #{Casting.count} castings"
-
-InTheRoom.create!([{
-    audition_id: 1,
-    person_id: 1
-},
-{
-    audition_id: 2,
-    person_id: 2
-},
-{
-    audition_id: 3,
-    person_id: 3
-},
-{
-    audition_id: 3,
-    person_id: 4
-},
-{
-    audition_id: 3,
-    person_id: 5
-},
-{
-    audition_id: 3,
-    person_id: 6
-},
-{
-    audition_id: 4,
-    person_id: 7
-},
-{
-    audition_id: 4,
-    person_id: 8
-},
-{
-    audition_id: 4,
-    person_id: 9
-}])
-puts "created #{InTheRoom.count} people in the rooms"
 
 Person.create!([{
     name: "Dennis Razze",
@@ -216,9 +103,17 @@ Person.create!([{
 }])
 puts "created #{Person.count} people"
 
+Playwright.create!([{
+    name: "William Shakespeare"
+},
+{
+    name: "George Bernard Shaw"
+}])
+puts "created #{Playwright.count} playwrights"
+
 Monologue.create!([{
     play: "As You Like It",
-    playwright: 1,
+    playwright_id: 1,
     public: true,
     genre: "comedic",
     role: "Rosalind",
@@ -228,19 +123,128 @@ Monologue.create!([{
 },
 {
     play: "The Winter's Tale",
-    playwright: 1,
+    playwright_id: 1,
     public: true,
     genre: "dramatic",
     role: "Hermione",
     length: "1-2 minutes",
-    first_line: "Since what I am to say must be but that..."
+    first_line: "Since what I am to say must be but that...",
     added_by_user_id: 1
 }])
 puts "created #{Monologue.count} monologues"
 
-Playwright.create!([{
-    name: "William Shakespeare"
+Audition.create!([{
+    date: 2020/01/6,
+    time: "12:10 pm",
+    appointment: false,
+    location_id: 1,
+    producer: "Penn Shakes Festival",
+    monologue_id: 1,
+    casting_id: 1,
+    shows: "Midsummer, Sense & Sensibility, Henry 4 etc",
+    outfit: "green jumpsuit, brown boots",
+    response: "'very funny' after I was done",
+    callback: false,
+    booked: false
+},
+{
+    date: 2020/01/8,
+    time: "10:50 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Public Theatre Mobile Unit",
+    monologue_id: 1,
+    casting_id: 1,
+    shows: "Cymbeline",
+    outfit: "black skinny jeans, navy tank, black boots",
+    callback: false,
+    booked: false
+},
+{
+    date: 2020/01/9,
+    time: "11:10 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Theatre at Monmouth",
+    monologue_id: 1,
+    casting_id: 1,
+    shows: "Cymbeline, Julius Caesar etc",
+    outfit: "blue skinny jeans, green tank, brown boots",
+    response: "Dawn remembered and was like you are changed! Laughed at Ros, asked for second. Callback in the room",
+    callback: true,
+    booked: false
+},
+{
+    date: 2020/01/27,
+    time: "12:10 pm",
+    appointment: false,
+    location_id: 2,
+    producer: "Westport County Playhouse",
+    monologue_id: 2,
+    casting_id: 2,
+    shows: "Antigone",
+    outfit: "black skinny jeans, light blue top, black boots",
+    response: "lost it in the first couple lines because SO LOUD outside (they were super understanding) and seemed to dig the monologue",
+    callback: false,
+    booked: false
 }])
-puts "created #{Playwright.count} playwrights"
+puts "created #{Audition.count} auditions"
+
+UserAudition.create!([{
+    user_id: 1,
+    audition_id: 1
+},
+{
+    user_id: 2,
+    audition_id: 2
+},
+{
+    user_id: 2,
+    audition_id: 3
+},
+{
+    user_id: 1,
+    audition_id: 4
+}])
+puts "created #{UserAudition.count} user/auditions"
+
+InTheRoom.create!([{
+    audition_id: 1,
+    person_id: 1
+},
+{
+    audition_id: 2,
+    person_id: 2
+},
+{
+    audition_id: 3,
+    person_id: 3
+},
+{
+    audition_id: 3,
+    person_id: 4
+},
+{
+    audition_id: 3,
+    person_id: 5
+},
+{
+    audition_id: 3,
+    person_id: 6
+},
+{
+    audition_id: 4,
+    person_id: 7
+},
+{
+    audition_id: 4,
+    person_id: 8
+},
+{
+    audition_id: 4,
+    person_id: 9
+}])
+puts "created #{InTheRoom.count} people in the rooms"
+
 
 puts "finished seeding!"
