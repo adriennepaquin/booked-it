@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2021-08-10
+  time: MyString
+  appointment: false
+  location: one
+  producer: MyString
+  monologue: one
+  casting: one
+  shows: MyString
+  outfit: MyString
+  response: MyString
+  callback: false
+  booked: false
+
+two:
+  date: 2021-08-10
+  time: MyString
+  appointment: false
+  location: two
+  producer: MyString
+  monologue: two
+  casting: two
+  shows: MyString
+  outfit: MyString
+  response: MyString
+  callback: false
+  booked: false

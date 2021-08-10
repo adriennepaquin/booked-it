@@ -1,0 +1,2 @@
+class UserAuditionsController < ApplicationController
+end

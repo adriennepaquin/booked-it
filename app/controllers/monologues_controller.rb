@@ -1,0 +1,2 @@
+class MonologuesController < ApplicationController
+end

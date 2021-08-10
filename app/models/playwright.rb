@@ -1,0 +1,2 @@
+class Playwright < ApplicationRecord
+end

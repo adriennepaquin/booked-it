@@ -1,0 +1,2 @@
+class InTheRoomsController < ApplicationController
+end

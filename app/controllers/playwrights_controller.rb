@@ -1,0 +1,2 @@
+class PlaywrightsController < ApplicationController
+end
