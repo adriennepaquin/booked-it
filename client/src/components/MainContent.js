@@ -4,6 +4,7 @@ import Home from './Home'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
 import PageContent from './PageContent'
+import NotFound from './NotFound'
 
 function MainContent() {
 
@@ -24,6 +25,7 @@ function MainContent() {
                   <PageContent />
                   {/* {loggedIn ? <PageContent /> : <Redirect to="/"/>} */}
               </Route>
+              <Route path="*" component={NotFound}/>
           </Switch>
       </div>
     );

@@ -1,17 +1,13 @@
-import { Route } from 'react-router-dom'
-import SideBar from './SideBar'
-import Footer from './Footer'
+import { Route, Switch } from 'react-router-dom'
 import Auditions from './Auditions'
 import Monologues from './Monologues'
 import AllMonologues from './AllMonologues'
 import NotFound from './NotFound'
-import Welcome from './Welcome'
 
-function PageContent() {
+function Welcome() {
     return (
         <div>
-            PageContent
-            <SideBar />
+            Welcome
             <Route path="/auditions">
                 <Auditions />
             </Route>
@@ -22,9 +18,9 @@ function PageContent() {
                 <AllMonologues />
             </Route>
             <Route path="*" component={NotFound}/>
-            <Footer />
+
         </div>
     )
 }
 
-export default PageContent
+export default Welcome

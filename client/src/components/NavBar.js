@@ -1,7 +1,11 @@
+import { NavLink } from 'react-router-dom'
+
 function NavBar() {
     return (
         <div>
-            NavBar
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/signup">SignUp</NavLink>
+            <NavLink to="/login">LogIn</NavLink>
         </div>
     )
 }
