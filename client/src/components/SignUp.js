@@ -6,30 +6,33 @@ function SignUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    const [errors, setErrors] = useState(null)
+    const [errors, setErrors] = useState([])
 
     const history = useHistory()
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        fetch("http://localhost:3000/signup", {
-          method: "POST",
+    async function handleSubmit(e) {
+        e.preventDefault()
+        const res = await fetch(`http://localhost:3000/signup`, {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             name,
             username,
             password,
-            password_confirmation: passwordConfirmation,
-          }),
+            password_confirmation: passwordConfirmation
+          })
         })
-          .then((r) => r.json())
-          .then(data => {
-              if (data.ok) {
-                  console.log(data)
-              }
-          });
+        const userData = await res.json()
+        if (res.ok){
+        //   localStorage.setItem("user_id", userData.id)
+        //   setCurrentUser(userData)
+          history.push('/')
+          alert("Welcome to Booked It!")
+        } else {
+            setErrors(userData.errors)
+        }
       }
 
     return (
@@ -65,6 +68,7 @@ function SignUp() {
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
             <button type="submit">Submit</button>
+            {errors ? errors.map(error => <div>{error}</div>) : null}
             </form>
         </div>
     )

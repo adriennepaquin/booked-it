@@ -1,4 +1,4 @@
 class InTheRoom < ApplicationRecord
-  belongs_to :audition, dependent: :destroy
-  belongs_to :person, dependent: :destroy
+  belongs_to :audition
+  belongs_to :person
 end

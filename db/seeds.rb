@@ -7,24 +7,24 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "destroying data"
-User.delete_all
-User.reset_pk_sequence
-Location.destroy_all
-Location.reset_pk_sequence
+InTheRoom.destroy_all
+InTheRoom.reset_pk_sequence
 UserAudition.destroy_all
 UserAudition.reset_pk_sequence
 Audition.destroy_all
 Audition.reset_pk_sequence
-Casting.destroy_all
-Casting.reset_pk_sequence
-InTheRoom.destroy_all
-InTheRoom.reset_pk_sequence
-Person.destroy_all
-Person.reset_pk_sequence
 Monologue.destroy_all
 Monologue.reset_pk_sequence
 Playwright.destroy_all
 Playwright.reset_pk_sequence
+Person.destroy_all
+Person.reset_pk_sequence
+Location.destroy_all
+Location.reset_pk_sequence
+Casting.destroy_all
+Casting.reset_pk_sequence
+User.destroy_all
+User.reset_pk_sequence
 
 User.create!([{
     name: "Adrienne",
@@ -134,7 +134,7 @@ Monologue.create!([{
 puts "created #{Monologue.count} monologues"
 
 Audition.create!([{
-    date: 2020/01/6,
+    date: "2020/01/06",
     time: "12:10 pm",
     appointment: false,
     location_id: 1,
@@ -148,7 +148,7 @@ Audition.create!([{
     booked: false
 },
 {
-    date: 2020/01/8,
+    date: "2020/01/08",
     time: "10:50 am",
     appointment: false,
     location_id: 1,
@@ -161,7 +161,7 @@ Audition.create!([{
     booked: false
 },
 {
-    date: 2020/01/9,
+    date: "2020/01/09",
     time: "11:10 am",
     appointment: false,
     location_id: 1,
@@ -175,7 +175,7 @@ Audition.create!([{
     booked: false
 },
 {
-    date: 2020/01/27,
+    date: "2020/01/27",
     time: "12:10 pm",
     appointment: false,
     location_id: 2,

@@ -8,11 +8,9 @@ class CreateMonologues < ActiveRecord::Migration[6.1]
       t.string :role
       t.string :length
       t.string :first_line
-      t.references :added_by_user, null: false, foreign_key: { to_table: :users }
+      t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end
-
-    # add_foreign_key :monologues, :users, column: :added_by_user_id
   end
 end

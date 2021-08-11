@@ -1,3 +1,3 @@
 class Location < ApplicationRecord
-    has_many :auditions
+    has_many :auditions, dependent: :destroy
 end
