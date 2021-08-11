@@ -119,7 +119,7 @@ Monologue.create!([{
     role: "Rosalind",
     length: "90 seconds",
     first_line: "And why, I pray you? Who might be your mother...",
-    added_by_user_id: 1
+    user_id: 1
 },
 {
     play: "The Winter's Tale",
@@ -129,7 +129,7 @@ Monologue.create!([{
     role: "Hermione",
     length: "1-2 minutes",
     first_line: "Since what I am to say must be but that...",
-    added_by_user_id: 1
+    user_id: 1
 }])
 puts "created #{Monologue.count} monologues"
 

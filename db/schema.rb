@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_162845) do
+ActiveRecord::Schema.define(version: 2021_08_11_003747) do
 
   create_table "auditions", force: :cascade do |t|
     t.date "date"
@@ -64,10 +64,9 @@ ActiveRecord::Schema.define(version: 2021_08_10_162845) do
     t.string "role"
     t.string "length"
     t.string "first_line"
-    t.integer "added_by_user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["added_by_user_id"], name: "index_monologues_on_added_by_user_id"
+    t.integer "user_id"
     t.index ["playwright_id"], name: "index_monologues_on_playwright_id"
   end
 
@@ -107,7 +106,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_162845) do
   add_foreign_key "in_the_rooms", "auditions"
   add_foreign_key "in_the_rooms", "people"
   add_foreign_key "monologues", "playwrights"
-  add_foreign_key "monologues", "users", column: "added_by_user_id"
+  add_foreign_key "monologues", "users"
   add_foreign_key "user_auditions", "auditions"
   add_foreign_key "user_auditions", "users"
 end
