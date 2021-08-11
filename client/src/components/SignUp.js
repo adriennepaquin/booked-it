@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-function SignUp() {
+function SignUp({ setUser }) {
     const [name, setName] = useState("")
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -27,11 +27,11 @@ function SignUp() {
         const userData = await res.json()
         if (res.ok){
         //   localStorage.setItem("user_id", userData.id)
-        //   setCurrentUser(userData)
+          setUser(userData)
           history.push('/')
           alert("Welcome to Booked It!")
         } else {
-            setErrors(userData.errors)
+          setErrors(userData.errors)
         }
       }
 
