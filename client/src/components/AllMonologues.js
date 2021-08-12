@@ -4,10 +4,10 @@ import AddMonologueform from './AddMonologueform'
 
 
 function AllMonologues({ monos }) {
-    console.log(monos)
+    // console.log(monos)
 
     const displayMonos = monos.map(mono => {
-        console.log(mono)
+        // console.log(mono)
         return <DisplayMonologue mono={mono}/>
     })
 

@@ -23,7 +23,10 @@ function MainContent() {
     useEffect(() => {
         fetch(`http://localhost:3000/user_auditions/${user.id}`)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            setAuditions(data)
+        })
     }, [])
 
     // fetch all the public monologues
@@ -31,7 +34,7 @@ function MainContent() {
         fetch(`http://localhost:3000/monologues`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             setMonos(data)
         })
     }, [])
@@ -60,10 +63,10 @@ function MainContent() {
                     <LogIn setUser={setUser}/>
                 </Route>
                 <Route path="/welcome">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Welcome user={user}/></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Welcome user={user} auditions={auditions}/></>}
                 </Route>
                 <Route path="/auditions">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Auditions /></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
                 </Route>
                 <Route path="/monologues">
                     {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}

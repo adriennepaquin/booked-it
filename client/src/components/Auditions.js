@@ -3,14 +3,18 @@ import SideBar from './SideBar'
 import DisplayAudition from './DisplayAudition'
 import AddAuditionForm from './AddAuditionForm'
 
-function Auditions() {
+function Auditions({ auditions }) {
+    console.log(auditions)
 
-    // const 
+    const displayAuditions = auditions.map(audition => {
+        console.log(audition)
+        return <DisplayAudition audition={audition}/>
+    })
     return (
         <div>
             <SideBar />
             Auditions
-            <DisplayAudition />
+            {displayAuditions}
             <AddAuditionForm />
         </div>
     )

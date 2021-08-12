@@ -1,9 +1,11 @@
 import AuditionDetails from "./AuditionDetails"
 
-function DisplayAudition() {
+function DisplayAudition({ audition }) {
+    console.log(audition)
     return (
         <div>
-            Display Audition
+            <p>date: {audition.audition.date}</p>
+            <p>producer: {audition.audition.producer}</p>
             <AuditionDetails />
         </div>
     )

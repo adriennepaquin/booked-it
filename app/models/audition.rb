@@ -6,5 +6,5 @@ class Audition < ApplicationRecord
   has_many :users, through: :user_auditions, dependent: :destroy
 
   validates :date, :time, :location_id, :producer, :casting_id, :shows, presence: {message: "must be present"}
-  
+
 end
