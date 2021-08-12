@@ -24,8 +24,12 @@ function LogIn({ setUser }) {
         const userData = await res.json()
         if(res.ok){
         //   localStorage.setItem('user_id', userData.id)
-          console.log(userData)
-          setUser(userData)
+          // console.log(userData)
+          setUser({
+            id: userData.id,
+            name: userData.name,
+            username: userData.username
+          })
           history.push('/welcome')
         } else {
           setErrors(userData.message)

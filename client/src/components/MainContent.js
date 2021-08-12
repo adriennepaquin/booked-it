@@ -34,7 +34,7 @@ function MainContent() {
         fetch(`http://localhost:3000/monologues`)
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
             setMonos(data)
         })
     }, [])
@@ -49,9 +49,11 @@ function MainContent() {
         })
     }, [])
 
+    console.log(user)
+
     return (
       <div>
-          <NavBar user={user} setUser={setUser}/>
+          <NavBar user={user} setUser={setUser} setAuditions={setAuditions} setMyMonos={setMyMonos}/>
           <Switch>
                 <Route exact path="/">
                     <Home />

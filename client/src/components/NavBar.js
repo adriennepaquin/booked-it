@@ -1,13 +1,16 @@
 import { NavLink } from 'react-router-dom'
 
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, setAuditions, setMyMonos }) {
 
     async function handleLogOut(){
         const res = await fetch(`http://localhost:3000/logout`, {
                 method: 'DELETE'
             })
             if (res.ok){
+                console.log('click')
                 setUser({})
+                setAuditions([])
+                setMyMonos([])
                 alert("See you soon!")
             }
     }
