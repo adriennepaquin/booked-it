@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_020344) do
+ActiveRecord::Schema.define(version: 2021_08_12_161426) do
 
   create_table "auditions", force: :cascade do |t|
     t.date "date"
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2021_08_11_020344) do
 
   create_table "monologues", force: :cascade do |t|
     t.string "play"
-    t.integer "playwright_id", null: false
     t.boolean "public"
     t.string "genre"
     t.string "role"
@@ -67,19 +66,13 @@ ActiveRecord::Schema.define(version: 2021_08_11_020344) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["playwright_id"], name: "index_monologues_on_playwright_id"
+    t.string "playwright"
     t.index ["user_id"], name: "index_monologues_on_user_id"
   end
 
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.string "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "playwrights", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -106,7 +99,6 @@ ActiveRecord::Schema.define(version: 2021_08_11_020344) do
   add_foreign_key "auditions", "monologues"
   add_foreign_key "in_the_rooms", "auditions"
   add_foreign_key "in_the_rooms", "people"
-  add_foreign_key "monologues", "playwrights"
   add_foreign_key "monologues", "users"
   add_foreign_key "user_auditions", "auditions"
   add_foreign_key "user_auditions", "users"

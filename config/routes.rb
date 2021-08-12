@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  resources :playwrights
-  resources :monologues
+  resources :monologues, only: [:index, :show]
   resources :people
   resources :in_the_rooms
   resources :castings
-  resources :auditions
-  resources :user_auditions
+  resources :auditions, only: [:index]
+  resources :user_auditions, only: [:show]
   resources :locations
   # resources :users
 

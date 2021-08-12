@@ -15,28 +15,50 @@ Audition.destroy_all
 Audition.reset_pk_sequence
 Monologue.destroy_all
 Monologue.reset_pk_sequence
-Playwright.destroy_all
-Playwright.reset_pk_sequence
+# Playwright.destroy_all
+# Playwright.reset_pk_sequence
 Person.destroy_all
 Person.reset_pk_sequence
 Location.destroy_all
 Location.reset_pk_sequence
 Casting.destroy_all
 Casting.reset_pk_sequence
-User.destroy_all
-User.reset_pk_sequence
+# User.destroy_all
+# User.reset_pk_sequence
 
-User.create!([{
-    name: "Adrienne",
-    username: "apaquin",
-    password_digest: "12345"
-},
-{
-    name: "Dana",
-    username: "danacola",
-    password_digest: "12345"
-}])
-puts "created #{User.count} users"
+# User.create!([{
+#     name: "Adrienne Paquin",
+#     username: "apaquin",
+#     password_digest: "12345678"
+# },
+# {
+#     name: "Dana Colagiovanni",
+#     username: "danacola",
+#     password_digest: "12345678"
+# }])
+
+# user = User.new({name: "Adrienne Paquin", username: "apaquin", password_digest: "password"})
+# user.hash_password
+# user.save
+
+# user2 = User.new({name: "Julie Andrews", username: "jaedwards", password_digest: "password"})
+# user2.hash_password
+# user2.save
+
+# user3 = User.new({name: "Laurie Metcalf", username: "itsnora", password_digest: "password"})
+# user3.hash_password
+# user3.save
+
+# user4 = User.new({name: "Patrick Page", username: "misterhades", password_digest: "password"})
+# user4.hash_password
+# user4.save
+
+# user5 = User.new({name: "Glenda Jackson", username: "queenlear", password_digest: "password"})
+# user5.hash_password
+# user5.save
+    
+
+# puts "created #{User.count} users"
 
 Location.create!([{
     name: "AEA",
@@ -103,33 +125,33 @@ Person.create!([{
 }])
 puts "created #{Person.count} people"
 
-Playwright.create!([{
-    name: "William Shakespeare"
-},
-{
-    name: "George Bernard Shaw"
-}])
-puts "created #{Playwright.count} playwrights"
+# Playwright.create!([{
+#     name: "William Shakespeare"
+# },
+# {
+#     name: "George Bernard Shaw"
+# }])
+# puts "created #{Playwright.count} playwrights"
 
 Monologue.create!([{
     play: "As You Like It",
-    playwright_id: 1,
+    playwright: "William Shakespeare",
     public: true,
     genre: "comedic",
     role: "Rosalind",
     length: "90 seconds",
     first_line: "And why, I pray you? Who might be your mother...",
-    user_id: 1
+    user_id: rand(1..5)
 },
 {
     play: "The Winter's Tale",
-    playwright_id: 1,
+    playwright: "William Shakespeare",
     public: true,
     genre: "dramatic",
     role: "Hermione",
     length: "1-2 minutes",
     first_line: "Since what I am to say must be but that...",
-    user_id: 1
+    user_id: rand(1..5)
 }])
 puts "created #{Monologue.count} monologues"
 
@@ -191,19 +213,19 @@ Audition.create!([{
 puts "created #{Audition.count} auditions"
 
 UserAudition.create!([{
-    user_id: 1,
+    user_id: rand(1..5),
     audition_id: 1
 },
 {
-    user_id: 2,
+    user_id: rand(1..5),
     audition_id: 2
 },
 {
-    user_id: 2,
+    user_id: rand(1..5),
     audition_id: 3
 },
 {
-    user_id: 1,
+    user_id: rand(1..5),
     audition_id: 4
 }])
 puts "created #{UserAudition.count} user/auditions"

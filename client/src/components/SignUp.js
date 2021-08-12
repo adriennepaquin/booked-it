@@ -27,7 +27,11 @@ function SignUp({ setUser }) {
         const userData = await res.json()
         if (res.ok){
         //   localStorage.setItem("user_id", userData.id)
-          setUser(userData)
+          setUser({
+            id: userData.id,
+            name: userData.name,
+            username: userData.username
+          })
           history.push('/')
           alert("Welcome to Booked It!")
         } else {

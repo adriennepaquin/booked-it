@@ -1,2 +1,0 @@
-class PlaywrightsController < ApplicationController
-end

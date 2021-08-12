@@ -3,12 +3,19 @@ import DisplayMonologue from './DisplayMonologue'
 import AddMonologueform from './AddMonologueform'
 
 
-function AllMonologues() {
+function AllMonologues({ monos }) {
+    console.log(monos)
+
+    const displayMonos = monos.map(mono => {
+        console.log(mono)
+        return <DisplayMonologue mono={mono}/>
+    })
+
     return (
         <div>
             <SideBar />
-            AllMonologues
-            <DisplayMonologue />
+            All Monologues
+            {displayMonos}
             <AddMonologueform />
         </div>
     )

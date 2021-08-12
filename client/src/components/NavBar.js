@@ -23,7 +23,7 @@ function NavBar({ user, setUser }) {
             :
             <>
             <NavLink to="/" onClick={handleLogOut}>Log Out</NavLink>
-            <h2 className="name">Hello, {user.name}</h2>
+            <h2 className="name">Logged in as {user.username}</h2>
             </>
             }
             

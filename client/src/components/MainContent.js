@@ -15,11 +15,36 @@ import NotFound from './NotFound'
 function MainContent() {
 
     const [user, setUser] = useState({})
-    const [auditions, setAuditions] = ([])
+    const [auditions, setAuditions] = useState([])
+    const [monos, setMonos] = useState([])
+    const [myMonos, setMyMonos] = useState([])
 
+    // fetch this user's auditions
     useEffect(() => {
+        fetch(`http://localhost:3000/user_auditions/${user.id}`)
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }, [])
 
-    })
+    // fetch all the public monologues
+    useEffect(() => {
+        fetch(`http://localhost:3000/monologues`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setMonos(data)
+        })
+    }, [])
+
+    // fetch this user's monologues
+    useEffect(() => {
+        fetch(`http://localhost:3000/monologues/${user.id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setMyMonos(data)
+        })
+    }, [])
 
     return (
       <div>
@@ -41,10 +66,10 @@ function MainContent() {
                     {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Auditions /></>}
                 </Route>
                 <Route path="/monologues">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Monologues /></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
                 </Route>
                 <Route path="/allmonologues">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AllMonologues /></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
                 </Route>
               <Route path="*" component={NotFound}/>
           </Switch>
