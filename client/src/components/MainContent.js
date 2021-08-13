@@ -73,7 +73,7 @@ function MainContent() {
                     {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
                 </Route>
                 <Route path="/addaudition">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm auditions={auditions}/></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions}/></>}
                 </Route>
                 <Route path="/monologues">
                     {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}

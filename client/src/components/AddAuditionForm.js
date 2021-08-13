@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function AddAuditionForm({ auditions }) {
+function AddAuditionForm({ auditions, user }) {
     const [form, setForm] = useState({
         date: "",
         time: "",
@@ -18,7 +18,7 @@ function AddAuditionForm({ auditions }) {
     const [location, setLocation] = useState({
         name: "",
         address: ""
-        // notes: ""
+        // // notes: ""
     })
     const [newLoc, setNewLoc] = useState(false)
     const [locForm, setLocForm] = useState(false)
@@ -35,10 +35,14 @@ function AddAuditionForm({ auditions }) {
         public: false,
         genre: "",
         length: "",
-        first_line: ""
+        first_line: "",
+        user_id: ""
     })
     const [newMono, setNewMono] = useState(false)
     const [monoForm, setMonoForm] = useState(false)
+    const [monoId, setMonoId] = useState("")
+    const [castId, setCastId] = useState("")
+    const [locId, setLocId] = useState("")
 
     function handleChange(e){
         // console.log(e.target)
@@ -106,12 +110,12 @@ function AddAuditionForm({ auditions }) {
         if (key === 'public') {
             // console.log(value)
             newData = {
-                ...monologue, public: !monologue.public
+                ...monologue, public: !monologue.public, user_id: user.id
             }
             setMonologue(newData)
         } else {
             newData = {
-                ...monologue, [key]: value
+                ...monologue, [key]: value, user_id: user.id
             }
             setMonologue(newData)
         }
@@ -123,15 +127,60 @@ function AddAuditionForm({ auditions }) {
         setMonoForm(false)
     }
 
-    console.log(form)
-    console.log(location)
-    console.log(casting)
-    console.log(monologue)
-    // console.log(location)
+    function handleSubmit(e){
+        e.preventDefault()
+        console.log(form)
+        console.log(location)
+        console.log(casting)
+        console.log(monologue)
+        // const results = function postAdds() {
+            if (monologue.role !== ""){
+            fetch(`http://localhost:3000/monologues`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(monologue)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setMonoId(data.id)
+            })
+            } else if (casting.agency !== ""){
+                fetch(`http://localhost:3000/castings`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(casting)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setCastId(data.id)
+                })
+            } else if (location.name !== ""){
+                fetch(`http://localhost:3000/locations`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(location)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setLocId(data.id)
+                })
+            }
+        // }
+    }
+
     return (
         <div>
             Add Audition here!
-            <form>
+            <form onSubmit={handleSubmit}>
                 {/* date */}
                 <input type="date" name="date" placeholder="YYYY/MM/DD" value={form.date} onChange={handleChange}/><br></br>
                 {/* time */}

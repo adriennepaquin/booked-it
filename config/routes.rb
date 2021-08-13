@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :monologues, only: [:index, :show]
+  resources :monologues, only: [:index, :show, :create]
   resources :people
   resources :in_the_rooms
-  resources :castings
+  resources :castings, only: [:create]
   resources :auditions, only: [:index]
   resources :user_auditions, only: [:show]
-  resources :locations
+  resources :locations, only: [:index, :create]
   # resources :users
 
   post "/login", to: "sessions#create"
