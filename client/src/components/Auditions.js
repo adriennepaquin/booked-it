@@ -12,7 +12,6 @@ function Auditions({ auditions }) {
     })
     return (
         <div>
-            <SideBar />
             Auditions
             {displayAuditions}
             <AddAuditionForm />

@@ -1,6 +1,6 @@
 import SideBar from "./SideBar"
 import DisplayMonologue from './DisplayMonologue'
-import AddMonologueform from './AddMonologueform'
+import AddMonologueform from './AddMonologueForm'
 
 function Monologues({ myMonos }) {
     console.log(myMonos)
@@ -12,7 +12,6 @@ function Monologues({ myMonos }) {
 
     return (
         <div>
-            <SideBar />
             Monologues
             {displayMonos}
             <AddMonologueform />
