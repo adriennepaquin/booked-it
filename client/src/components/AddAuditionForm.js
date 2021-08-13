@@ -133,48 +133,64 @@ function AddAuditionForm({ auditions, user }) {
         console.log(location)
         console.log(casting)
         console.log(monologue)
-        // const results = function postAdds() {
-            if (monologue.role !== ""){
-            fetch(`http://localhost:3000/monologues`, {
+        // if (monologue.role !== ""){
+        fetch(`http://localhost:3000/monologues`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(monologue)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setMonoId(data.id)
+        })
+        // } else if (casting.agency !== ""){
+            fetch(`http://localhost:3000/castings`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(monologue)
+                body: JSON.stringify(casting)
             })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setMonoId(data.id)
+                setCastId(data.id)
             })
-            } else if (casting.agency !== ""){
-                fetch(`http://localhost:3000/castings`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(casting)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    setCastId(data.id)
-                })
-            } else if (location.name !== ""){
-                fetch(`http://localhost:3000/locations`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(location)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    setLocId(data.id)
-                })
+        // } else if (location.name !== ""){
+            fetch(`http://localhost:3000/locations`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(location)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setLocId(data.id)
+            })
+        // } else {
+            const wholeForm = {
+                ...form,
+                location_id: locId,
+                casting_id: castId,
+                monologue_id: monoId,
             }
+            console.log(wholeForm)
+            setForm(wholeForm)
+            console.log(form)
+            // fetch(`http://localhost:3000/auditions`, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify()
+            // })
         // }
+    
     }
 
     return (
@@ -190,7 +206,7 @@ function AddAuditionForm({ auditions, user }) {
                 <label for="appointment">Appointment?</label><br></br>
                 {/* location */}
                 <select id="locations" name="location_id" value={form.location_id} onChange={handleChange}>
-                    <option value="default" disabled>Location</option>
+                    <option value="default" disabled selected>Location</option>
                     {auditions.map(audition => <option value={audition.audition.location.id} key={audition.audition.location.id}>{audition.audition.location.name}</option>)}
                     {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}
                 </select><br></br>
