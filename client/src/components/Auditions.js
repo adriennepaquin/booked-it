@@ -4,6 +4,7 @@ import DisplayAudition from './DisplayAudition'
 import AddAuditionForm from './AddAuditionForm'
 
 function Auditions({ auditions }) {
+
     console.log(auditions)
 
     const displayAuditions = auditions.map(audition => {
@@ -14,7 +15,7 @@ function Auditions({ auditions }) {
         <div>
             Auditions
             {displayAuditions}
-            <AddAuditionForm />
+            {/* <AddAuditionForm auditions={auditions}/> */}
         </div>
     )
 }
