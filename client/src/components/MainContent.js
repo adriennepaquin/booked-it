@@ -20,6 +20,8 @@ function MainContent() {
     const [auditions, setAuditions] = useState([])
     const [monos, setMonos] = useState([])
     const [myMonos, setMyMonos] = useState([])
+    const [locations, setLocations] = useState([])
+    const [castings, setCastings] = useState([])
 
     // // fetch this user's auditions
     // useEffect(() => {
@@ -67,13 +69,13 @@ function MainContent() {
                     <LogIn setUser={setUser}/>
                 </Route>
                 <Route path="/welcome">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions}/></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
                 </Route>
                 <Route path="/auditions">
                     {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
                 </Route>
                 <Route path="/addaudition">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions}/></>}
+                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
                 </Route>
                 <Route path="/monologues">
                     {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}

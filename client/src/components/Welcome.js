@@ -3,7 +3,7 @@ import SideBar from './SideBar'
 import DisplayAudition from './DisplayAudition'
 import DisplayMonologue from './DisplayMonologue'
 
-function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions }) {
+function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings }) {
 
     // fetch this user's auditions
     useEffect(() => {
@@ -32,6 +32,26 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions })
         .then(data => {
             console.log(data)
             setMyMonos(data)
+        })
+    }, [])
+
+    // fetch all available locations
+    useEffect(() => {
+        fetch(`http://localhost:3000/locations`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setLocations(data)
+        })
+    }, [])
+
+    // fetch all available casting
+    useEffect(() => {
+        fetch(`http://localhost:3000/castings`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setCastings(data)
         })
     }, [])
 

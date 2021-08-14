@@ -30,6 +30,7 @@ function LogIn({ setUser }) {
             name: userData.name,
             username: userData.username
           })
+          console.log(user)
           history.push('/welcome')
         } else {
           setErrors(userData.message)

@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-function AddAuditionForm({ auditions, user }) {
+function AddAuditionForm({ auditions, user, locations, castings, myMonos }) {
     const [form, setForm] = useState({
         date: "",
         time: "",
@@ -43,12 +44,15 @@ function AddAuditionForm({ auditions, user }) {
     })
     const [newMono, setNewMono] = useState(false)
     const [monoForm, setMonoForm] = useState(false)
-    const [monoId, setMonoId] = useState("")
-    const [castId, setCastId] = useState("")
-    const [locId, setLocId] = useState("")
+    // const [monoId, setMonoId] = useState("")
+    // const [castId, setCastId] = useState("")
+    // const [locId, setLocId] = useState("")
+
+    const history = useHistory()
 
     function handleChange(e){
-        // console.log(e.target)
+        console.log(e.target.name)
+        console.log(e.target.value)
         const key = e.target.name
         const value = e.target.value
         // console.log(key)
@@ -59,9 +63,10 @@ function AddAuditionForm({ auditions, user }) {
             newData = {
                 ...form, [key]: !form.value
             }
+            
             setForm(newData)
         } else if (key === 'location_id' || key === 'casting_id' || key === 'monologue_id') {
-            if (typeof value !== 'string') {
+            if (typeof Number(value) === 'number'){
                 newData = {...form, [key]: value}
                 setForm(newData)
             }
@@ -136,14 +141,26 @@ function AddAuditionForm({ auditions, user }) {
         console.log(location)
         console.log(casting)
         console.log(monologue)
-
+        const postData = {
+            ...form,
+            location: location,
+            casting: casting,
+            monologue: monologue
+        }
+        console.log(postData)
         fetch (`http://localhost:3000/auditions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify()
+            body: JSON.stringify(postData)
         })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            history.push('/auditions')
+        })
+        // below methods replaced by above method
         // // if (monologue.role !== ""){
         // fetch(`http://localhost:3000/monologues`, {
         //     method: 'POST',
@@ -210,36 +227,43 @@ function AddAuditionForm({ auditions, user }) {
             <form onSubmit={handleSubmit}>
                 {/* date */}
                 <input type="date" name="date" placeholder="YYYY/MM/DD" value={form.date} onChange={handleChange}/><br></br>
+
                 {/* time */}
                 <input type="text" name="time" placeholder="time" value={form.time} onChange={handleChange}/><br></br>
+
                 {/* appointment */}
                 <input type="checkbox" name="appointment" value={form.appointment} onChange={handleChange}/>
                 <label for="appointment">Appointment?</label><br></br>
+
                 {/* location */}
-                <select id="locations" name="location_id" value={form.location_id} onChange={handleChange}>
-                    <option value="default" disabled selected>Location</option>
-                    {auditions.map(audition => <option value={audition.audition.location.id} key={audition.audition.location.id}>{audition.audition.location.name}</option>)}
-                    {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}
+                <select id="locations" name="location_id"  value={form.location_id} onChange={handleChange}>
+                    <option value="default" disabled>Location</option>
+                    {locations.map(location => <option value={location.id} key={location.name}>{location.name}</option>)}
+                    {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}                   
                 </select><br></br>
                 <button onClick={(e) => {
                     e.preventDefault()
                     setLocForm(!locForm)}}>Add New Location</button><br></br>
+
                 {/* add new location */}
                 {locForm ? <div><input type="text" name="name" value={location.name} placeholder="Location Name" onChange={handleLocation}/><br></br>
                 <input type="text" name="address" value={location.address} placeholder="Location Address" onChange={handleLocation}/><br></br>
                 {/* <input type="text" name="notes" value={location.notes} placeholder="Location Notes" onChange={handleLocation}/><br></br> */}
                 <button onClick={addLocation}>Add</button><br></br></div> : null}
+
                 {/* producer */}
                 <input type="text" name="producer" placeholder="Theatre/Producer" value={form.producer} onChange={handleChange}/><br></br>
+
                 {/* monologue */}
                 <select name="monologue_id" defaultValue="default" value={form.monologue_id} onChange={handleChange}>
                     <option value="default" disabled>Monologue</option>
-                    {auditions.map(audition => <option value={audition.audition.monologue.id} key={audition.audition.monologue.id}>{audition.audition.monologue.role}</option>)}
+                    {myMonos.map(mono => <option value={mono.id} key={mono.role}>{mono.role}</option>)}
                     {newMono ? <option value={monologue.role} key={monologue.role}>{monologue.role}</option> : null}
                 </select><br></br>
                 <button onClick={(e) => {
                     e.preventDefault()
                     setMonoForm(!monoForm)}}>Add New Monologue</button><br></br>
+
                 {/* add new monologue */}
                 {monoForm ? <div><input type="text" name="play" value={monologue.play} placeholder="Play" onChange={handleMonologue}/><br></br>
                 <input type="text" name="playwright" value={monologue.playwright} placeholder="Playwright" onChange={handleMonologue}/><br></br>
@@ -250,28 +274,35 @@ function AddAuditionForm({ auditions, user }) {
                 <input type="checkbox" name="public" value={monologue.public} onChange={handleMonologue}/>
                 <label for="public">Make Public?</label><br></br>
                 <button onClick={addMonologue}>Add</button><br></br></div> : null}
+
                 {/* casting */}
                 <select name="casting_id" defaultValue="default" value={form.casting_id} onChange={handleChange}>
                     <option value="default" disabled>Casting</option>
-                    {auditions.map(audition => <option value={audition.audition.casting.id} key={audition.audition.casting.id}>{audition.audition.casting.agency}</option>)}
+                    {castings.map(casting => <option value={casting.id} key={casting.agency}>{casting.agency}</option>)}
                     {newCast ? <option value={casting.agency} key={casting.agency}>{casting.agency}</option> : null}
                 </select><br></br>
                 <button onClick={(e) => {
                     e.preventDefault()
                     setCastForm(!castForm)}}>Add New Casting Agency</button><br></br>
+
                 {/* add new casting */}
                 {castForm ? <div><input type="text" name="agency" value={casting.agency} placeholder="Agency Name" onChange={handleCasting}/><br></br>
                 {/* <input type="text" name="notes" value={casting.notes} placeholder="Notes" onChange={handleCasting}/><br></br> */}
                 <button onClick={addCasting}>Add</button><br></br></div> : null}
+
                 {/* shows */}
                 <input type="text" name="shows" placeholder="Shows" value={form.shows} onChange={handleChange}/><br></br>
+
                 {/* outfit */}
                 <input type="text" name="outfit" placeholder="Outfit" value={form.outfit} onChange={handleChange}/><br></br>
+
                 {/* response */}
                 <input type="text" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
+
                 {/* callback */}
                 <input type="checkbox" name="callback" value={form.callback} onChange={handleChange}/>
                 <label for="callback">Callback?</label><br></br>
+
                 {/* booked */}
                 <input type="checkbox" name="booked" value={form.booked} onChange={handleChange}/>
                 <label for="booked">Booked?</label><br></br>

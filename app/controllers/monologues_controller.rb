@@ -11,21 +11,21 @@ class MonologuesController < ApplicationController
         render json: my_monos
     end
 
-    def create
-        monologue = Monologue.find_by(role: params[:role])
+    # def create
+    #     monologue = Monologue.find_by(role: params[:role])
 
-        if monologue
-            render json: monologue
-        else
-            monologue = Monologue.create(monologue_params)
+    #     if monologue
+    #         render json: monologue
+    #     else
+    #         monologue = Monologue.create(monologue_params)
 
-            if monologue.valid?
-                render json: monologue
-            else
-                render json: {errors: monologue.errors.full_messages}, status: :unprocessable_entity
-            end
-        end
-    end
+    #         if monologue.valid?
+    #             render json: monologue
+    #         else
+    #             render json: {errors: monologue.errors.full_messages}, status: :unprocessable_entity
+    #         end
+    #     end
+    # end
 
     private
 

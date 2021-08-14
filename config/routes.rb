@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :monologues, only: [:index, :show, :create]
   resources :people
   resources :in_the_rooms
-  resources :castings, only: [:create]
-  resources :auditions, only: [:index]
+  resources :castings, only: [:index, :create]
+  resources :auditions, only: [:index, :create]
   resources :user_auditions, only: [:show]
   resources :locations, only: [:index, :create]
   # resources :users
