@@ -13,7 +13,10 @@ function AddAuditionForm({ auditions, user }) {
         outfit: "",
         response: "",
         callback: false,
-        booked: false
+        booked: false,
+        location: {},
+        casting: {},
+        monologue: {}
     })
     const [location, setLocation] = useState({
         name: "",
@@ -133,62 +136,70 @@ function AddAuditionForm({ auditions, user }) {
         console.log(location)
         console.log(casting)
         console.log(monologue)
-        // if (monologue.role !== ""){
-        fetch(`http://localhost:3000/monologues`, {
+
+        fetch (`http://localhost:3000/auditions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(monologue)
+            body: JSON.stringify()
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setMonoId(data.id)
-        })
-        // } else if (casting.agency !== ""){
-            fetch(`http://localhost:3000/castings`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(casting)
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setCastId(data.id)
-            })
-        // } else if (location.name !== ""){
-            fetch(`http://localhost:3000/locations`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(location)
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setLocId(data.id)
-            })
-        // } else {
-            const wholeForm = {
-                ...form,
-                location_id: locId,
-                casting_id: castId,
-                monologue_id: monoId,
-            }
-            console.log(wholeForm)
-            setForm(wholeForm)
-            console.log(form)
-            // fetch(`http://localhost:3000/auditions`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify()
-            // })
+        // // if (monologue.role !== ""){
+        // fetch(`http://localhost:3000/monologues`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(monologue)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data)
+        //     setMonoId(data.id)
+        // })
+        // // } else if (casting.agency !== ""){
+        //     fetch(`http://localhost:3000/castings`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(casting)
+        //     })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         setCastId(data.id)
+        //     })
+        // // } else if (location.name !== ""){
+        //     fetch(`http://localhost:3000/locations`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(location)
+        //     })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         setLocId(data.id)
+        //     })
+        // // } else {
+        //     const wholeForm = {
+        //         ...form,
+        //         location_id: locId,
+        //         casting_id: castId,
+        //         monologue_id: monoId,
+        //     }
+        //     console.log(wholeForm)
+        //     setForm(wholeForm)
+        //     console.log(form)
+        //     // fetch(`http://localhost:3000/auditions`, {
+        //     //     method: 'POST',
+        //     //     headers: {
+        //     //         'Content-Type': 'application/json'
+        //     //     },
+        //     //     body: JSON.stringify()
+        //     // })
         // }
     
     }
