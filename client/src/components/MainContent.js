@@ -48,7 +48,7 @@ function MainContent() {
           <NavBar user={user} setUser={setUser} setAuditions={setAuditions} setMyMonos={setMyMonos}/>
           <Switch>
                 <Route exact path="/">
-                    <Home />
+                    {user ? <Redirect to="/welcome"/> : <Home />}
                 </Route>
                 <Route path="/signup">
                     <SignUp setUser={setUser}/>
@@ -57,23 +57,22 @@ function MainContent() {
                     <LogIn setUser={setUser}/>
                 </Route>
                 <Route path="/welcome">
-                {/* Object.keys(user).length === 0 */}
-                    {user ? <Redirect to="/welcome"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
+                    {!user ? <Redirect to="/welcome"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
                 </Route>
                 <Route path="/auditions">
-                    {user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
                 </Route>
                 <Route path="/addaudition">
-                    {user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
                 </Route>
                 <Route path="/monologues">
-                    {user ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
                 </Route>
                 <Route path="/allmonologues">
-                    {user ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
                 </Route>
                 <Route path="/addmonologue">
-                    {user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm/></>}
                 </Route>
               <Route path="*" component={NotFound}/>
           </Switch>

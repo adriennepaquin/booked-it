@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-function AddAuditionForm({ auditions, user, locations, castings, myMonos }) {
+function AddAuditionForm({ auditions, setAuditions, user, locations, castings, myMonos }) {
     const [form, setForm] = useState({
         date: "",
         time: "",
@@ -160,6 +160,10 @@ function AddAuditionForm({ auditions, user, locations, castings, myMonos }) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            setAuditions(...auditions, {
+                id: data.id,
+                audition: data
+            })
             history.push('/auditions')
         })
         // below methods replaced by above method

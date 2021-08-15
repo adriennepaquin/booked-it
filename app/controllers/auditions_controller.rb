@@ -6,6 +6,7 @@ class AuditionsController < ApplicationController
     #     user.each
     #     render json: user
     # end
+    # before_action :authenticate
 
     def create
         location = Location.find_by(id: params[:location_id])
@@ -69,7 +70,6 @@ class AuditionsController < ApplicationController
                 new_monologue = Monologue.create(role: params[:monologue][:role], play: params[:monologue][:play], playwright: params[:monologue][:playwright], public: params[:monologue][:public], genre: params[:monologue][:genre], length: params[:monologue][:length], first_line: params[:monologue][:first_line], user_id: params[:monologue][:user_id])
                 if new_monologue.valid?
                     monologue_id = new_monologue.id
-                    user = new_monologue.user_id
                     # render json: new_monologue
                 else
                     render json: { errors: new_monologue.errors.full_messages}
@@ -85,10 +85,12 @@ class AuditionsController < ApplicationController
             render json: {errors: audition.errors.full_messages}
         end
         # byebug
-        user_audition = UserAudition.create(audition_id: audition_id, user_id: user)
+        user_audition = UserAudition.create(audition_id: audition_id, user_id: 2)
         if user_audition.valid?
-            render json: audition
+            # byebug
+            render json: user_audition, only: :audition
         else
+            # byebug
             render json: {errors: user_audition.errors.full_messages}, status: :unprocessable_entity
         end
     end
