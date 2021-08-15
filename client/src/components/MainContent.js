@@ -16,42 +16,25 @@ import AddMonologueForm from './AddMonologueForm'
 
 function MainContent() {
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
     const [auditions, setAuditions] = useState([])
     const [monos, setMonos] = useState([])
     const [myMonos, setMyMonos] = useState([])
     const [locations, setLocations] = useState([])
     const [castings, setCastings] = useState([])
 
-    // // fetch this user's auditions
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/user_auditions/${user.id}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         setAuditions(data)
-    //     })
-    // }, [])
-
-    // // fetch all the public monologues
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/monologues`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         setMonos(data)
-    //     })
-    // }, [])
-
-    // // fetch this user's monologues
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/monologues/${user.id}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         setMyMonos(data)
-    //     })
-    // }, [])
+    // fetch autologin
+    useEffect(() => {
+        fetch(`http://localhost:3000/me`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setUser({id: data.id,
+                name: data.name,
+                username: data.username
+            })
+        })
+    }, [])
 
     console.log(user)
 
@@ -69,22 +52,23 @@ function MainContent() {
                     <LogIn setUser={setUser}/>
                 </Route>
                 <Route path="/welcome">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
+                {/* Object.keys(user).length === 0 */}
+                    {user ? <Redirect to="/welcome"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
                 </Route>
                 <Route path="/auditions">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
+                    {user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
                 </Route>
                 <Route path="/addaudition">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
+                    {user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
                 </Route>
                 <Route path="/monologues">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
+                    {user ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
                 </Route>
                 <Route path="/allmonologues">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
+                    {user ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
                 </Route>
                 <Route path="/addmonologue">
-                    {Object.keys(user).length === 0 ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm/></>}
+                    {user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm/></>}
                 </Route>
               <Route path="*" component={NotFound}/>
           </Switch>

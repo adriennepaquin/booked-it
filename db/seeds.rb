@@ -23,42 +23,20 @@ Location.destroy_all
 Location.reset_pk_sequence
 Casting.destroy_all
 Casting.reset_pk_sequence
-# User.destroy_all
-# User.reset_pk_sequence
+User.destroy_all
+User.reset_pk_sequence
 
-# User.create!([{
-#     name: "Adrienne Paquin",
-#     username: "apaquin",
-#     password_digest: "12345678"
-# },
-# {
-#     name: "Dana Colagiovanni",
-#     username: "danacola",
-#     password_digest: "12345678"
-# }])
+User.create!(name: "Adrienne Paquin", username: "apaquin", password: "password", password_confirmation: "password")
 
-# user = User.new({name: "Adrienne Paquin", username: "apaquin", password_digest: "password"})
-# user.hash_password
-# user.save
+User.create!(name: "Julie Andrews", username: "jaedwards", password: "password", password_confirmation: "password")
 
-# user2 = User.new({name: "Julie Andrews", username: "jaedwards", password_digest: "password"})
-# user2.hash_password
-# user2.save
+User.create!(name: "Laurie Metcalf", username: "itsnora", password: "password", password_confirmation: "password")
 
-# user3 = User.new({name: "Laurie Metcalf", username: "itsnora", password_digest: "password"})
-# user3.hash_password
-# user3.save
+User.create!(name: "Patrick Page", username: "misterhades", password: "password", password_confirmation: "password")
 
-# user4 = User.new({name: "Patrick Page", username: "misterhades", password_digest: "password"})
-# user4.hash_password
-# user4.save
+User.create!(name: "Glenda Jackson", username: "queenlear", password: "password", password_confirmation: "password")
 
-# user5 = User.new({name: "Glenda Jackson", username: "queenlear", password_digest: "password"})
-# user5.hash_password
-# user5.save
-    
-
-# puts "created #{User.count} users"
+puts "created #{User.count} users"
 
 Location.create!([{
     name: "AEA",

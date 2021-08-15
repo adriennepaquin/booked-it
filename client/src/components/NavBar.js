@@ -8,7 +8,7 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
             })
             if (res.ok){
                 console.log('click')
-                setUser({})
+                setUser(null)
                 setAuditions([])
                 setMyMonos([])
                 alert("See you soon!")
@@ -18,17 +18,17 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
         <div>
             <NavLink to="/">Home</NavLink>
 
-            {Object.keys(user).length === 0 ?
+            {!user ? (
             <>
             <NavLink to="/signup">SignUp</NavLink>
             <NavLink to="/login">LogIn</NavLink>
             </>
-            :
+            ) : (
             <>
             <NavLink to="/" onClick={handleLogOut}>Log Out</NavLink>
             <h2 className="name">Logged in as {user.username}</h2>
             </>
-            }
+            )}
             
         </div>
     )

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
 
+    def authenticate
+        @current_user = User.first
+    end
+
     # before_action :authorize
 
     # private
