@@ -137,6 +137,7 @@ function AddAuditionForm({ auditions, user, locations, castings, myMonos }) {
 
     function handleSubmit(e){
         e.preventDefault()
+        const token = localStorage.getItem("token")
         console.log(form)
         console.log(location)
         console.log(casting)
@@ -151,7 +152,8 @@ function AddAuditionForm({ auditions, user, locations, castings, myMonos }) {
         fetch (`http://localhost:3000/auditions`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(postData)
         })

@@ -25,7 +25,12 @@ function MainContent() {
 
     // fetch autologin
     useEffect(() => {
-        fetch(`http://localhost:3000/me`)
+        const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
             console.log(data)

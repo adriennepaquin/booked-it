@@ -10,6 +10,7 @@ function LogIn({ setUser }) {
 
     function handleSubmit(e){
         e.preventDefault()
+        console.log('click')
         const user = {
           username,
           password
@@ -31,10 +32,12 @@ function LogIn({ setUser }) {
           })
         })
         .then((data) => {
+          const { user, token } = data
+          localStorage.setItem("token", token)
           setUser({
-            id: data.id,
-            name: data.name,
-            username: data.username
+            id: data.user.id,
+            name: data.user.name,
+            username: data.user.username
           })
           console.log(data)
           console.log(user)
@@ -98,7 +101,7 @@ function LogIn({ setUser }) {
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <input submit id="submit" type="submit" value="Log in" />
-                {errors ? errors.map(error => <div style={{ color: "red "}} key={error}>{error}</div>) : null}
+                {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
             </form>
         </div>
     )
