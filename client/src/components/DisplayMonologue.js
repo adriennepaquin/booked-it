@@ -2,7 +2,6 @@ function DisplayMonologue({ mono }) {
     console.log(mono)
     return (
         <div>
-            Display Monologue
             <p>play: {mono.play}</p>
             <p>playwright: {mono.playwright}</p>
             <p>role: {mono.role}</p>

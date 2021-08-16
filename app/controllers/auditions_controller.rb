@@ -6,7 +6,7 @@ class AuditionsController < ApplicationController
     #     user.each
     #     render json: user
     # end
-    # before_action :authenticate
+    before_action :authenticate
 
     def create
         location = Location.find_by(id: params[:location_id])
@@ -26,6 +26,7 @@ class AuditionsController < ApplicationController
                     location_id = new_location.id
                     # render json: new_location
                 else
+                    # byebug
                     render json: { errors: new_location.errors.full_messages}
                 end
             end
@@ -44,10 +45,13 @@ class AuditionsController < ApplicationController
                 # render json: all_casting
             else
                 new_casting = Casting.create(agency: params[:casting][:agency])
+                # byebug
                 if new_casting.valid?
+                    # byebug
                     casting_id = new_casting.id
                     # render json: new_casting
                 else
+                    # byebug
                     render json: { errors: new_casting.errors.full_messages}
                 end
             end
@@ -72,6 +76,7 @@ class AuditionsController < ApplicationController
                     monologue_id = new_monologue.id
                     # render json: new_monologue
                 else
+                    # byebug
                     render json: { errors: new_monologue.errors.full_messages}
                 end
             end
@@ -82,16 +87,21 @@ class AuditionsController < ApplicationController
             audition_id = audition.id
             # render json: audition
         else
+            # byebug
             render json: {errors: audition.errors.full_messages}
         end
         # byebug
-        user_audition = UserAudition.create(audition_id: audition_id, user_id: 2)
+        user_audition = UserAudition.create(audition_id: audition_id, user_id: @current_user.id)
         if user_audition.valid?
             # byebug
-            render json: user_audition, only: :audition
+            render json: user_audition, only: :audition, include: ['auditions', 'audition.location', 'audition.casting', 'audition.monologue', 'audition.display_people']
         else
             # byebug
             render json: {errors: user_audition.errors.full_messages}, status: :unprocessable_entity
         end
+    end
+
+    def update
+        
     end
 end

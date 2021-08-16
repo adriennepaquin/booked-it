@@ -3,29 +3,9 @@ class UserAuditionSerializer < ActiveModel::Serializer
 
   belongs_to :audition
   belongs_to :user
+  has_many :in_the_rooms, through: :auditions
 
-  # def audition_info
-  #     {
-  #       id: self.id,
-  #       audition:
-  #       {
-  #         date: self.audition.date,
-  #         time: self.audition.time,
-  #         appointment: self.audition.appointment,
-  #         location:
-  #         {
-  #           name: self.audition.location.name
-  #         },
-  #         producer: self.audition.producer,
-  #         monologue:
-  #         {
-  #           role: self.audition.monologue.role
-  #         },
-  #         casting:
-  #         {
-  #           agency: self.audition.casting.agency
-  #         }
-  #       }
-  #     }
+  # def display_people
+  #   self.audition.in_the_rooms.map{ |people| people.person}
   # end
 end

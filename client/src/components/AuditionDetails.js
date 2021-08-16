@@ -9,6 +9,8 @@ function AuditionDetails({ audition }) {
             <p>monologue: {audition.audition.monologue.role}</p>
             <p>outfit: {audition.audition.outfit}</p>
             <p>response: {audition.audition.response}</p>
+            <p>callback: {audition.audition.callback ? "yes" : "no"}</p>
+            <p>booked: {audition.audition.booked ? "yes" : "no"}</p>
         </div>
     )
 }

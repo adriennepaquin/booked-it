@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :people
   resources :in_the_rooms
   resources :castings, only: [:index, :create]
-  resources :auditions, only: [:index, :create]
+  resources :auditions, only: [:index, :create, :update]
   resources :user_auditions, only: [:show]
   resources :locations, only: [:index, :create]
   # resources :users
