@@ -17,7 +17,7 @@ function Auditions({ setAuditions, auditions, user }) {
     console.log(search)
     console.log(auditions)
 
-    const displayAuditions = auditions.map(audition => {
+    const displayAuditions = filteredAuditions.map(audition => {
         // console.log(audition)
         return <DisplayAudition audition={audition}/>
     })
