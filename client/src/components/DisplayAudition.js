@@ -14,7 +14,7 @@ function DisplayAudition({ audition }) {
     //     setModify(!modify)
     // }
 
-    console.log(audition)
+    // console.log(audition)
     return (
         <div>
             <p>date: {audition.date}</p>

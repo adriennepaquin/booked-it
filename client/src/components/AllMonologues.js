@@ -1,4 +1,3 @@
-import SideBar from "./SideBar"
 import { useHistory } from 'react-router-dom'
 import DisplayMonologue from './DisplayMonologue'
 
