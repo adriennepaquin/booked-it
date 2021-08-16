@@ -22,7 +22,7 @@ function DisplayAudition({ audition }) {
             <button onClick={handleClick}>{display ? "Hide Details" : "Show Details"}</button>
             <p>location: {audition.audition.location.name}</p>
             {display ? <AuditionDetails audition={audition}/> : null}
-            <button onClick={handleUpdate}>Edit Audition</button>
+            <button onClick={handleUpdate}>Edit Outcome</button>
             {modify ? <ModifyAudition audition={audition}/> : null}
         </div>
     )

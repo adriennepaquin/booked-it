@@ -1,13 +1,14 @@
 class AuditionsController < ApplicationController
-    # skip_before_action :authorize
-    # def index
-    #     user = UserAudition.where(user_id: 1)
-    #     byebug
-    #     user.each
-    #     render json: user
-    # end
-    before_action :authenticate
+    before_action :authenticate, except: :index
 
+    def index
+        auditions = Audition.all
+        render json: auditions
+    end
+
+    
+
+    # POST /create
     def create
         location = Location.find_by(id: params[:location_id])
         
@@ -94,14 +95,27 @@ class AuditionsController < ApplicationController
         user_audition = UserAudition.create(audition_id: audition_id, user_id: @current_user.id)
         if user_audition.valid?
             # byebug
-            render json: user_audition, only: :audition, include: ['auditions', 'audition.location', 'audition.casting', 'audition.monologue', 'audition.display_people']
+            audition = Audition.find_by(id: user_audition.audition_id)
+            render json: audition
+            # render json: user_audition, only: :audition, include: ['auditions', 'audition.location', 'audition.casting', 'audition.monologue', 'audition.display_people']
         else
             # byebug
             render json: {errors: user_audition.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
+    # PATCH /update
     def update
-        
+        # byebug
+        audition = Audition.find_by(id: params[:id])
+        # byebug
+        update = audition.update(booked: params[:booked], callback: params[:callback], response: params[:response])
+        if update
+            updated = Audition.find_by(id: params[:id])
+            render json: updated
+        else
+            # byebug
+            render json: {errors: audition.errors.full_messages}
+        end
     end
 end
