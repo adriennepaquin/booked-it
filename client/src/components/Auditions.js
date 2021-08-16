@@ -3,7 +3,17 @@ import SideBar from './SideBar'
 import DisplayAudition from './DisplayAudition'
 import AddAuditionForm from './AddAuditionForm'
 
-function Auditions({ auditions }) {
+function Auditions({ setAuditions, auditions, user }) {
+
+    // fetch this user's auditions
+    useEffect(() => {
+        fetch(`http://localhost:3000/auditions/${user.id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setAuditions(data)
+        })
+    }, [])
 
     console.log(auditions)
 

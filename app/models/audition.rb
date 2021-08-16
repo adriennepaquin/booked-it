@@ -9,16 +9,4 @@ class Audition < ApplicationRecord
 
   validates :date, :time, :location_id, :producer, :casting_id, :shows, presence: {message: "must be present"}
 
-  # def display_people
-  #   {
-  #     id: self.id,
-  #     date: self.date,
-  #     people: self.in_the_rooms.map do |people|
-  #       {
-  #         name: people.person.name,
-  #         position: people.person.position
-  #       }
-  #     end
-  #   }
-  # end
 end

@@ -60,7 +60,7 @@ function MainContent() {
                     {!user ? <Redirect to="/welcome"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
                 </Route>
                 <Route path="/auditions">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions}/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions} setAuditions={setAuditions} user={user}/></>}
                 </Route>
                 <Route path="/addaudition">
                     {!user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}

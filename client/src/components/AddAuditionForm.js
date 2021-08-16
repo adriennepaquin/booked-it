@@ -17,7 +17,8 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
         booked: false,
         location: {},
         casting: {},
-        monologue: {}
+        monologue: {},
+        people: []
     })
     const [location, setLocation] = useState({
         name: "",
@@ -47,14 +48,18 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     // const [monoId, setMonoId] = useState("")
     // const [castId, setCastId] = useState("")
     // const [locId, setLocId] = useState("")
+    const [fields, setFields] = useState([{ value: null}])
 
     const [errors, setErrors] = useState([])
 
     const history = useHistory()
 
     function handleChange(e){
-        console.log(e.target.name)
+        console.log(e)
+        console.log(e.target)
+        console.log(e.target.key)
         console.log(e.target.value)
+        console.log(e.target.id)
         const key = e.target.name
         const value = e.target.value
         // console.log(key)
@@ -72,6 +77,12 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                 newData = {...form, [key]: value}
                 setForm(newData)
             }
+        } else if (key === 'people'){
+            console.log(value)
+            const index = parseInt(e.target.id)
+            console.log(index)
+            newData = {...form, people[index]: value}
+            setForm(newData)
         } else {
             newData = {
                 ...form, [key]: value
@@ -137,6 +148,13 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
         setMonoForm(false)
     }
 
+    function handleAdd(e){
+        e.preventDefault()
+        const values = [...fields]
+        values.push({ value: null })
+        setFields(values)
+    }
+
     function handleSubmit(e){
         e.preventDefault()
         const token = localStorage.getItem("token")
@@ -170,76 +188,13 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
           })
         .then(data => {
             console.log(data)
-            setAuditions([...auditions, {
-                id: data.id,
-                audition: data.audition
-            }])
+            setAuditions([...auditions, data])
             history.push('/auditions')
         })
-        .catch((data) => {
-            console.log(data)
-            if (data.status === 500) {
-                setErrors("Make sure you've filled out all fields.")
-            }
+        .catch((errors) => {
+            console.log(errors.errors)
+            setErrors(errors.errors)
           })
-        // below methods replaced by above method
-        // // if (monologue.role !== ""){
-        // fetch(`http://localhost:3000/monologues`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(monologue)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data)
-        //     setMonoId(data.id)
-        // })
-        // // } else if (casting.agency !== ""){
-        //     fetch(`http://localhost:3000/castings`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(casting)
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         setCastId(data.id)
-        //     })
-        // // } else if (location.name !== ""){
-        //     fetch(`http://localhost:3000/locations`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(location)
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         setLocId(data.id)
-        //     })
-        // // } else {
-        //     const wholeForm = {
-        //         ...form,
-        //         location_id: locId,
-        //         casting_id: castId,
-        //         monologue_id: monoId,
-        //     }
-        //     console.log(wholeForm)
-        //     setForm(wholeForm)
-        //     console.log(form)
-        //     // fetch(`http://localhost:3000/auditions`, {
-        //     //     method: 'POST',
-        //     //     headers: {
-        //     //         'Content-Type': 'application/json'
-        //     //     },
-        //     //     body: JSON.stringify()
-        //     // })
-        // }
     
     }
 
@@ -250,18 +205,14 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                 {/* date */}
                 <input type="date" name="date" placeholder="YYYY/MM/DD" value={form.date} onChange={handleChange}/><br></br>
 
-                {/* time */}
-                <input type="text" name="time" placeholder="time" value={form.time} onChange={handleChange}/><br></br>
-
-                {/* appointment */}
-                <input type="checkbox" name="appointment" value={form.appointment} onChange={handleChange}/>
-                <label for="appointment">Appointment?</label><br></br>
+                {/* producer */}
+                <input type="text" name="producer" placeholder="Theatre/Producer" value={form.producer} onChange={handleChange}/><br></br>
 
                 {/* location */}
                 <select id="locations" name="location_id" defaultValue="default" value={form.location_id} onChange={handleChange}>
-                    <option value="default">Location</option>
-                    {locations.map(location => <option value={location.id} key={location.name}>{location.name}</option>)}
-                    {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}                   
+                <option value="default">Location</option>
+                {locations.map(location => <option value={location.id} key={location.name}>{location.name}</option>)}
+                {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}                   
                 </select><br></br>
                 <button onClick={(e) => {
                     e.preventDefault()
@@ -273,8 +224,47 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                 {/* <input type="text" name="notes" value={location.notes} placeholder="Location Notes" onChange={handleLocation}/><br></br> */}
                 <button onClick={addLocation}>Add</button><br></br></div> : null}
 
-                {/* producer */}
-                <input type="text" name="producer" placeholder="Theatre/Producer" value={form.producer} onChange={handleChange}/><br></br>
+                {/* time */}
+                <input type="text" name="time" placeholder="time" value={form.time} onChange={handleChange}/><br></br>
+
+                {/* appointment */}
+                <input type="checkbox" name="appointment" value={form.appointment} onChange={handleChange}/>
+                <label for="appointment">Appointment?</label><br></br>
+
+                {/* casting */}
+                <select name="casting_id" defaultValue="default" value={form.casting_id} onChange={handleChange}>
+                    <option value="default">Casting</option>
+                    {castings.map(casting => <option value={casting.id} key={casting.agency}>{casting.agency}</option>)}
+                    {newCast ? <option value={casting.agency} key={casting.agency}>{casting.agency}</option> : null}
+                </select><br></br>
+                <button onClick={(e) => {
+                    e.preventDefault()
+                    setCastForm(!castForm)}}>Add New Casting Agency</button><br></br>
+
+                {/* add new casting */}
+                {castForm ? <div><input type="text" name="agency" value={casting.agency} placeholder="Agency Name" onChange={handleCasting}/><br></br>
+                {/* <input type="text" name="notes" value={casting.notes} placeholder="Notes" onChange={handleCasting}/><br></br> */}
+                <button onClick={addCasting}>Add</button><br></br></div> : null}
+                
+                {/* in the room */}
+                <label for="people">In the Room:</label><br></br>
+                {fields.map((field, idx) => {
+                    return (
+                        <div key={`${field}-${idx}`}>
+                            <input
+                            type="text"
+                            placeholder="Name (Position)"
+                            name="people"
+                            id={idx}
+                            value={form.people}
+                            onChange={handleChange}/>
+                        </div>
+                    )
+                })}
+                <button onClick={handleAdd}>Add another Person</button><br></br>
+
+                {/* shows */}
+                <input type="text" name="shows" placeholder="Shows" value={form.shows} onChange={handleChange}/><br></br>
 
                 {/* monologue */}
                 <select name="monologue_id" defaultValue="default" value={form.monologue_id} onChange={handleChange}>
@@ -296,25 +286,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                 <input type="checkbox" name="public" value={monologue.public} onChange={handleMonologue}/>
                 <label for="public">Make Public?</label><br></br>
                 <button onClick={addMonologue}>Add</button><br></br></div> : null}
-
-                {/* casting */}
-                <select name="casting_id" defaultValue="default" value={form.casting_id} onChange={handleChange}>
-                    <option value="default">Casting</option>
-                    {castings.map(casting => <option value={casting.id} key={casting.agency}>{casting.agency}</option>)}
-                    {newCast ? <option value={casting.agency} key={casting.agency}>{casting.agency}</option> : null}
-                </select><br></br>
-                <button onClick={(e) => {
-                    e.preventDefault()
-                    setCastForm(!castForm)}}>Add New Casting Agency</button><br></br>
-
-                {/* add new casting */}
-                {castForm ? <div><input type="text" name="agency" value={casting.agency} placeholder="Agency Name" onChange={handleCasting}/><br></br>
-                {/* <input type="text" name="notes" value={casting.notes} placeholder="Notes" onChange={handleCasting}/><br></br> */}
-                <button onClick={addCasting}>Add</button><br></br></div> : null}
-
-                {/* shows */}
-                <input type="text" name="shows" placeholder="Shows" value={form.shows} onChange={handleChange}/><br></br>
-
+        
                 {/* outfit */}
                 <input type="text" name="outfit" placeholder="Outfit" value={form.outfit} onChange={handleChange}/><br></br>
 
@@ -329,7 +301,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                 <input type="checkbox" name="booked" value={form.booked} onChange={handleChange}/>
                 <label for="booked">Booked?</label><br></br>
                 <input id="submit" type="submit" value="Submit" />
-                {errors ? <div style={{ color: "red" }} key={errors}>{errors}</div> : null}
+                {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
             </form>
         </div>
     )

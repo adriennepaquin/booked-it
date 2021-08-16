@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-function ModifyAudition({ audition }) {
+function ModifyAudition({ audition, setModify }) {
     const [form, setForm] = useState({
-        id: audition.audition.id,
+        id: audition.id,
         // date: audition.audition.date,
         // time: audition.audition.time,
         // location_id: "",
@@ -13,9 +13,9 @@ function ModifyAudition({ audition }) {
         // casting_id: "",
         // shows: audition.audition.shows,
         // outfit: audition.audition.outfit,
-        response: audition.audition.response,
-        callback: audition.audition.callback,
-        booked: audition.audition.booked
+        response: audition.response,
+        callback: audition.callback,
+        booked: audition.booked
         // location: audition.audition.location.name,
         // casting: audition.audition.casting.agency,
         // monologue: audition.audition.monologue.role
@@ -70,15 +70,17 @@ function ModifyAudition({ audition }) {
     function handleCheck(e){
         const key = e.target.name
         const value = e.target.value
+        console.log(key)
+        console.log(value)
+        console.log(form.callback)
         let newData
         if (key === 'callback'){
-            console.log(value)
             newData = {
                 ...form, [key]: !form.callback
             }            
+            console.log(form)
             setForm(newData)
         } else if (key === 'booked'){
-            console.log(value)
             newData = {
                 ...form, [key]: !form.booked
             }            
@@ -174,11 +176,7 @@ function ModifyAudition({ audition }) {
           })
         .then(data => {
             console.log(data)
-            // setAuditions([...auditions, {
-            //     id: data.id,
-            //     audition: data.audition
-            // }])
-            // history.push('/auditions')
+            setModify((pModify) => !pModify)
         })
         .catch((data) => {
             console.log(data)

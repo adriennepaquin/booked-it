@@ -1,12 +1,24 @@
 class AuditionsController < ApplicationController
-    before_action :authenticate, except: :index
+    before_action :authenticate, except: [:index, :show]
 
+    # GET
     def index
         auditions = Audition.all
         render json: auditions
     end
 
-    
+    # GET /:id
+    def show
+        user_auditions = UserAudition.where(user_id: params[:id])
+        # byebug
+        if user_auditions
+            auditions = user_auditions.map{|aud| aud.audition}
+            render json: auditions
+            # render json: auditions, include: ['audition.location', 'audition.casting', 'audition.monologue', 'audition.people']
+        else
+            render json: {error: "No auditions found"}
+        end
+    end
 
     # POST /create
     def create
@@ -26,9 +38,10 @@ class AuditionsController < ApplicationController
                 if new_location.valid?
                     location_id = new_location.id
                     # render json: new_location
-                else
-                    # byebug
-                    render json: { errors: new_location.errors.full_messages}
+                # rescue ActiveRecord::RecordInvalid
+                # else
+                #     # byebug
+                #     render json: { errors: new_location.errors.full_messages}
                 end
             end
         end
@@ -51,9 +64,10 @@ class AuditionsController < ApplicationController
                     # byebug
                     casting_id = new_casting.id
                     # render json: new_casting
-                else
-                    # byebug
-                    render json: { errors: new_casting.errors.full_messages}
+                # rescue ActiveRecord::RecordInvalid
+                # else
+                #     # byebug
+                #     render json: { errors: new_casting.errors.full_messages}
                 end
             end
         end
@@ -76,9 +90,10 @@ class AuditionsController < ApplicationController
                 if new_monologue.valid?
                     monologue_id = new_monologue.id
                     # render json: new_monologue
-                else
-                    # byebug
-                    render json: { errors: new_monologue.errors.full_messages}
+                # rescue ActiveRecord::RecordInvalid
+                # else
+                #     # byebug
+                #     render json: { errors: new_monologue.errors.full_messages}
                 end
             end
         end
@@ -87,9 +102,10 @@ class AuditionsController < ApplicationController
         if audition.valid?
             audition_id = audition.id
             # render json: audition
-        else
-            # byebug
-            render json: {errors: audition.errors.full_messages}
+        # rescue ActiveRecord::RecordInvalid
+        # else
+        #     # byebug
+        #     render json: {errors: audition.errors.full_messages}
         end
         # byebug
         user_audition = UserAudition.create(audition_id: audition_id, user_id: @current_user.id)
@@ -97,7 +113,6 @@ class AuditionsController < ApplicationController
             # byebug
             audition = Audition.find_by(id: user_audition.audition_id)
             render json: audition
-            # render json: user_audition, only: :audition, include: ['auditions', 'audition.location', 'audition.casting', 'audition.monologue', 'audition.display_people']
         else
             # byebug
             render json: {errors: user_audition.errors.full_messages}, status: :unprocessable_entity

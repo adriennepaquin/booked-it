@@ -7,7 +7,7 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
 
     // fetch this user's auditions
     useEffect(() => {
-        fetch(`http://localhost:3000/user_auditions/${user.id}`)
+        fetch(`http://localhost:3000/auditions/${user.id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
