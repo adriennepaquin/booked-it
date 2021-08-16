@@ -81,8 +81,8 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
             console.log(value)
             const index = parseInt(e.target.id)
             console.log(index)
-            newData = {...form, people[index]: value}
-            setForm(newData)
+            // newData = {...form, people[index]: value}
+            // setForm(newData)
         } else {
             newData = {
                 ...form, [key]: value

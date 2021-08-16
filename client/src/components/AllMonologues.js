@@ -1,9 +1,9 @@
 import SideBar from "./SideBar"
+import { useHistory } from 'react-router-dom'
 import DisplayMonologue from './DisplayMonologue'
-import AddMonologueForm from './AddMonologueForm'
-
 
 function AllMonologues({ monos }) {
+    const history = useHistory()
     // console.log(monos)
 
     const displayMonos = monos.map(mono => {
@@ -11,11 +11,15 @@ function AllMonologues({ monos }) {
         return <DisplayMonologue mono={mono}/>
     })
 
+    function handleClick(){
+        history.push('/addmonologue')
+    }
+
     return (
         <div>
             All Monologues
             {displayMonos}
-            <AddMonologueForm />
+            <button onClick={handleClick}>Add a Monologue</button>
         </div>
     )
 }

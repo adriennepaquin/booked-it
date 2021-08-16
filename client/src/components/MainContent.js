@@ -72,7 +72,7 @@ function MainContent() {
                     {!user ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
                 </Route>
                 <Route path="/addmonologue">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}
                 </Route>
               <Route path="*" component={NotFound}/>
           </Switch>
