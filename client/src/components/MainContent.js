@@ -64,6 +64,8 @@ function MainContent() {
     // return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()) || audition.people.forEach(person => person.name.toLowerCase().includes(search.toLowerCase())))
     // return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()))
 
+    // return audition.people.forEach(person => person.name.toLowerCase()).includes(search.toLowerCase())
+
     console.log(user)
 
     return (
