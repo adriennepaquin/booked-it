@@ -1,7 +1,7 @@
 function DisplayPerson( {person} ){
     return (
         <div>
-            {person.name} ({person.position})
+            {person.name}
         </div>
     )
 }

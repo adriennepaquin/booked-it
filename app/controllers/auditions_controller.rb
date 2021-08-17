@@ -97,6 +97,7 @@ class AuditionsController < ApplicationController
                 end
             end
         end
+        
         # byebug
         audition = Audition.create(appointment: params[:appointment], booked: params[:booked], callback: params[:callback], casting_id: casting_id, date: params[:date], location_id: location_id, monologue_id: monologue_id, outfit: params[:outfit], producer: params[:producer], response: params[:response], shows: params[:shows], time: params[:time],)
         if audition.valid?
@@ -106,6 +107,19 @@ class AuditionsController < ApplicationController
         # else
         #     # byebug
         #     render json: {errors: audition.errors.full_messages}
+        end
+        # byebug
+        people = params[:people].map do |person|
+            # byebug
+            person = Person.create(name: person)
+            if person.valid?
+                person_id = person.id
+                # byebug
+                in_the_room = InTheRoom.create(audition_id: audition_id, person_id: person_id)
+                # byebug
+            else
+                # byebug
+            end
         end
         # byebug
         user_audition = UserAudition.create(audition_id: audition_id, user_id: @current_user.id)

@@ -32,9 +32,9 @@ User.create!(name: "Julie Andrews", username: "jaedwards", password: "password",
 
 User.create!(name: "Laurie Metcalf", username: "itsnora", password: "password", password_confirmation: "password")
 
-User.create!(name: "Patrick Page", username: "misterhades", password: "password", password_confirmation: "password")
+User.create!(name: "Meryl Streep", username: "merylstreet", password: "password", password_confirmation: "password")
 
-User.create!(name: "Glenda Jackson", username: "queenlear", password: "password", password_confirmation: "password")
+User.create!(name: "Patrick Page", username: "misterhades", password: "password", password_confirmation: "password")
 
 puts "created #{User.count} users"
 
@@ -65,41 +65,83 @@ Casting.create!([{
 }])
 puts "created #{Casting.count} castings"
 
+# Person.create!([{
+#     name: "Dennis Razze",
+#     position: "Penn Shakes Festival Assc AD"
+# },
+# {
+#     name: "Chalin Tulyathan",
+#     position: "Casting Assc"
+# },
+# {
+#     name: "Dawn McAndrews",
+#     position: "Theatre at Monmouth Producing AD"
+# },
+# {
+#     name: "James Noel Huban",
+#     position: "Theatre at Monmouth Assc AD"
+# },
+# {
+#     name: "Robert J McGuire",
+#     position: "Theatre at Monmouth Treasurer, Board of Directors"
+# },
+# {
+#     name: "Jake Loewenthal",
+#     position: "Theatre at Monmouth Company Manager"
+# },
+# {
+#     name: "David Dreyfoos",
+#     position: "Westport County Playhouse Assc Producer"
+# },
+# {
+#     name: "Liam Lonegan",
+#     position: "Westport County Playhouse Asst AD"
+# },
+# {
+#     name: "Laura Schutzel",
+#     position: "Tara Rubin CD"
+# }])
 Person.create!([{
-    name: "Dennis Razze",
-    position: "Penn Shakes Festival Assc AD"
+    name: "Dennis Razze (Penn Shakes Festival Assc AD)"
 },
 {
-    name: "Chalin Tulyathan",
-    position: "Casting Assc"
+    name: "Chalin Tulyathan (Casting Assc)"
 },
 {
-    name: "Dawn McAndrews",
-    position: "Theatre at Monmouth Producing AD"
+    name: "Dawn McAndrews (Theatre at Monmouth Producing AD)"
 },
 {
-    name: "James Noel Huban",
-    position: "Theatre at Monmouth Assc AD"
+    name: "James Noel Huban (Theatre at Monmouth Assc AD)"
 },
 {
-    name: "Robert J McGuire",
-    position: "Theatre at Monmouth Treasurer, Board of Directors"
+    name: "Robert J McGuire (Theatre at Monmouth Treasurer, Board of Directors)"
 },
 {
-    name: "Jake Loewenthal",
-    position: "Theatre at Monmouth Company Manager"
+    name: "Jake Loewenthal (Theatre at Monmouth Company Manager)"
 },
 {
-    name: "David Dreyfoos",
-    position: "Westport County Playhouse Assc Producer"
+    name: "David Dreyfoos (Westport County Playhouse Assc Producer)"
 },
 {
-    name: "Liam Lonegan",
-    position: "Westport County Playhouse Asst AD"
+    name: "Liam Lonegan (Westport County Playhouse Asst AD)"
 },
 {
-    name: "Laura Schutzel",
-    position: "Tara Rubin CD"
+    name: "Laura Schutzel (Tara Rubin CD)"
+},
+{
+    name: "Emma Gibson (Casting Assc)"
+},
+{
+    name: "Alan Filderman (CD)"
+},
+{
+    name: "Molly Jo (Company Manager)"
+},
+{
+    name: "Erin Sheffield (GM)"
+},
+{
+    name: "Robert Shea (AD)"
 }])
 puts "created #{Person.count} people"
 
@@ -129,6 +171,26 @@ Monologue.create!([{
     role: "Hermione",
     length: "1-2 minutes",
     first_line: "Since what I am to say must be but that...",
+    user_id: rand(1..5)
+},
+{
+    play: "Gloria",
+    playwright: "Branden Jacobs-Jenkins",
+    public: true,
+    genre: "comedic",
+    role: "Kendra",
+    length: "1-2 minutes",
+    first_line: "If you have half a brain, you'd look around...",
+    user_id: rand(1..5)
+},
+{
+    play: "Misalliance",
+    playwright: "George Bernard Shaw",
+    public: true,
+    genre: "comedic",
+    role: "Hypatia",
+    length: "1-2 minutes",
+    first_line: "Well I daresay it's vulgar, but there's no other word for it...",
     user_id: rand(1..5)
 }])
 puts "created #{Monologue.count} monologues"
@@ -187,6 +249,62 @@ Audition.create!([{
     response: "lost it in the first couple lines because SO LOUD outside (they were super understanding) and seemed to dig the monologue",
     callback: false,
     booked: false
+},
+{
+    date: "2020/02/25",
+    time: "10:50 am",
+    appointment: false,
+    location_id: 3,
+    producer: "The Barnstormers",
+    monologue_id: 4,
+    casting_id: 1,
+    shows: "Young Frankenstein, Sherwood, Once etc",
+    outfit: "black skirt, green blouse, black boots",
+    response: "felt good, he laughed so who knows",
+    callback: true,
+    booked: false
+},
+{
+    date: "2020/03/02",
+    time: "10:50 am",
+    appointment: false,
+    location_id: 1,
+    producer: "People's Light Opera",
+    monologue_id: 3,
+    casting_id: 1,
+    shows: "Walden etc",
+    outfit: "black skinny jeans, light blue top, black boots",
+    response: "",
+    callback: false,
+    booked: false
+},
+{
+    date: "2020/03/09",
+    time: "11:50 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Berkshire Theatre Festival",
+    monologue_id: 3,
+    casting_id: 1,
+    shows: "various",
+    outfit: "blue jean dress, Madewell boots",
+    response: "",
+    callback: false,
+    booked: false
+},
+{
+    date: "2020/03/13",
+    time: "10:10 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Chester Theatre Company",
+    monologue_id: 3,
+    casting_id: 1,
+    shows: "various",
+    outfit: "blue skinny jeans, light blue top, brown boots",
+    response: "almost cried because... covid19",
+    callback: false,
+    booked: false
 }])
 puts "created #{Audition.count} auditions"
 
@@ -205,6 +323,22 @@ UserAudition.create!([{
 {
     user_id: rand(1..5),
     audition_id: 4
+},
+{
+    user_id: rand(1..5),
+    audition_id: 5
+},
+{
+    user_id: rand(1..5),
+    audition_id: 6
+},
+{
+    user_id: rand(1..5),
+    audition_id: 7
+},
+{
+    user_id: rand(1..5),
+    audition_id: 8
 }])
 puts "created #{UserAudition.count} user/auditions"
 
@@ -243,6 +377,26 @@ InTheRoom.create!([{
 {
     audition_id: 4,
     person_id: 9
+},
+{
+    audition_id: 8,
+    person_id: 10
+},
+{
+    audition_id: 7,
+    person_id: 11
+},
+{
+    audition_id: 6,
+    person_id: 12
+},
+{
+    audition_id: 6,
+    person_id: 13
+},
+{
+    audition_id: 5,
+    person_id: 14
 }])
 puts "created #{InTheRoom.count} people in the rooms"
 

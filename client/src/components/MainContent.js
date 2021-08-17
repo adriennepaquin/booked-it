@@ -22,6 +22,7 @@ function MainContent() {
     const [myMonos, setMyMonos] = useState([])
     const [locations, setLocations] = useState([])
     const [castings, setCastings] = useState([])
+    const [search, setSearch] = useState("")
 
     // fetch autologin
     useEffect(() => {
@@ -40,6 +41,28 @@ function MainContent() {
             })
         })
     }, [])
+
+    function compare(a, b) {
+        const dateA = a.date
+        const dateB = b.date
+
+        let comparison = 0
+        if (dateA > dateB) {
+            comparison = -1
+        } else if (dateA < dateB) {
+            comparison = 1
+        }
+        return comparison
+    }
+    const sortAuditions = auditions.sort(compare)
+    console.log(sortAuditions)
+
+    const filteredAuditions = sortAuditions.filter(audition => {
+        return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()))
+    })
+
+    // return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()) || audition.people.forEach(person => person.name.toLowerCase().includes(search.toLowerCase())))
+    // return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()))
 
     console.log(user)
 
@@ -60,7 +83,7 @@ function MainContent() {
                     {!user ? <Redirect to="/welcome"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
                 </Route>
                 <Route path="/auditions">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={auditions} setAuditions={setAuditions} user={user}/></>}
+                    {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
                 </Route>
                 <Route path="/addaudition">
                     {!user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}

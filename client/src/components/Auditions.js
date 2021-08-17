@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import DisplayAudition from './DisplayAudition'
 import Search from './Search'
 
-function Auditions({ setAuditions, auditions, user }) {
-    const [search, setSearch] = useState("")
+function Auditions({ setAuditions, auditions, user, search, setSearch }) {
+    
 
     // fetch this user's auditions
     useEffect(() => {
@@ -17,16 +17,14 @@ function Auditions({ setAuditions, auditions, user }) {
     console.log(search)
     console.log(auditions)
 
-    const displayAuditions = filteredAuditions.map(audition => {
+    const displayAuditions = auditions.map(audition => {
         // console.log(audition)
-        return <DisplayAudition audition={audition}/>
+        return <DisplayAudition key={audition.id} audition={audition}/>
     })
 
-    const filteredAuditions = auditions.filter(audition => {
-        return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()))
-    })
+    
     // | audition.people.toLowerCase().includes(search.toLowerCase()) 
-    console.log(filteredAuditions)
+    console.log(auditions)
     return (
         <div>
             Auditions

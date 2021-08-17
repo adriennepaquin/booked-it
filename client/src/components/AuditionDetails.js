@@ -97,7 +97,7 @@ function AuditionDetails({ audition }) {
         <div>
             <p>time: {audition.time}</p>
             <p><label for="appointment">Appointment?</label>
-            {audition.appointment ? <input type="checkbox" name="appointment" value={audition.appointment} checked/> : <input type="checkbox" name="appointment" value={audition.appointment} />}<br></br></p>
+            {audition.appointment ? <input type="checkbox" name="appointment" value={audition.appointment} defaultChecked/> : <input type="checkbox" name="appointment" value={audition.appointment} />}<br></br></p>
             <p>casting: {audition.casting.agency}</p>
             <p>In the Room: {displayPeople}</p>
             <p>shows: {audition.shows}</p>

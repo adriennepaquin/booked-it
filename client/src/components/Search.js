@@ -1,7 +1,7 @@
 function Search({ search, onSearchChange }){
     return (
         <div className="search">
-            <label htmlFor="search">Search:</label>
+            <label htmlFor="search">Search by Producer/Casting:</label>
             <input
                 type="text"
                 id="search"

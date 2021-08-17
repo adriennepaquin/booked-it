@@ -55,11 +55,12 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     const history = useHistory()
 
     function handleChange(e){
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.key)
-        console.log(e.target.value)
-        console.log(e.target.id)
+        // console.log(e)
+        // console.log(e.target)
+        // console.log(e.target.key)
+        // console.log(e.target.value)
+        // console.log(e.target.name)
+        // console.log(e.target.id)
         const key = e.target.name
         const value = e.target.value
         // console.log(key)
@@ -79,10 +80,16 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
             }
         } else if (key === 'people'){
             console.log(value)
+            console.log(key)
             const index = parseInt(e.target.id)
             console.log(index)
-            // newData = {...form, people[index]: value}
-            // setForm(newData)
+         
+            newData = {...form}
+            newData.people[index] = value
+            console.log(newData)
+                       
+            setForm(newData)
+            // console.log(newData)
         } else {
             newData = {
                 ...form, [key]: value
@@ -197,6 +204,10 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
           })
     
     }
+    console.log(form)
+    console.log(location)
+    console.log(casting)
+    console.log(monologue)
 
     return (
         <div>
@@ -256,7 +267,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                             placeholder="Name (Position)"
                             name="people"
                             id={idx}
-                            value={form.people}
+                            // value={form.people[idx]}
                             onChange={handleChange}/>
                         </div>
                     )

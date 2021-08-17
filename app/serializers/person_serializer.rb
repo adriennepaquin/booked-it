@@ -1,3 +1,3 @@
 class PersonSerializer < ActiveModel::Serializer
-  attributes :id, :name, :position
+  attributes :id, :name
 end
