@@ -32,7 +32,15 @@ function MainContent() {
                 Authorization: `Bearer ${token}`,
             }
         })
-        .then(res => res.json())
+        .then((res) => {
+            return res.json().then((data) => {
+              if (res.ok) {
+                return data
+              } else {
+                throw data
+              }
+            })
+          })
         .then(data => {
             console.log(data)
             setUser({id: data.id,
@@ -67,40 +75,41 @@ function MainContent() {
     // return audition.people.forEach(person => person.name.toLowerCase()).includes(search.toLowerCase())
 
     console.log(user)
+    console.log(!user)
 
     return (
       <div>
           <NavBar user={user} setUser={setUser} setAuditions={setAuditions} setMyMonos={setMyMonos}/>
-          <Switch>
-                <Route exact path="/">
-                    {user ? <Redirect to="/welcome"/> : <Home />}
-                </Route>
-                <Route path="/signup">
-                    <SignUp setUser={setUser}/>
-                </Route>
-                <Route path="/login">
-                    <LogIn setUser={setUser}/>
-                </Route>
-                <Route path="/welcome">
-                    {!user ? <Redirect to="/welcome"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></>}
-                </Route>
-                <Route path="/auditions">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
-                </Route>
-                <Route path="/addaudition">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
-                </Route>
-                <Route path="/monologues">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
-                </Route>
-                <Route path="/allmonologues">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
-                </Route>
-                <Route path="/addmonologue">
-                    {!user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}
-                </Route>
-              <Route path="*" component={NotFound}/>
-          </Switch>
+            <Switch>
+                    <Route exact path="/">
+                        {!user ? <Home /> : <Redirect to="/welcome"/> }
+                    </Route>
+                    <Route path="/signup">
+                        <SignUp setUser={setUser}/>
+                    </Route>
+                    <Route path="/login">
+                        <LogIn setUser={setUser}/>
+                    </Route>
+                    <Route path="/welcome">
+                        {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }
+                    </Route>
+                    <Route path="/auditions">
+                        {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
+                    </Route>
+                    <Route path="/addaudition">
+                        {!user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
+                    </Route>
+                    <Route path="/monologues">
+                        {!user ? <Redirect to="/"/> : <><SideBar /><Monologues myMonos={myMonos}/></>}
+                    </Route>
+                    <Route path="/allmonologues">
+                        {!user ? <Redirect to="/"/> : <><SideBar /><AllMonologues monos={monos}/></>}
+                    </Route>
+                    <Route path="/addmonologue">
+                        {!user ? <Redirect to="/"/> : <><SideBar /><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}
+                    </Route>
+                <Route path="*" component={NotFound}/>
+            </Switch>
           <Footer />
       </div>
     );

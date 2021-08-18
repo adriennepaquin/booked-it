@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <div>
-            Footer
+            Created by Adrienne Paquin 2021
         </div>
     )
 }

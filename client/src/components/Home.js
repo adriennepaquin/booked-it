@@ -1,7 +1,7 @@
 function Home() {
     return (
         <div>
-            Home
+            <img src="images/full_logo.png" alt="Booked It! Logo" height="300"/>
         </div>
     )
 }
