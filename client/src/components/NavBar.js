@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import Navbar from 'react-bootstrap/Navbar'
+// import Navbar from 'react-bootstrap/Navbar'
 
 function NavBar({ user, setUser, setAuditions, setMyMonos }) {
 
@@ -13,41 +13,41 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
         alert("See you soon!")
     }
     return (
-        <Navbar bg="light" expand="lg">
-            <div class="container-fluid">
-                <div class="navbar-brand">
+        <nav>
+            <div>
+                <div>
                     <img src="images/header_logo.png" alt="Booked It! Logo" height="75"/>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                {/* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                </button> */}
+                <div>
+                    {/* <ul> */}
+                        {/* <li> */}
                             <NavLink to="/">Home</NavLink>
-                        </li>
+                        {/* </li> */}
 
                         {!user ? (
                         <>
-                        <li class="nav-item">
+                        {/* <li> */}
                             <NavLink to="/signup">SignUp</NavLink>
-                        </li>
-                        <li class="nav-item">
+                        {/* </li> */}
+                        {/* <li> */}
                             <NavLink to="/login">LogIn</NavLink>
-                        </li>
+                        {/* </li> */}
                         </>
                         ) : (
                         <>
-                        <h2 className="name" class="nav-link">Logged in as {user.username}</h2>
-                        <li class="nav-item">
+                        <h2>Logged in as {user.username}</h2>
+                        {/* <li> */}
                             <NavLink to="/" onClick={handleLogOut}>Log Out</NavLink>
-                        </li>
+                        {/* </li> */}
                         </>
                         )}
-                    </ul>
+                    {/* </ul> */}
                 </div>
            </div> 
-        </Navbar>
+        </nav>
     )
 }
 

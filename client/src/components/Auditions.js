@@ -29,8 +29,16 @@ function Auditions({ setAuditions, auditions, user, search, setSearch }) {
         <div>
             Auditions
             <Search search={search} onSearchChange={setSearch}/>
+            {auditions.length === 0
+            ?
+            <>
+            <p>No auditions found!</p>
+            </>
+            :
+            <>
             {displayAuditions}
-            {/* <AddAuditionForm auditions={auditions}/> */}
+            </>
+            }
         </div>
     )
 }
