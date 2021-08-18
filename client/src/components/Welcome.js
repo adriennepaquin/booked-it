@@ -15,15 +15,15 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
     }, [])
 
-    // fetch all the public monologues
-    useEffect(() => {
-        fetch(`http://localhost:3000/monologues`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setMonos(data)
-        })
-    }, [])
+    // // fetch all the public monologues
+    // useEffect(() => {
+    //     fetch(`http://localhost:3000/monologues`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data)
+    //         setMonos(data)
+    //     })
+    // }, [])
 
     // fetch this user's monologues
     useEffect(() => {
@@ -67,7 +67,7 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         
     return (
         <div>
-            <SideBar />
+            {/* <SideBar /> */}
             Welcome
             <p>Welcome to Your Stage, {user.name}!</p>
             Recent Auditions:

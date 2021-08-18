@@ -49,6 +49,16 @@ function MainContent() {
             })
         })
     }, [])
+    
+    // fetch all the public monologues
+    useEffect(() => {
+        fetch(`http://localhost:3000/monologues`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setMonos(data)
+        })
+    }, [])
 
     function compare(a, b) {
         const dateA = a.date
@@ -98,7 +108,7 @@ function MainContent() {
           <NavBar user={user} setUser={setUser} setAuditions={setAuditions} setMyMonos={setMyMonos}/>
             <Switch>
                     <Route exact path="/">
-                        {!user ? <Home /> : <Redirect to="/welcome"/> }
+                        {!user ? <Home monos={monos}/> : <Redirect to="/welcome"/> }
                     </Route>
                     <Route path="/signup">
                         <SignUp setUser={setUser}/>
@@ -107,10 +117,10 @@ function MainContent() {
                         <LogIn setUser={setUser}/>
                     </Route>
                     <Route path="/welcome">
-                        {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }
+                        {!user ? <Redirect to="/"/> : <><SideBar /><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }
                     </Route>
                     <Route path="/auditions">
-                        {!user ? <Redirect to="/"/> : <><SideBar /><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
+                        {!user ? <Redirect to="/"/> : <><SideBar/><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
                     </Route>
                     <Route path="/addaudition">
                         {!user ? <Redirect to="/"/> : <><SideBar /><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}

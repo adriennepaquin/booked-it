@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
 
-function SideBar() {
+function SideBar({ search, setSearch }) {
+
+    // function clearSearch(){
+    //     if (search !== "") {
+    //         setSearch("")
+    //     }
+    // }
+    console.log(setSearch)
     return (
         <div>
             SideBar
