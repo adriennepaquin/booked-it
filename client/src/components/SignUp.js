@@ -1,5 +1,24 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
+import styled from 'styled-components'
+
+const SignStyle = styled.div`
+  .sign-container {
+    padding: 30px;
+    max-width: 350px;
+
+  }
+
+  h3 {
+    color: white;
+  }
+`
 
 function SignUp({ setUser }) {
     const [name, setName] = useState("")
@@ -82,41 +101,57 @@ function SignUp({ setUser }) {
     //   }
 
     return (
-        <div>
-            SignUp
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label>
-            <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <label htmlFor="username">Username:</label>
-            <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <label htmlFor="password">Password:</label>
-            <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            {/* <label htmlFor="password_confirmation">Confirm Password:</label>
-            <input
-                type="password"
-                id="password_confirmation"
-                value={passwordConfirmation}
-                onChange={(e) => setPasswordConfirmation(e.target.value)}
-            /> */}
-            <button type="submit">Submit</button>
-            {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
-            </form>
-        </div>
+      <SignStyle>
+        <Container className="sign-container">
+          <Row>
+            <Col>
+              <h3>Sign Up</h3>
+
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formUsername">
+                  {/* <Form.Label htmlFor="name">Name:</Form.Label> */}
+                  <Form.Control
+                      type="text"
+                      placeholder="Enter your name..."
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formUsername">
+                {/* <Form.Label htmlFor="username">Username:</Form.Label> */}
+                <Form.Control
+                    type="text"
+                    placeholder="Choose a Username..."
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formUsername">
+                {/* <Form.Label htmlFor="password">Password:</Form.Label> */}
+                <Form.Control
+                    type="password"
+                    placeholder="Choose a password..."
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                </Form.Group>
+                {/* <label htmlFor="password_confirmation">Confirm Password:</label>
+                <input
+                    type="password"
+                    id="password_confirmation"
+                    value={passwordConfirmation}
+                    onChange={(e) => setPasswordConfirmation(e.target.value)}
+                /> */}
+                <Button className="button" variant="light" type="submit">Create Account</Button>                
+              </Form>
+              {errors ? errors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}
+            </Col>
+          </Row>
+        </Container>
+      </SignStyle>
     )
 }
 

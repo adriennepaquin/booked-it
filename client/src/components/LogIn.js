@@ -1,5 +1,25 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
+import styled from 'styled-components'
+
+const LogStyle = styled.div`
+  .log-container {
+    padding: 30px;
+    max-width: 350px;
+  }
+
+  h3 {
+    color: white;
+  }
+
+  
+`
 
 function LogIn({ setUser }) {
     const [username, setUsername] = useState('')
@@ -82,28 +102,55 @@ function LogIn({ setUser }) {
       // }
     
     return (
-        <div>
-            LogIn
+      <LogStyle>
+        <Container className="log-container">
+          <Row>
+              <Col>
+                <h3>Log In</h3>
 
-            <form onSubmit={handleSubmit}>
-                <input
-                type="text" 
-                placeholder="User Name" 
-                value={username} 
-                name="username"
-                onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                type="password" 
-                placeholder="Password" 
-                value={password}
-                name="password" 
-                onChange={(e) => setPassword(e.target.value)}
-                />
-                <input submit id="submit" type="submit" value="Log in" />
-                {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
-            </form>
-        </div>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formUsername">
+                      <Form.Control type="text" 
+                        placeholder="User Name" 
+                        value={username} 
+                        name="username"
+                        onChange={(e) => setUsername(e.target.value)}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formUsername">
+                      <Form.Control
+                      type="password" 
+                      placeholder="Password" 
+                      value={password}
+                      name="password" 
+                      onChange={(e) => setPassword(e.target.value)}/>
+                    </Form.Group>
+                    <Button className="button" variant="light" submit id="submit" type="submit" value="Log in">Log In</Button>
+                </Form>
+                {/* {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null} */}
+                {errors ? errors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}
+
+              {/* <form onSubmit={handleSubmit}>
+                  <input
+                  type="text" 
+                  placeholder="User Name" 
+                  value={username} 
+                  name="username"
+                  onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <input
+                  type="password" 
+                  placeholder="Password" 
+                  value={password}
+                  name="password" 
+                  onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <input submit id="submit" type="submit" value="Log in" />
+                  {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
+              </form> */}
+              </Col>
+            </Row>
+        </Container>
+      </LogStyle>
     )
 }
 
