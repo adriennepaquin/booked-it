@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import DisplayAudition from './DisplayAudition'
 import Search from './Search'
+import Accordion from 'react-bootstrap/Accordion'
 
 function Auditions({ setAuditions, auditions, user, search, setSearch }) {
     

@@ -19,29 +19,35 @@ import Col from 'react-bootstrap/Col'
 
 function MainContent({ user, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, filteredAuditions }) {
     return (
-        <div>
-            <SideBar />
-            <Switch>
-                <Route path="/welcome">
-                    {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }
-                </Route>
-                <Route path="/auditions">
-                    {!user ? <Redirect to="/"/> : <><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
-                </Route>
-                <Route path="/addaudition">
-                    {!user ? <Redirect to="/"/> : <><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
-                </Route>
-                <Route path="/monologues">
-                    {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos}/></>}
-                </Route>
-                <Route path="/allmonologues">
-                    {!user ? <Redirect to="/"/> : <><AllMonologues monos={monos}/></>}
-                </Route>
-                <Route path="/addmonologue">
-                    {!user ? <Redirect to="/"/> : <><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}
-                </Route>
-            </Switch>
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <SideBar />
+                </Col>
+                <Col>
+                    <Switch>
+                        <Route path="/welcome">
+                            {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }
+                        </Route>
+                        <Route path="/auditions">
+                            {!user ? <Redirect to="/"/> : <><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
+                        </Route>
+                        <Route path="/addaudition">
+                            {!user ? <Redirect to="/"/> : <><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
+                        </Route>
+                        <Route path="/monologues">
+                            {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos}/></>}
+                        </Route>
+                        <Route path="/allmonologues">
+                            {!user ? <Redirect to="/"/> : <><AllMonologues monos={monos}/></>}
+                        </Route>
+                        <Route path="/addmonologue">
+                            {!user ? <Redirect to="/"/> : <><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}
+                        </Route>
+                    </Switch>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
