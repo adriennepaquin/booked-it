@@ -199,6 +199,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
             history.push('/auditions')
         })
         .catch((errors) => {
+            console.log(errors)
             console.log(errors.errors)
             setErrors(errors.errors)
           })
