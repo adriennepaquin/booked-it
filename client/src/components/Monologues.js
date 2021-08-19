@@ -2,6 +2,7 @@ import { useHistory } from 'react-router-dom'
 import DisplayMonologue from './DisplayMonologue'
 
 function Monologues({ myMonos }) {
+    console.log("Monologues")
     const history = useHistory()
     
     console.log(myMonos)

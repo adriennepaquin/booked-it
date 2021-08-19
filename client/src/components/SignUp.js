@@ -108,7 +108,7 @@ function SignUp({ setUser }) {
               <h3>Sign Up</h3>
 
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formUsername">
+                <Form.Group className="mb-3">
                   {/* <Form.Label htmlFor="name">Name:</Form.Label> */}
                   <Form.Control
                       type="text"
@@ -118,7 +118,7 @@ function SignUp({ setUser }) {
                       onChange={(e) => setName(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formUsername">
+                <Form.Group className="mb-3">
                 {/* <Form.Label htmlFor="username">Username:</Form.Label> */}
                 <Form.Control
                     type="text"
@@ -128,7 +128,7 @@ function SignUp({ setUser }) {
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formUsername">
+                <Form.Group className="mb-3">
                 {/* <Form.Label htmlFor="password">Password:</Form.Label> */}
                 <Form.Control
                     type="password"

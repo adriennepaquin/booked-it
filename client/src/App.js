@@ -1,15 +1,15 @@
 import './App.css';
-import MainContent from './components/MainContent'
+import PageContent from './components/PageContent'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    background-image: url("images/background.jpg");
+    background: black url("images/background.jpg") no-repeat fixed center;
     /* background-blend-mode: lighten; */
-    background-color: white;
-    /* background-repeat: no-repeat; */
+    /* background-color: white; */
+    /* background-repeat: repeat; */
     /* background-attachment: fixed; */
     /* background-position: center; */
   }
@@ -118,7 +118,7 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <MainContent />
+      <PageContent />
     </div>
   );
 }

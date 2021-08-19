@@ -109,22 +109,24 @@ function LogIn({ setUser }) {
                 <h3>Log In</h3>
 
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formUsername">
+                    <Form.Group className="mb-3">
                       <Form.Control type="text" 
-                        placeholder="User Name" 
+                        placeholder="User Name"
+                        id="username"
                         value={username} 
                         name="username"
                         onChange={(e) => setUsername(e.target.value)}/>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formUsername">
+                    <Form.Group className="mb-3">
                       <Form.Control
                       type="password" 
                       placeholder="Password" 
+                      id="password"
                       value={password}
                       name="password" 
                       onChange={(e) => setPassword(e.target.value)}/>
                     </Form.Group>
-                    <Button className="button" variant="light" submit id="submit" type="submit" value="Log in">Log In</Button>
+                    <Button className="button" variant="light" type="submit" value="Log in">Log In</Button>
                 </Form>
                 {/* {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null} */}
                 {errors ? errors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}

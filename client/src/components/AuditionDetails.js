@@ -90,12 +90,12 @@ function AuditionDetails({ audition }) {
     }
 
     const displayPeople = audition.people.map(person => {
-        return <DisplayPerson person={person}/>
+        return <DisplayPerson key={person.name} person={person}/>
     })
 
     return (
         <div>
-            <p>time: {audition.time}</p>
+            <p>{audition.time}</p>
             <p><label for="appointment">Appointment?</label>
             {audition.appointment ? <input type="checkbox" name="appointment" value={audition.appointment} defaultChecked/> : <input type="checkbox" name="appointment" value={audition.appointment} />}<br></br></p>
             <p>casting: {audition.casting.agency}</p>
@@ -110,7 +110,7 @@ function AuditionDetails({ audition }) {
                 {form.callback ? <input type="checkbox" name="callback" value={form.callback} checked onChange={handleCheck} /> : <input type="checkbox" name="callback" value={form.callback} onChange={handleCheck} />}<br></br>
                 <label for="booked">Booked?</label>
                 {form.booked ? <input type="checkbox" name="booked" value={form.booked} checked onChange={handleCheck} /> : <input type="checkbox" name="booked" value={form.booked} onChange={handleCheck} />}<br></br>
-                <input id="submit" type="submit" value="Update" />
+                <input id="update_submit" type="submit" value="Update" />
             </form>
         </div>
     )

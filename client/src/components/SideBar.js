@@ -21,11 +21,11 @@ function SideBar({ search, setSearch }) {
     return (
         <SideStyle>
             <ListGroup variant="flush">
-                <ListGroup.Item as="a" action variant="dark" href="/auditions">My Auditions</ListGroup.Item>
-                <ListGroup.Item as="a" action variant="dark" href="/addaudition">Add An Audition</ListGroup.Item>            
-                <ListGroup.Item as="a" action variant="dark" href="/monologues">My Monologues</ListGroup.Item>           
-                <ListGroup.Item as="a" action variant="dark" href="/addmonologue">Add A Monologue</ListGroup.Item>           
-                <ListGroup.Item as="a" action variant="dark" href="/allmonologues">Monologues</ListGroup.Item>
+                <ListGroup.Item action variant="dark"><Link to="auditions">My Auditions</Link></ListGroup.Item>
+                <ListGroup.Item action variant="dark"><Link to="/addaudition">Add An Audition</Link></ListGroup.Item>            
+                <ListGroup.Item action variant="dark"><Link to="/monologues">My Monologues</Link></ListGroup.Item>           
+                <ListGroup.Item action variant="dark"><Link to="/addmonologue">Add A Monologue</Link></ListGroup.Item>           
+                <ListGroup.Item action variant="dark"><Link to="/allmonologues">Monologues</Link></ListGroup.Item>
             </ListGroup>
         </SideStyle>
     )

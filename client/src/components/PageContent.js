@@ -20,6 +20,8 @@ import Col from 'react-bootstrap/Col'
 
 function PageContent() {
 
+    console.log("PageContent")
+
     const [user, setUser] = useState(null)
     const [auditions, setAuditions] = useState([])
     const [monos, setMonos] = useState([])
@@ -112,6 +114,7 @@ function PageContent() {
             <NavBar user={user} setUser={setUser} setAuditions={setAuditions} setMyMonos={setMyMonos}/>
             <Switch>
                 <Route exact path="/">
+                    {/* <Home monos={monos}/> */}
                     {!user ? <Home monos={monos}/> : <Redirect to="/welcome"/> }
                 </Route>
                 <Route path="/signup">
@@ -121,7 +124,7 @@ function PageContent() {
                     <LogIn setUser={setUser}/>
                 </Route>
                 <Route>
-                    <MainContent user={user} auditions={auditions} monos={monos} setMonos={setMonos} myMonos={myMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} castings={castings} setCastings={setCastings} search={search} setSearch={setSearch} filteredAuditions={filteredAuditions}/>
+                    {user ? <MainContent user={user} setUser={setUser} auditions={auditions} monos={monos} setMonos={setMonos} myMonos={myMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} castings={castings} setCastings={setCastings} search={search} setSearch={setSearch} filteredAuditions={filteredAuditions}/> : <Redirect to="/"/>}
                 </Route>
                 {/* <Route path="/welcome">
                     {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }

@@ -93,24 +93,19 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
     return (
         <WelStyle>
             <Container>
-                <Row>
-                    {/* <Col sm={4}>
-                        <SideBar />
-                    </Col> */}
-                    <Col id="welcome">
-                        <h2>Welcome to Your Stage,</h2>
-                        <h2>{user.name}!</h2>
-                        Recent Auditions:
-                        <Accordion className="accordions" defaultActiveKey="0" flush>
-                            {displayAudition1 ? <DisplayAudition audition={displayAudition1}/> : null}
-                            {displayAudition2 ? <DisplayAudition audition={displayAudition2}/> : null}
-                        </Accordion>
-                        New Monologues:
-                        <Accordion className="accordions" defaultActiveKey="0" flush>
-                                {displayMono1 ? <DisplayMonologue mono={displayMono1}/> : null}
-                                {displayMono2 ? <DisplayMonologue mono={displayMono2}/> : null}                               
-                        </Accordion>
-                </Col>
+                <Row id="welcome">
+                    <h2>Welcome to Your Stage,</h2>
+                    <h2>{user.name}!</h2>
+                    Recent Auditions:
+                    <Accordion className="accordions" defaultActiveKey="0" flush>
+                        {displayAudition1 ? <DisplayAudition audition={displayAudition1}/> : null}
+                        {displayAudition2 ? <DisplayAudition audition={displayAudition2}/> : null}
+                    </Accordion>
+                    New Monologues:
+                    <Accordion className="accordions" defaultActiveKey="0" flush>
+                            {displayMono1 ? <DisplayMonologue mono={displayMono1}/> : null}
+                            {displayMono2 ? <DisplayMonologue mono={displayMono2}/> : null}                               
+                    </Accordion>
                 </Row>
             </Container>
         </WelStyle>

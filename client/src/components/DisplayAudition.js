@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import AuditionDetails from "./AuditionDetails"
 import ModifyAudition from "./ModifyAudition"
+import Card from 'react-bootstrap/Card'
+import Accordion from 'react-bootstrap/Accordion'
 
 function DisplayAudition({ audition }) {
     const [display, setDisplay] = useState(false)
@@ -16,15 +18,27 @@ function DisplayAudition({ audition }) {
 
     // console.log(audition)
     return (
-        <div>
-            <p>date: {audition.date}</p>
-            <p>producer: {audition.producer}</p>
-            <button onClick={handleClick}>{display ? "Hide Details" : "Show Details"}</button>
-            <p>location: {audition.location.name}</p>
-            {display ? <AuditionDetails audition={audition}/> : null}
-            {/* <button onClick={handleUpdate}>Edit Outcome</button>
-            {modify ? <ModifyAudition audition={audition} setModify={setModify}/> : null} */}
-        </div>
+        <Card>
+            <Card.Body>
+                <Card.Text>
+                    <p>{audition.date}</p>
+                    <p>{audition.producer}</p>
+                    <p>at {audition.location.name}</p>
+                    <Accordion>
+                        <Accordion.Header>
+                            Show Details
+                            {/* <button onClick={handleClick}>{display ? "Hide Details" : "Show Details"}</button> */}
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <AuditionDetails audition={audition}/>
+                        {/* {display ? <AuditionDetails audition={audition}/> : null} */}
+                        </Accordion.Body>
+                    </Accordion>
+                    {/* <button onClick={handleUpdate}>Edit Outcome</button>
+                    {modify ? <ModifyAudition audition={audition} setModify={setModify}/> : null} */}
+                </Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 

@@ -17,7 +17,36 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-function MainContent({ user, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, filteredAuditions }) {
+function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, filteredAuditions }) {
+
+    console.log("MainContent")
+
+    // // fetch autologin
+    // useEffect(() => {
+    //     const token = localStorage.getItem("token")
+    //     fetch(`http://localhost:3000/me`, {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //         }
+    //     })
+    //     .then((res) => {
+    //         return res.json().then((data) => {
+    //           if (res.ok) {
+    //             return data
+    //           } else {
+    //             throw data
+    //           }
+    //         })
+    //       })
+    //     .then(data => {
+    //         console.log(data)
+    //         setUser({id: data.id,
+    //             name: data.name,
+    //             username: data.username
+    //         })
+    //     })
+    // }, [])
+
     return (
         <Container>
             <Row>
@@ -27,10 +56,12 @@ function MainContent({ user, monos, setMonos, myMonos, setMyMonos, auditions, se
                 <Col>
                     <Switch>
                         <Route path="/welcome">
-                            {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }
+                            <Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>
+                            {/* {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> } */}
                         </Route>
                         <Route path="/auditions">
-                            {!user ? <Redirect to="/"/> : <><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>}
+                            <Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/>
+                            {/* {!user ? <Redirect to="/"/> : <><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>} */}
                         </Route>
                         <Route path="/addaudition">
                             {!user ? <Redirect to="/"/> : <><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
