@@ -19,7 +19,7 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
         // alert("See you soon!")
     }
     return (
-        <Navbar sticky="top" id="styled-navbar" bg="light" expand="md">
+        <Navbar sticky="top" id="styled-navbar" bg="light" expand="sm">
             <Container>
                 <Nav className="justify-content-start">
                     <Navbar.Brand>
