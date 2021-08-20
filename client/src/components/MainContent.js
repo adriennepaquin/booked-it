@@ -57,7 +57,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                 <Col sm={8}>
                     <Switch>
                         <Route path="/welcome">
-                            <Welcome user={user} firstName={firstName} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>
+                            <Welcome user={user} firstName={firstName} auditions={filteredAuditions} monos={monos} setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>
                             {/* {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> } */}
                         </Route>
                         <Route path="/auditions">

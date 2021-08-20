@@ -96,6 +96,25 @@ function AuditionDetails({ audition }) {
         })
     }
 
+    // MAYBE A COUPLE LEVELS HIGHER?
+    function handleDeleteAud(e){
+        console.log(e.target.value)
+        const token = localStorage.getItem("token")
+        console.log(form)
+        fetch (`http://localhost:3000/auditions/${e.target.value}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            history.push("/auditions")
+        })
+    }
+
     const displayPeople = audition.people.map(person => {
         return <DisplayPerson key={person.name} person={person}/>
     })
@@ -125,6 +144,8 @@ function AuditionDetails({ audition }) {
                     {form.booked ? <Form.Check type="checkbox" name="booked" value={form.booked} checked onChange={handleCheck} /> : <Form.Check type="checkbox" name="booked" value={form.booked} onChange={handleCheck} />}<br></br>
                 </Form.Group>
                 <Button className="button" id="update_submit" variant="light" type="submit" value="Update">Update Response</Button>
+                <Button className="button" id="delete" variant="light" value={audition.id} onClick={handleDeleteAud}>Delete Audition</Button>
+
             </Form>
         </div>
     )

@@ -92,9 +92,9 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
 
     
     // console.log(firstName[0])
-
-    const displayAudition1 = auditions[auditions.length - 1]
-    const displayAudition2 = auditions[auditions.length - 2]
+    console.log(auditions)
+    const displayAudition1 = auditions[0]
+    const displayAudition2 = auditions[1]
 
     const displayMono1 = monos[monos.length - 1]
     const displayMono2 = monos[monos.length - 2]

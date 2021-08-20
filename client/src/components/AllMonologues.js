@@ -31,19 +31,25 @@ function AllMonologues({ monos, searchMono, setSearchMono, filterMono, setFilter
         history.push('/addmonologue')
     }
 
+    function handleChange(e){
+        console.log(e.target.value)
+        console.log("click")
+        setFilterMono(e.target.value)
+    }
+
     return (
         <AllMonoStyle>
             <div id="mono-header">
                 <h3>All Monologues</h3>
                 <SearchMono searchMono={searchMono} onMonoChange={setSearchMono}/>
-                <Form>
-                    <Form.Select aria-label="Default select example">
+                {/* <Form>
+                    <Form.Select aria-label="Default select example"  onChange={handleChange}>
                         <option>Filter Alphabetically By:</option>
-                        <option value="play">Play Title</option>
-                        <option value="playwright">Playwright</option>
-                        <option value="role">Role</option>
+                        <option name="play" value="play">Play Title</option>
+                        <option name="playwright "value="playwright">Playwright</option>
+                        <option name="role" value="role">Role</option>
                     </Form.Select>
-                </Form>
+                </Form> */}
             </div>
             <Accordion defaultActiveKey="0" flush>
                 {displayMonos}
