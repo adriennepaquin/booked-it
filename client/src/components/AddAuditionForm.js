@@ -10,10 +10,11 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 
 const AddAudStyle = styled.div`
+    padding-bottom: 50px;
 
     .add-aud {
         max-width: 700px;
-        padding-bottom: 50px;
+        
     }
 
     h3 {
@@ -319,8 +320,8 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                             <Form.Group as={Col}>
                             {/* location */}
                                 
-                                <Form.Select aria-label="Default select example" id="locations" name="location_id" defaultValue="default" value={form.location_id} onChange={handleChange}>
-                                <option value="default">Location</option>
+                                <Form.Select aria-label="Default select example" id="locations" name="location_id" value={form.location_id} onChange={handleChange}>
+                                <option>Location</option>
                                 {locations.map(location => <option value={location.id} key={location.name}>{location.name}</option>)}
                                 {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}                   
                                 </Form.Select>
@@ -340,8 +341,8 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                         <Row>                            
                             <Form.Group as={Col}>
                             {/* casting */}                            
-                                <Form.Select name="casting_id" defaultValue="default" value={form.casting_id} onChange={handleChange}>
-                                    <option value="default">Casting</option>
+                                <Form.Select name="casting_id" value={form.casting_id} onChange={handleChange}>
+                                    <option>Casting</option>
                                     {castings.map(casting => <option value={casting.id} key={casting.agency}>{casting.agency}</option>)}
                                     {newCast ? <option value={casting.agency} key={casting.agency}>{casting.agency}</option> : null}
                                 </Form.Select>
@@ -394,8 +395,8 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
 
                             <Form.Group as={Col}>
                             {/* monologue */}
-                                <Form.Select name="monologue_id" defaultValue="default" value={form.monologue_id} onChange={handleChange}>
-                                    <option value="default">Monologue</option>
+                                <Form.Select name="monologue_id" value={form.monologue_id} onChange={handleChange}>
+                                    <option>Monologue</option>
                                     {myMonos.map(mono => <option value={mono.id} key={mono.role}>{mono.role}</option>)}
                                     {newMono ? <option value={monologue.role} key={monologue.role}>{monologue.role}</option> : null}
                                 </Form.Select>

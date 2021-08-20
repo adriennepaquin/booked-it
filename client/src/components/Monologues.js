@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Accordion from 'react-bootstrap/Accordion'
 
 const MonoStyle = styled.div`
+    padding-bottom: 40px;
 
     h3 {
         font-size: 35px;
@@ -23,7 +24,7 @@ function Monologues({ myMonos, firstName }) {
 
     const displayMonos = myMonos.map(mono => {
         console.log(mono)
-        return <DisplayMonologue mono={mono}/>
+        return <DisplayMonologue key={mono.first_line} mono={mono}/>
     })
 
     function handleClick(){

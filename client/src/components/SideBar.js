@@ -46,6 +46,14 @@ function SideBar({ search, setSearch }) {
                 <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/addmonologue">Add A Monologue</Link></ListGroup.Item>           
                 <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/allmonologues">Monologues</Link></ListGroup.Item>
             </ListGroup>
+            <ListGroup variant="flush">
+                <ListGroup.Item action variant="light" className="sidebar-links"><Link to="welcome">Home</Link></ListGroup.Item>
+                <ListGroup.Item action variant="light" className="sidebar-links"><Link to="auditions">My Auditions</Link></ListGroup.Item>
+                <ListGroup.Item action variant="light" className="sidebar-links"><Link to="/addaudition">Add An Audition</Link></ListGroup.Item>            
+                <ListGroup.Item action variant="light" className="sidebar-links"><Link to="/monologues">My Monologues</Link></ListGroup.Item>           
+                <ListGroup.Item action variant="light" className="sidebar-links"><Link to="/addmonologue">Add A Monologue</Link></ListGroup.Item>           
+                <ListGroup.Item action variant="light" className="sidebar-links"><Link to="/allmonologues">Monologues</Link></ListGroup.Item>
+            </ListGroup>
         </SideStyle>
     )
 }

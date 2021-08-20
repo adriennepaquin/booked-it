@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col'
 import styled from 'styled-components'
 
 const AudStyle = styled.div`
+    padding-bottom: 35px;
 
     h3 {
         font-size: 35px;

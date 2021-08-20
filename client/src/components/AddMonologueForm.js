@@ -10,9 +10,12 @@ import Alert from 'react-bootstrap/Alert'
 import styled from 'styled-components'
 
 const AddMonoStyle = styled.div`
+
+    padding-bottom: 50px;
+    
     .add-mono {
         max-width: 450px;
-        padding-bottom: 50px;
+        
     }
 
     h3 {
@@ -94,6 +97,9 @@ function AddMonologueForm({ user, setMyMonos, myMonos }) {
     function handleChange(e){
             const key = e.target.name
             const value = e.target.value
+            console.log(key)
+            console.log(value)
+            console.log(e.target.files)
             if (key === 'public') {
                 // console.log(value)
                 setForm({
@@ -102,10 +108,14 @@ function AddMonologueForm({ user, setMyMonos, myMonos }) {
                 })
             } else if (key === 'mono_pdf') {
                 console.log("here")
+                console.log(form)
+                console.log(e.target.files[0])
+                console.log(key)
                 setForm({
                     ...form,
                     [key]: e.target.files[0]
                 })
+                console.log(form)
             } else {
                 setForm({
                     ...form,

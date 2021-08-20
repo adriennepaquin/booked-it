@@ -13,6 +13,7 @@ const WelStyle = styled.div`
     height: auto;
     color: white;
     margin: 20px;
+    padding-bottom: 25px;
 
     h2 {
         text-shadow: 3px 3px 3px #03989e;

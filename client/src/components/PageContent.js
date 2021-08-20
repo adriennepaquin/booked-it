@@ -29,6 +29,8 @@ function PageContent() {
     const [locations, setLocations] = useState([])
     const [castings, setCastings] = useState([])
     const [search, setSearch] = useState("")
+    const [searchMono, setSearchMono] = useState("")
+    const [filterMono, setFilterMono] = useState("")
 
     // fetch autologin
     useEffect(() => {
@@ -84,6 +86,10 @@ function PageContent() {
     const filteredAuditions = sortAuditions.filter(audition => {
         return (audition.producer.toLowerCase().includes(search.toLowerCase()) || audition.casting.agency.toLowerCase().includes(search.toLowerCase()) || audition.people.some(person => person.name.toLowerCase().includes(search.toLowerCase())))
     })
+
+    const filteredMonos = monos.filter(mono => {
+        return (mono.play.toLowerCase().includes(searchMono.toLowerCase()) || mono.playwright.toLowerCase().includes(searchMono.toLowerCase()) || mono.role.toLowerCase().includes(searchMono.toLowerCase()) || mono.first_line.toLowerCase().includes(searchMono.toLowerCase()))
+    })
     // console.log(peopleAuditions)
 
     // let filteredAuditions
@@ -125,7 +131,7 @@ function PageContent() {
                         <LogIn setUser={setUser}/>
                     </Route>
                     <Route>
-                        {user ? <MainContent user={user} setUser={setUser} auditions={auditions} monos={monos} setMonos={setMonos} myMonos={myMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} castings={castings} setCastings={setCastings} search={search} setSearch={setSearch} filteredAuditions={filteredAuditions}/> : <Redirect to="/"/>}
+                        {user ? <MainContent user={user} setUser={setUser} auditions={auditions} monos={monos} setMonos={setMonos} myMonos={myMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} castings={castings} setCastings={setCastings} search={search} setSearch={setSearch} searchMono={searchMono} setSearchMono={setSearchMono} filterMono={filterMono} setFilterMono={setFilterMono} filteredAuditions={filteredAuditions} filteredMonos={filteredMonos}/> : <Redirect to="/"/>}
                     </Route>
                     {/* <Route path="/welcome">
                         {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> }

@@ -17,7 +17,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, filteredAuditions }) {
+function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, searchMono, setSearchMono, filterMono, setFilterMono, filteredAuditions, filteredMonos }) {
 
     // console.log("MainContent")
 
@@ -71,7 +71,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                             {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos} firstName={firstName}/></>}
                         </Route>
                         <Route path="/allmonologues">
-                            {!user ? <Redirect to="/"/> : <><AllMonologues monos={monos}/></>}
+                            {!user ? <Redirect to="/"/> : <><AllMonologues monos={filteredMonos} searchMono={searchMono} setSearchMono={setSearchMono} filterMono={filterMono} setFilterMono={setFilterMono}/></>}
                         </Route>
                         <Route path="/addmonologue">
                             {!user ? <Redirect to="/"/> : <><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}
