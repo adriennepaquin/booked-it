@@ -19,7 +19,7 @@ import Col from 'react-bootstrap/Col'
 
 function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, filteredAuditions }) {
 
-    console.log("MainContent")
+    // console.log("MainContent")
 
     // // fetch autologin
     // useEffect(() => {
@@ -48,12 +48,12 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
     // }, [])
 
     return (
-        <Container>
+        <Container fluid={true} >
             <Row>
-                <Col>
+                <Col xs="auto">
                     <SideBar />
                 </Col>
-                <Col>
+                <Col sm={8}>
                     <Switch>
                         <Route path="/welcome">
                             <Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>

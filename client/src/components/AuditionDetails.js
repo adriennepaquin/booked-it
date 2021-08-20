@@ -2,6 +2,13 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import DisplayPerson from './DisplayPerson'
 import ModifyAudition from './ModifyAudition'
+import styled from 'styled-components'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
+const DetailStyle = styled.div`
+    
+`
 
 function AuditionDetails({ audition }) {
     // const [modify, setModify] = useState(false)
@@ -95,23 +102,30 @@ function AuditionDetails({ audition }) {
 
     return (
         <div>
-            <p>{audition.time}</p>
             <p><label for="appointment">Appointment?</label>
-            {audition.appointment ? <input type="checkbox" name="appointment" value={audition.appointment} defaultChecked/> : <input type="checkbox" name="appointment" value={audition.appointment} />}<br></br></p>
-            <p>casting: {audition.casting.agency}</p>
+            {/* {audition.appointment ? <input type="checkbox" name="appointment" value={audition.appointment} defaultChecked/> : <input type="checkbox" name="appointment" value={audition.appointment} />} */}
+            {audition.appointment ? " yes" : " no"}
+            <br></br></p>
+            <p>Casting: {audition.casting.agency === "none" ? "no agency" : audition.casting.agency}</p>
             <p>In the Room: {displayPeople}</p>
-            <p>shows: {audition.shows}</p>
-            <p>monologue: {audition.monologue.role}</p>
-            <p>outfit: {audition.outfit}</p>
-            <form onSubmit={handleSubmit}>
-                <label for="response">Response:</label><br></br>
-                <input type="text" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
-                <label for="callback">Callback?</label>
-                {form.callback ? <input type="checkbox" name="callback" value={form.callback} checked onChange={handleCheck} /> : <input type="checkbox" name="callback" value={form.callback} onChange={handleCheck} />}<br></br>
-                <label for="booked">Booked?</label>
-                {form.booked ? <input type="checkbox" name="booked" value={form.booked} checked onChange={handleCheck} /> : <input type="checkbox" name="booked" value={form.booked} onChange={handleCheck} />}<br></br>
-                <input id="update_submit" type="submit" value="Update" />
-            </form>
+            <p>Shows: {audition.shows}</p>
+            <p>Monologue: {audition.monologue.role}</p>
+            <p>Outfit: {audition.outfit}</p>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                    <Form.Label for="response">Response:</Form.Label><br></br>
+                    <Form.Control as="textarea" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label for="callback">Callback?</Form.Label>
+                    {form.callback ? <Form.Check type="checkbox" name="callback" value={form.callback} checked onChange={handleCheck} /> : <Form.Check type="checkbox" name="callback" value={form.callback} onChange={handleCheck} />}<br></br>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label for="booked">Booked?</Form.Label>
+                    {form.booked ? <Form.Check type="checkbox" name="booked" value={form.booked} checked onChange={handleCheck} /> : <Form.Check type="checkbox" name="booked" value={form.booked} onChange={handleCheck} />}<br></br>
+                </Form.Group>
+                <Button className="button" id="update_submit" variant="light" type="submit" value="Update">Update Response</Button>
+            </Form>
         </div>
     )
 }

@@ -22,8 +22,17 @@ const WelStyle = styled.div`
         
     }
 
+    .welcome-title{
+        margin: 15px;
+    }
+
+    .welcome-headers {
+        margin: 5px;
+    }
+
     .accordions {
         color: black;
+        border-radius: 5px;
     }
     
 `
@@ -80,32 +89,41 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
     }, [])
 
+    const firstName = user.name.split(" ")
+    // console.log(firstName[0])
+
     const displayAudition1 = auditions[auditions.length - 1]
-    // console.log(displayAudition1)
     const displayAudition2 = auditions[auditions.length - 2]
-    // console.log(displayAudition1)
 
     const displayMono1 = monos[monos.length - 1]
-    // console.log(displayMono1)
     const displayMono2 = monos[monos.length - 2]
-    // console.log(displayMono1)
+    const displayMono3 = monos[monos.length - 3]
+    const displayMono4 = monos[monos.length - 4]
         
     return (
         <WelStyle>
             <Container>
                 <Row id="welcome">
-                    <h2>Welcome to Your Stage,</h2>
-                    <h2>{user.name}!</h2>
-                    Recent Auditions:
-                    <Accordion className="accordions" defaultActiveKey="0" flush>
-                        {displayAudition1 ? <DisplayAudition audition={displayAudition1}/> : null}
-                        {displayAudition2 ? <DisplayAudition audition={displayAudition2}/> : null}
-                    </Accordion>
-                    New Monologues:
-                    <Accordion className="accordions" defaultActiveKey="0" flush>
-                            {displayMono1 ? <DisplayMonologue mono={displayMono1}/> : null}
-                            {displayMono2 ? <DisplayMonologue mono={displayMono2}/> : null}                               
-                    </Accordion>
+                    <div className="welcome-title">
+                        <h2>Welcome to Your Stage,</h2>
+                        <h2>{firstName[0]}!</h2>
+                    </div>
+                    <Col lg={6}>
+                        <h3 className="welcome-headers">Recent Auditions:</h3>
+                        <Accordion className="accordions" defaultActiveKey="0" flush>
+                            {displayAudition1 ? <DisplayAudition audition={displayAudition1}/> : null}
+                            {displayAudition2 ? <DisplayAudition audition={displayAudition2}/> : null}
+                        </Accordion>
+                    </Col>
+                    <Col lg={6}>
+                        <h3 className="welcome-headers">New Monologues:</h3>
+                        <Accordion className="accordions" defaultActiveKey="0" flush>
+                                {displayMono1 ? <DisplayMonologue mono={displayMono1}/> : null}
+                                {displayMono2 ? <DisplayMonologue mono={displayMono2}/> : null}
+                                {displayMono3 ? <DisplayMonologue mono={displayMono3}/> : null}
+                                {displayMono4 ? <DisplayMonologue mono={displayMono4}/> : null}                        
+                        </Accordion>
+                    </Col>
                 </Row>
             </Container>
         </WelStyle>

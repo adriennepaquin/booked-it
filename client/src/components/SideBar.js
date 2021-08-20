@@ -8,6 +8,24 @@ const SideStyle = styled.div`
     margin: 20px;
     width: 300px;
     height: 100%;
+
+    .sidebar-links:hover { 
+        background-color: #03989e;
+        
+    }
+    
+    a:link {
+        text-decoration: none;
+        color: black;
+    }
+    
+    a:visited {
+        color: black;
+    }
+
+    a:hover {
+        color: white;
+    }
 `
 
 function SideBar({ search, setSearch }) {
@@ -21,11 +39,11 @@ function SideBar({ search, setSearch }) {
     return (
         <SideStyle>
             <ListGroup variant="flush">
-                <ListGroup.Item action variant="dark"><Link to="auditions">My Auditions</Link></ListGroup.Item>
-                <ListGroup.Item action variant="dark"><Link to="/addaudition">Add An Audition</Link></ListGroup.Item>            
-                <ListGroup.Item action variant="dark"><Link to="/monologues">My Monologues</Link></ListGroup.Item>           
-                <ListGroup.Item action variant="dark"><Link to="/addmonologue">Add A Monologue</Link></ListGroup.Item>           
-                <ListGroup.Item action variant="dark"><Link to="/allmonologues">Monologues</Link></ListGroup.Item>
+                <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="auditions">My Auditions</Link></ListGroup.Item>
+                <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/addaudition">Add An Audition</Link></ListGroup.Item>            
+                <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/monologues">My Monologues</Link></ListGroup.Item>           
+                <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/addmonologue">Add A Monologue</Link></ListGroup.Item>           
+                <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/allmonologues">Monologues</Link></ListGroup.Item>
             </ListGroup>
         </SideStyle>
     )

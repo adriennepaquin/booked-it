@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import AuditionDetails from "./AuditionDetails"
 import ModifyAudition from "./ModifyAudition"
+import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
 
@@ -18,15 +19,16 @@ function DisplayAudition({ audition }) {
 
     // console.log(audition)
     return (
+        <Col>
         <Card>
             <Card.Body>
                 <Card.Text>
-                    <p>{audition.date}</p>
-                    <p>{audition.producer}</p>
-                    <p>at {audition.location.name}</p>
+                    <p>{audition.date} - {audition.producer}</p>
+                    <p></p>
+                    <p>{audition.time} @ {audition.location.name}</p>
                     <Accordion>
                         <Accordion.Header>
-                            Show Details
+                            <h5>Show Details</h5>
                             {/* <button onClick={handleClick}>{display ? "Hide Details" : "Show Details"}</button> */}
                         </Accordion.Header>
                         <Accordion.Body>
@@ -39,6 +41,7 @@ function DisplayAudition({ audition }) {
                 </Card.Text>
             </Card.Body>
         </Card>
+        </Col>
     )
 }
 

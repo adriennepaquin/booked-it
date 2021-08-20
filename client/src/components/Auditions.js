@@ -3,6 +3,23 @@ import DisplayAudition from './DisplayAudition'
 import Search from './Search'
 import Accordion from 'react-bootstrap/Accordion'
 import CardColumns from 'react-bootstrap/CardColumns'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import styled from 'styled-components'
+
+const AudStyle = styled.div`
+
+    h3 {
+        font-size: 35px;
+        color: white;
+    }
+    
+    #auditions-header { 
+        color: white;
+        margin: 15px;
+    }
+`
 
 function Auditions({ setAuditions, auditions, user, search, setSearch }) {
     
@@ -29,22 +46,37 @@ function Auditions({ setAuditions, auditions, user, search, setSearch }) {
     // | audition.people.toLowerCase().includes(search.toLowerCase()) 
     console.log(auditions)
     return (
-        <div>
-            Auditions
-            <Search search={search} onSearchChange={setSearch}/>
-            <CardColumns>
+        <AudStyle>
+            <div id="auditions-header">
+                <h3>Auditions</h3>
+                <Search search={search} onSearchChange={setSearch}/>
+            </div>
+            <Row xs={1} md={2} className="g-4">
+                
                 {auditions.length === 0
                 ?
                 <>
-                <p>No auditions found!</p>
+                <h3>No auditions found!</h3>
                 </>
                 :
                 <>
                 {displayAuditions}
                 </>
                 }
-            </CardColumns>
-        </div>
+            {/* <CardColumns>
+                {auditions.length === 0
+                ?
+                <>
+                <h3>No auditions found!</h3>
+                </>
+                :
+                <>
+                {displayAuditions}
+                </>
+                }
+            </CardColumns> */}
+            </Row>
+        </AudStyle>
     )
 }
 

@@ -1,5 +1,25 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
+
+const AddAudStyle = styled.div`
+
+    .add-aud {
+        max-width: 350px;
+    }
+
+    h3 {
+        font-size: 35px;
+        color: white;
+    }
+
+    #add-aud-header { 
+        color: white;
+        margin: 15px;
+    }
+`
 
 function AddAuditionForm({ auditions, setAuditions, user, locations, castings, myMonos }) {
     const [form, setForm] = useState({
@@ -211,111 +231,119 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     console.log(monologue)
 
     return (
-        <div>
-            Add Audition here!
-            <form onSubmit={handleSubmit}>
-                {/* date */}
-                <input type="date" name="date" placeholder="YYYY/MM/DD" value={form.date} onChange={handleChange}/><br></br>
+        <AddAudStyle>
+            <Container className="add-aud">
+                <div id="add-aud-header">
+                    <h3>Add an Audition</h3>
+                </div>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group>
+                    {/* date */}
+                        <Form.Control type="date" name="date" placeholder="YYYY/MM/DD" value={form.date} onChange={handleChange}/><br></br>
+                    </Form.Group>
 
-                {/* producer */}
-                <input type="text" name="producer" placeholder="Theatre/Producer" value={form.producer} onChange={handleChange}/><br></br>
+                    <Form.Group>
+                    {/* producer */}
+                    <Form.Control type="text" name="producer" placeholder="Theatre/Producer" value={form.producer} onChange={handleChange}/><br></br>
+                    </Form.Group>
 
-                {/* location */}
-                <select id="locations" name="location_id" defaultValue="default" value={form.location_id} onChange={handleChange}>
-                <option value="default">Location</option>
-                {locations.map(location => <option value={location.id} key={location.name}>{location.name}</option>)}
-                {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}                   
-                </select><br></br>
-                <button onClick={(e) => {
-                    e.preventDefault()
-                    setLocForm(!locForm)}}>Add New Location</button><br></br>
+                    {/* location */}
+                    <select id="locations" name="location_id" defaultValue="default" value={form.location_id} onChange={handleChange}>
+                    <option value="default">Location</option>
+                    {locations.map(location => <option value={location.id} key={location.name}>{location.name}</option>)}
+                    {newLoc ? <option value={location.name} key={location.name}>{location.name}</option> : null}                   
+                    </select><br></br>
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        setLocForm(!locForm)}}>Add New Location</button><br></br>
 
-                {/* add new location */}
-                {locForm ? <div><input type="text" name="name" value={location.name} placeholder="Location Name" onChange={handleLocation}/><br></br>
-                <input type="text" name="address" value={location.address} placeholder="Location Address" onChange={handleLocation}/><br></br>
-                {/* <input type="text" name="notes" value={location.notes} placeholder="Location Notes" onChange={handleLocation}/><br></br> */}
-                <button onClick={addLocation}>Add</button><br></br></div> : null}
+                    {/* add new location */}
+                    {locForm ? <div><input type="text" name="name" value={location.name} placeholder="Location Name" onChange={handleLocation}/><br></br>
+                    <input type="text" name="address" value={location.address} placeholder="Location Address" onChange={handleLocation}/><br></br>
+                    {/* <input type="text" name="notes" value={location.notes} placeholder="Location Notes" onChange={handleLocation}/><br></br> */}
+                    <button onClick={addLocation}>Add</button><br></br></div> : null}
 
-                {/* time */}
-                <input type="text" name="time" placeholder="time" value={form.time} onChange={handleChange}/><br></br>
+                    {/* time */}
+                    <input type="text" name="time" placeholder="time" value={form.time} onChange={handleChange}/><br></br>
 
-                {/* appointment */}
-                <input type="checkbox" name="appointment" value={form.appointment} onChange={handleChange}/>
-                <label for="appointment">Appointment?</label><br></br>
+                    {/* appointment */}
+                    <input type="checkbox" name="appointment" value={form.appointment} onChange={handleChange}/>
+                    <label for="appointment">Appointment?</label><br></br>
 
-                {/* casting */}
-                <select name="casting_id" defaultValue="default" value={form.casting_id} onChange={handleChange}>
-                    <option value="default">Casting</option>
-                    {castings.map(casting => <option value={casting.id} key={casting.agency}>{casting.agency}</option>)}
-                    {newCast ? <option value={casting.agency} key={casting.agency}>{casting.agency}</option> : null}
-                </select><br></br>
-                <button onClick={(e) => {
-                    e.preventDefault()
-                    setCastForm(!castForm)}}>Add New Casting Agency</button><br></br>
+                    {/* casting */}
+                    <select name="casting_id" defaultValue="default" value={form.casting_id} onChange={handleChange}>
+                        <option value="default">Casting</option>
+                        {castings.map(casting => <option value={casting.id} key={casting.agency}>{casting.agency}</option>)}
+                        {newCast ? <option value={casting.agency} key={casting.agency}>{casting.agency}</option> : null}
+                    </select><br></br>
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        setCastForm(!castForm)}}>Add New Casting Agency</button><br></br>
 
-                {/* add new casting */}
-                {castForm ? <div><input type="text" name="agency" value={casting.agency} placeholder="Agency Name" onChange={handleCasting}/><br></br>
-                {/* <input type="text" name="notes" value={casting.notes} placeholder="Notes" onChange={handleCasting}/><br></br> */}
-                <button onClick={addCasting}>Add</button><br></br></div> : null}
-                
-                {/* in the room */}
-                <label for="people">In the Room:</label><br></br>
-                {fields.map((field, idx) => {
-                    return (
-                        <div key={`${field}-${idx}`}>
-                            <input
-                            type="text"
-                            placeholder="Name (Position)"
-                            name="people"
-                            id={idx}
-                            // value={form.people[idx]}
-                            onChange={handleChange}/>
-                        </div>
-                    )
-                })}
-                <button onClick={handleAdd}>Add another Person</button><br></br>
+                    {/* add new casting */}
+                    {castForm ? <div><input type="text" name="agency" value={casting.agency} placeholder="Agency Name" onChange={handleCasting}/><br></br>
+                    {/* <input type="text" name="notes" value={casting.notes} placeholder="Notes" onChange={handleCasting}/><br></br> */}
+                    <button onClick={addCasting}>Add</button><br></br></div> : null}
+                    
+                    {/* in the room */}
+                    <label for="people">In the Room:</label><br></br>
+                    {fields.map((field, idx) => {
+                        return (
+                            <div key={`${field}-${idx}`}>
+                                <input
+                                type="text"
+                                placeholder="Name (Position)"
+                                name="people"
+                                id={idx}
+                                // value={form.people[idx]}
+                                onChange={handleChange}/>
+                            </div>
+                        )
+                    })}
+                    <button onClick={handleAdd}>Add another Person</button><br></br>
 
-                {/* shows */}
-                <input type="text" name="shows" placeholder="Shows" value={form.shows} onChange={handleChange}/><br></br>
+                    {/* shows */}
+                    <input type="text" name="shows" placeholder="Shows" value={form.shows} onChange={handleChange}/><br></br>
 
-                {/* monologue */}
-                <select name="monologue_id" defaultValue="default" value={form.monologue_id} onChange={handleChange}>
-                    <option value="default">Monologue</option>
-                    {myMonos.map(mono => <option value={mono.id} key={mono.role}>{mono.role}</option>)}
-                    {newMono ? <option value={monologue.role} key={monologue.role}>{monologue.role}</option> : null}
-                </select><br></br>
-                <button onClick={(e) => {
-                    e.preventDefault()
-                    setMonoForm(!monoForm)}}>Add New Monologue</button><br></br>
+                    {/* monologue */}
+                    <select name="monologue_id" defaultValue="default" value={form.monologue_id} onChange={handleChange}>
+                        <option value="default">Monologue</option>
+                        {myMonos.map(mono => <option value={mono.id} key={mono.role}>{mono.role}</option>)}
+                        {newMono ? <option value={monologue.role} key={monologue.role}>{monologue.role}</option> : null}
+                    </select><br></br>
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        setMonoForm(!monoForm)}}>Add New Monologue</button><br></br>
 
-                {/* add new monologue */}
-                {monoForm ? <div><input type="text" name="play" value={monologue.play} placeholder="Play" onChange={handleMonologue}/><br></br>
-                <input type="text" name="playwright" value={monologue.playwright} placeholder="Playwright" onChange={handleMonologue}/><br></br>
-                <input type="text" name="role" value={monologue.role} placeholder="Role" onChange={handleMonologue}/><br></br>
-                <input type="text" name="first_line" value={monologue.first_line} placeholder="First Line" onChange={handleMonologue}/><br></br>
-                <input type="text" name="length" value={monologue.length} placeholder="Length" onChange={handleMonologue}/><br></br>
-                <input type="text" name="genre" value={monologue.genre} placeholder="Genre" onChange={handleMonologue}/><br></br>
-                <input type="checkbox" name="public" value={monologue.public} onChange={handleMonologue}/>
-                <label for="public">Make Public?</label><br></br>
-                <button onClick={addMonologue}>Add</button><br></br></div> : null}
-        
-                {/* outfit */}
-                <input type="text" name="outfit" placeholder="Outfit" value={form.outfit} onChange={handleChange}/><br></br>
+                    {/* add new monologue */}
+                    {monoForm ? <div><input type="text" name="play" value={monologue.play} placeholder="Play" onChange={handleMonologue}/><br></br>
+                    <input type="text" name="playwright" value={monologue.playwright} placeholder="Playwright" onChange={handleMonologue}/><br></br>
+                    <input type="text" name="role" value={monologue.role} placeholder="Role" onChange={handleMonologue}/><br></br>
+                    <input type="text" name="first_line" value={monologue.first_line} placeholder="First Line" onChange={handleMonologue}/><br></br>
+                    <input type="text" name="length" value={monologue.length} placeholder="Length" onChange={handleMonologue}/><br></br>
+                    <input type="text" name="genre" value={monologue.genre} placeholder="Genre" onChange={handleMonologue}/><br></br>
+                    <input type="checkbox" name="public" value={monologue.public} onChange={handleMonologue}/>
+                    <label for="public">Make Public?</label><br></br>
+                    <button onClick={addMonologue}>Add</button><br></br></div> : null}
+            
+                    {/* outfit */}
+                    <input type="text" name="outfit" placeholder="Outfit" value={form.outfit} onChange={handleChange}/><br></br>
 
-                {/* response */}
-                <input type="text" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
+                    {/* response */}
+                    <input type="text" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
 
-                {/* callback */}
-                <input type="checkbox" name="callback" value={form.callback} onChange={handleChange}/>
-                <label for="callback">Callback?</label><br></br>
+                    {/* callback */}
+                    <input type="checkbox" name="callback" value={form.callback} onChange={handleChange}/>
+                    <label for="callback">Callback?</label><br></br>
 
-                {/* booked */}
-                <input type="checkbox" name="booked" value={form.booked} onChange={handleChange}/>
-                <label for="booked">Booked?</label><br></br>
-                <input id="submit" type="submit" value="Submit" />
-                {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
-            </form>
-        </div>
+                    {/* booked */}
+                    <input type="checkbox" name="booked" value={form.booked} onChange={handleChange}/>
+                    <label for="booked">Booked?</label><br></br>
+                    <input id="submit" type="submit" value="Submit" />
+                    {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
+                </Form>
+            </Container>
+        </AddAudStyle>
     )
 }
 
