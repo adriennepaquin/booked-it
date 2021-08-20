@@ -37,7 +37,7 @@ const WelStyle = styled.div`
     
 `
 
-function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings }) {
+function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings, firstName }) {
 
     // fetch this user's auditions
     useEffect(() => {
@@ -89,7 +89,7 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
     }, [])
 
-    const firstName = user.name.split(" ")
+    
     // console.log(firstName[0])
 
     const displayAudition1 = auditions[auditions.length - 1]

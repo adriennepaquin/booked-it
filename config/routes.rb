@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   # delete "/logout", to: "sessions#destroy"
   get "/me", to: "users#me"
   get "/users", to: "users#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post 'rails/active_storage/direct_uploads', to: 'direct_uploads#create'
 end

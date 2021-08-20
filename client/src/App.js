@@ -104,7 +104,7 @@ const GlobalStyle = createGlobalStyle`
     transition-duration: 0.4s;
     cursor: pointer;
     /* float: center; */
-    display: block;
+    /* display: block; */
     border-radius: 5px;
 
     &:hover {

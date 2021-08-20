@@ -15,7 +15,7 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
         console.log(user)
         setAuditions([])
         setMyMonos([])
-        history.push('/')
+        history.push('/login')
         // alert("See you soon!")
     }
     return (
@@ -27,7 +27,7 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
                     </Navbar.Brand>
                     <Nav>
                         <Nav.Item>
-                            <Nav.Link className="links-left" href="/">Home</Nav.Link>
+                            {!user ? <Nav.Link className="links-left" href="/">Home</Nav.Link> : null}
                         </Nav.Item>
                     </Nav>
                 </Nav>

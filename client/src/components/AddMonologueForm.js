@@ -2,6 +2,54 @@ import { useState } from 'react'
 import { useEffect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { DirectUpload } from 'activestorage'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
+import styled from 'styled-components'
+
+const AddMonoStyle = styled.div`
+    .add-mono {
+        max-width: 450px;
+        padding-bottom: 50px;
+    }
+
+    h3 {
+        font-size: 35px;
+        color: white;
+    }
+
+    #add-mono-header { 
+        color: white;
+        margin: 15px;
+    }
+
+    #mono-form {
+        padding: 15px;
+    }
+
+    .mono-button {
+        font-family: 'Lobster', cursive;
+        color: #03989e;
+        padding: 5px;
+        /* margin: 5px; */
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        /* float: center; */
+        /* display: block; */
+        border-radius: 5px;
+        border: 1px solid #03989e;
+
+        &:hover {
+        background-color: #03989e;
+        color: white;
+        }
+    }
+`
 
 function AddMonologueForm({ user, setMyMonos, myMonos }) {
     const [form, setForm] = useState({
@@ -125,29 +173,48 @@ function AddMonologueForm({ user, setMyMonos, myMonos }) {
     }
 
     return (
-        <div>
-            <form onSubmit={addMonologue}>
-                <input type="text" name="play" value={form.play} placeholder="Play" onChange={handleChange}/><br></br>
-                <input type="text" name="playwright" value={form.playwright} placeholder="Playwright" onChange={handleChange}/><br></br>
-                <input type="text" name="role" value={form.role} placeholder="Role" onChange={handleChange}/><br></br>
-                <input type="text" name="first_line" value={form.first_line} placeholder="First Line" onChange={handleChange}/><br></br>
-                <input type="text" name="length" value={form.length} placeholder="Length" onChange={handleChange}/><br></br>
-                <input type="text" name="genre" value={form.genre} placeholder="Genre" onChange={handleChange}/><br></br>
-                <input type="file" name="mono_pdf" accept=".pdf" onChange={handleChange}/><br></br>
-                {/* {filePicked ? (
-                <div>
-                    <p>Filename: {file.name}</p>
+        <AddMonoStyle>
+            <Container xs="auto" className="add-mono">
+                <div id="add-mono-header">
+                    <h3>Add a Monologue</h3>
                 </div>
-                ) :(
-                    <p>Select PDF to Upload</p>
-                )
-                } */}
-                <input type="checkbox" name="public" value={form.public} onChange={handleChange}/>
-                <label for="public">Make Public?</label><br></br>
-                <input id="submit" type="submit" value="Add New Monologue" />
-            </form>
-            {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
-        </div>
+                <Card>
+                    <Form id="mono-form" onSubmit={addMonologue}>
+                        <Form.Group>
+                            <Form.Control type="text" name="play" value={form.play} placeholder="Play" onChange={handleChange}/>
+                        </Form.Group><br></br>
+                        <Form.Group>
+                            <Form.Control type="text" name="playwright" value={form.playwright} placeholder="Playwright" onChange={handleChange}/>
+                        </Form.Group><br></br>
+                        <Form.Group>
+                            <Form.Control type="text" name="role" value={form.role} placeholder="Role" onChange={handleChange}/>
+                        </Form.Group><br></br>
+                        <Form.Group>
+                            <Form.Control type="text" name="first_line" value={form.first_line} placeholder="First Line" onChange={handleChange}/>
+                        </Form.Group><br></br>
+                        <Form.Group>
+                            <Form.Control type="text" name="length" value={form.length} placeholder="Length" onChange={handleChange}/>
+                        </Form.Group><br></br>
+                        <Form.Group>
+                            <Form.Control type="text" name="genre" value={form.genre} placeholder="Genre" onChange={handleChange}/>
+                        </Form.Group><br></br>
+                        <Form.Control type="file" name="mono_pdf" accept=".pdf" onChange={handleChange}/><br></br>
+                        {/* {filePicked ? (
+                        <div>
+                            <p>Filename: {file.name}</p>
+                        </div>
+                        ) :(
+                            <p>Select PDF to Upload</p>
+                        )
+                        } */}
+                        <Form.Check type="checkbox" name="public" value={form.public} onChange={handleChange}/>
+                        <Form.Label for="public">Make Public?</Form.Label><br></br>
+                        <Button className="button" variant="light" id="submit" type="submit" value="Add New Monologue">Add New Monologue</Button>
+                    </Form>
+                    {errors ? errors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}
+                </Card>
+            </Container>
+        </AddMonoStyle>
     )
 }
 

@@ -39,6 +39,7 @@ function SideBar({ search, setSearch }) {
     return (
         <SideStyle>
             <ListGroup variant="flush">
+                <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="welcome">Home</Link></ListGroup.Item>
                 <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="auditions">My Auditions</Link></ListGroup.Item>
                 <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/addaudition">Add An Audition</Link></ListGroup.Item>            
                 <ListGroup.Item action variant="dark" className="sidebar-links"><Link to="/monologues">My Monologues</Link></ListGroup.Item>           

@@ -13,16 +13,15 @@ class MonologuesController < ApplicationController
 
     def create
         monologue = Monologue.find_by(user_id: params[:user_id], role: params[:role], play: params[:play])
-        # byebug
         if monologue
             render json: { errors: ["Monologue already exists"]}, status: :unprocessable_entity
         else
             new_monologue = Monologue.create(monologue_params)
             # byebug
-            if new_monologue
+            if new_monologue.valid?
                 render json: new_monologue
             else
-                render json: {errors: monologue.errors.full_messages}, status: :unprocessable_entity
+                render json: {errors: new_monologue.errors.full_messages}, status: :unprocessable_entity
             end
         end
     end

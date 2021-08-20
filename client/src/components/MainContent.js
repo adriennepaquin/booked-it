@@ -46,6 +46,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
     //         })
     //     })
     // }, [])
+    const firstName = user.name.split(" ")
 
     return (
         <Container fluid={true} >
@@ -56,7 +57,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                 <Col sm={8}>
                     <Switch>
                         <Route path="/welcome">
-                            <Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>
+                            <Welcome user={user} firstName={firstName} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>
                             {/* {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> } */}
                         </Route>
                         <Route path="/auditions">
@@ -67,7 +68,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                             {!user ? <Redirect to="/"/> : <><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
                         </Route>
                         <Route path="/monologues">
-                            {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos}/></>}
+                            {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos} firstName={firstName}/></>}
                         </Route>
                         <Route path="/allmonologues">
                             {!user ? <Redirect to="/"/> : <><AllMonologues monos={monos}/></>}

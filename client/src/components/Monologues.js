@@ -1,7 +1,21 @@
 import { useHistory } from 'react-router-dom'
 import DisplayMonologue from './DisplayMonologue'
+import styled from 'styled-components'
+import Accordion from 'react-bootstrap/Accordion'
 
-function Monologues({ myMonos }) {
+const MonoStyle = styled.div`
+
+    h3 {
+        font-size: 35px;
+        color: white;
+    }
+    #mono-header { 
+        color: white;
+        margin: 15px;
+    }
+`
+
+function Monologues({ myMonos, firstName }) {
     console.log("Monologues")
     const history = useHistory()
     
@@ -17,11 +31,15 @@ function Monologues({ myMonos }) {
     }
 
     return (
-        <div>
-            Monologues
-            {displayMonos}
-            <button onClick={handleClick}>Add a Monologue</button>
-        </div>
+        <MonoStyle>
+            <div id="mono-header">
+                <h3>{firstName[0]}'s Monologues</h3>
+            </div>
+            <Accordion defaultActiveKey="0" flush>
+                {displayMonos}
+            </Accordion>
+            <button className="button" onClick={handleClick}>Add a Monologue</button>
+        </MonoStyle>
     )
 }
 

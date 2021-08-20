@@ -29,9 +29,16 @@ const HomeStyle = styled.div`
     }
 
     #home-monos {
-        border-left: 1px solid black;
+        /* border-left: 1px solid black; */
         margin: 20px;
         padding: 30px;
+    }
+    .h-divider{
+        margin-left:5px;
+        margin-right:5px;
+        width:1px;
+        height:100%;
+        border-left:1px solid gray;
     }
 `
 
@@ -81,7 +88,12 @@ function Home({ monos }) {
                             </ul>
                         </div>
                     </Col>
-                    <Col lg={6}>
+                    <Col>
+                        <div class="h-divider">
+                        </div>
+                    </Col>
+                    
+                    <Col lg={5}>
                         <div id="home-monos">
                             <h3>A sample of public monologues:</h3>
                             <hr></hr>

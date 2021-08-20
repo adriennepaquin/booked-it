@@ -28,13 +28,13 @@ User.reset_pk_sequence
 
 User.create!(name: "Adrienne Paquin", username: "apaquin", password: "password", password_confirmation: "password")
 
-User.create!(name: "Julie Andrews", username: "jaedwards", password: "password", password_confirmation: "password")
+# User.create!(name: "Julie Andrews", username: "jaedwards", password: "password", password_confirmation: "password")
 
 User.create!(name: "Laurie Metcalf", username: "itsnora", password: "password", password_confirmation: "password")
 
 User.create!(name: "Meryl Streep", username: "merylstreet", password: "password", password_confirmation: "password")
 
-User.create!(name: "Patrick Page", username: "misterhades", password: "password", password_confirmation: "password")
+# User.create!(name: "Patrick Page", username: "misterhades", password: "password", password_confirmation: "password")
 
 puts "created #{User.count} users"
 
@@ -161,7 +161,7 @@ Monologue.create!([{
     role: "Rosalind",
     length: "90 seconds",
     first_line: "And why, I pray you? Who might be your mother...",
-    user_id: rand(1..5)
+    user_id: rand(1..3)
 },
 {
     play: "The Winter's Tale",
@@ -171,7 +171,7 @@ Monologue.create!([{
     role: "Hermione",
     length: "1-2 minutes",
     first_line: "Since what I am to say must be but that...",
-    user_id: rand(1..5)
+    user_id: rand(1..3)
 },
 {
     play: "Gloria",
@@ -181,7 +181,7 @@ Monologue.create!([{
     role: "Kendra",
     length: "1-2 minutes",
     first_line: "If you have half a brain, you'd look around...",
-    user_id: rand(1..5)
+    user_id: rand(1..3)
 },
 {
     play: "Misalliance",
@@ -191,7 +191,7 @@ Monologue.create!([{
     role: "Hypatia",
     length: "1-2 minutes",
     first_line: "Well I daresay it's vulgar, but there's no other word for it...",
-    user_id: rand(1..5)
+    user_id: rand(1..3)
 }])
 puts "created #{Monologue.count} monologues"
 
@@ -309,35 +309,35 @@ Audition.create!([{
 puts "created #{Audition.count} auditions"
 
 UserAudition.create!([{
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 1
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 2
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 3
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 4
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 5
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 6
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 7
 },
 {
-    user_id: rand(1..5),
+    user_id: rand(1..3),
     audition_id: 8
 }])
 puts "created #{UserAudition.count} user/auditions"
