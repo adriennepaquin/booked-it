@@ -7,6 +7,7 @@ function MonoDetails({ mono, pdf}) {
         <div>
             PDF details
             <img src={`http://localhost:3000/${pdf}`}/>
+            {/* <embed src={pdf} width="1000px"/> */}
             
         </div>
     )

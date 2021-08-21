@@ -41,7 +41,8 @@ function DisplayMonologue({ user, mono, handleDeleteMono }) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            setPdf(data)
+            console.log(data.mono_pdf)
+            setPdf(data.mono_pdf)
             setDetails(true)
             // setMyMonos(data)
         })
