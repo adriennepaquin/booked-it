@@ -89,7 +89,7 @@ function Home({ monos }) {
                         </div>
                     </Col>
                     <Col>
-                        <div class="h-divider">
+                        <div className="h-divider">
                         </div>
                     </Col>
                     

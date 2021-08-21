@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import DisplayMonologue from './DisplayMonologue'
+
 import styled from 'styled-components'
 import Accordion from 'react-bootstrap/Accordion'
 

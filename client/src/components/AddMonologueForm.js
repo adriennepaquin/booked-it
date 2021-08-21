@@ -171,13 +171,24 @@ function AddMonologueForm({ user, setMyMonos, myMonos }) {
           })
     }
 
-    function uploadFile(file, user) {
+    function uploadFile(file, monologue) {
         const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
         upload.create((error, blob) => {
             if (error) {
                 console.log(error)
             } else {
-                console.log('there is no error...')
+                const token = localStorage.getItem("token")
+                fetch(`http://localhost:3000/monologues/${monologue.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({mono_pdf: blob.signed_id})
+                })
+                .then(res => res.json())
+                .then(data => console.log(data))
             }
         })
     }

@@ -1,9 +1,16 @@
 class MonologuesController < ApplicationController
-    before_action :authenticate, except: [:index, :show]
+    before_action :authenticate, except: [:index, :show, :pdf]
     
     def index
         monos = Monologue.where(public: true)
         render json: monos
+    end
+
+    def pdf
+        mono = Monologue.find_by(id: params[:mono_id])
+        byebug
+        mono_pdf = rails_blob_path(mono.mono_pdf)
+        render json: { mono: mono, mono_pdf: mono_pdf }
     end
 
     def show
@@ -24,6 +31,16 @@ class MonologuesController < ApplicationController
                 render json: {errors: new_monologue.errors.full_messages}, status: :unprocessable_entity
             end
         end
+    end
+
+    def update
+        mono = Monologue.find_by(id: params[:id])
+        byebug
+        mono.update(mono_pdf: params[:mono_pdf])
+        byebug
+        mono_pdf = rails_blob_path(mono.mono_pdf)
+        byebug
+        render json: { mono: mono, mono_pdf: mono_pdf}
     end
 
     private

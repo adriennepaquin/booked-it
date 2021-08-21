@@ -252,4 +252,17 @@ class AuditionsController < ApplicationController
             render json: {errors: audition.errors.full_messages}
         end
     end
+
+    #DELETE /destroy
+    def destroy
+        # byebug
+        audition = Audition.find_by(id: params[:id])
+        if audition
+            # byebug
+            audition.destroy
+            head :no_content
+        else
+            render json: { error: "Audition not found" }, status: :not_found
+        end
+    end
 end
