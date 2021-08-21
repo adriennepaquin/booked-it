@@ -1,4 +1,4 @@
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import NavBar from './NavBar'
 import Footer from './Footer'
@@ -46,7 +46,33 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
     //         })
     //     })
     // }, [])
+    const history = useHistory()
     const firstName = user.name.split(" ")
+
+    function handleDeleteAud(e){
+        console.log(e.target.value)
+        const token = localStorage.getItem("token")
+        // console.log(form)
+        fetch (`http://localhost:3000/auditions/${e.target.value}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.id)
+            const newAuditions = auditions.filter(audition => audition.id !== data.id)
+            console.log(newAuditions)
+            setAuditions(newAuditions)
+            // history.push("/auditions")
+        })
+    }
+
+    function handleDeleteMono(e){
+        console.log("click!")
+    }
 
     return (
         <Container fluid={true} >
@@ -57,21 +83,21 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                 <Col sm={8}>
                     <Switch>
                         <Route path="/welcome">
-                            <Welcome user={user} firstName={firstName} auditions={filteredAuditions} monos={monos} setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/>
+                            <Welcome user={user} firstName={firstName} auditions={filteredAuditions} monos={monos} setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings} handleDeleteAud={handleDeleteAud}/>
                             {/* {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> } */}
                         </Route>
                         <Route path="/auditions">
-                            <Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/>
+                            <Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch} handleDeleteAud={handleDeleteAud}/>
                             {/* {!user ? <Redirect to="/"/> : <><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>} */}
                         </Route>
                         <Route path="/addaudition">
                             {!user ? <Redirect to="/"/> : <><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos}/></>}
                         </Route>
                         <Route path="/monologues">
-                            {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos} firstName={firstName}/></>}
+                            {!user ? <Redirect to="/"/> : <><Monologues myMonos={myMonos} firstName={firstName} user={user}handleDeleteMono={handleDeleteMono}/></>}
                         </Route>
                         <Route path="/allmonologues">
-                            {!user ? <Redirect to="/"/> : <><AllMonologues monos={filteredMonos} searchMono={searchMono} setSearchMono={setSearchMono} filterMono={filterMono} setFilterMono={setFilterMono}/></>}
+                            {!user ? <Redirect to="/"/> : <><AllMonologues monos={filteredMonos} searchMono={searchMono} setSearchMono={setSearchMono} filterMono={filterMono} setFilterMono={setFilterMono} user={user}/> </>}
                         </Route>
                         <Route path="/addmonologue">
                             {!user ? <Redirect to="/"/> : <><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos}/></>}

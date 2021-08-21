@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
 
-function DisplayAudition({ audition }) {
+function DisplayAudition({ audition, handleDeleteAud }) {
     const [display, setDisplay] = useState(false)
     // const [modify, setModify] = useState(false)
 
@@ -32,7 +32,7 @@ function DisplayAudition({ audition }) {
                             {/* <button onClick={handleClick}>{display ? "Hide Details" : "Show Details"}</button> */}
                         </Accordion.Header>
                         <Accordion.Body>
-                            <AuditionDetails audition={audition}/>
+                            <AuditionDetails audition={audition} handleDeleteAud={handleDeleteAud}/>
                         {/* {display ? <AuditionDetails audition={audition}/> : null} */}
                         </Accordion.Body>
                     </Accordion>

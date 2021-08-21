@@ -17,7 +17,7 @@ const MonoStyle = styled.div`
     }
 `
 
-function Monologues({ myMonos, firstName }) {
+function Monologues({ user, myMonos, firstName }) {
     console.log("Monologues")
     const history = useHistory()
     
@@ -25,7 +25,8 @@ function Monologues({ myMonos, firstName }) {
 
     const displayMonos = myMonos.map(mono => {
         console.log(mono)
-        return <DisplayMonologue key={mono.first_line} mono={mono}/>
+        console.log(user)
+        return <DisplayMonologue key={mono.first_line} user={user} mono={mono}/>
     })
 
     function handleClick(){

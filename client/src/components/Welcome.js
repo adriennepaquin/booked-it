@@ -38,7 +38,7 @@ const WelStyle = styled.div`
     
 `
 
-function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings, firstName }) {
+function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings, firstName, handleDeleteAud }) {
 
     // fetch this user's auditions
     useEffect(() => {
@@ -112,17 +112,17 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
                     <Col lg={6}>
                         <h3 className="welcome-headers">Recent Auditions:</h3>
                         <Accordion className="accordions" defaultActiveKey="0" flush>
-                            {displayAudition1 ? <DisplayAudition audition={displayAudition1}/> : null}
-                            {displayAudition2 ? <DisplayAudition audition={displayAudition2}/> : null}
+                            {displayAudition1 ? <DisplayAudition audition={displayAudition1} handleDeleteAud={handleDeleteAud}/> : null}
+                            {displayAudition2 ? <DisplayAudition audition={displayAudition2} handleDeleteAud={handleDeleteAud}/> : null}
                         </Accordion>
                     </Col>
                     <Col lg={6}>
                         <h3 className="welcome-headers">New Monologues:</h3>
                         <Accordion className="accordions" defaultActiveKey="0" flush>
-                                {displayMono1 ? <DisplayMonologue mono={displayMono1}/> : null}
-                                {displayMono2 ? <DisplayMonologue mono={displayMono2}/> : null}
-                                {displayMono3 ? <DisplayMonologue mono={displayMono3}/> : null}
-                                {displayMono4 ? <DisplayMonologue mono={displayMono4}/> : null}                        
+                                {displayMono1 ? <DisplayMonologue user={user} mono={displayMono1}/> : null}
+                                {displayMono2 ? <DisplayMonologue user={user} mono={displayMono2}/> : null}
+                                {displayMono3 ? <DisplayMonologue user={user} mono={displayMono3}/> : null}
+                                {displayMono4 ? <DisplayMonologue user={user} mono={displayMono4}/> : null}                        
                         </Accordion>
                     </Col>
                 </Row>

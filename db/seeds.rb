@@ -153,7 +153,47 @@ puts "created #{Person.count} people"
 # }])
 # puts "created #{Playwright.count} playwrights"
 
-Monologue.create!([{
+# Monologue.create!([{
+#     play: "As You Like It",
+#     playwright: "William Shakespeare",
+#     public: true,
+#     genre: "comedic",
+#     role: "Rosalind",
+#     length: "90 seconds",
+#     first_line: "And why, I pray you? Who might be your mother...",
+#     user_id: rand(1..3)
+# },
+# {
+#     play: "The Winter's Tale",
+#     playwright: "William Shakespeare",
+#     public: true,
+#     genre: "dramatic",
+#     role: "Hermione",
+#     length: "1-2 minutes",
+#     first_line: "Since what I am to say must be but that...",
+#     user_id: rand(1..3)
+# },
+# {
+#     play: "Gloria",
+#     playwright: "Branden Jacobs-Jenkins",
+#     public: true,
+#     genre: "comedic",
+#     role: "Kendra",
+#     length: "1-2 minutes",
+#     first_line: "If you have half a brain, you'd look around...",
+#     user_id: rand(1..3)
+# },
+# {
+#     play: "Misalliance",
+#     playwright: "George Bernard Shaw",
+#     public: true,
+#     genre: "comedic",
+#     role: "Hypatia",
+#     length: "1-2 minutes",
+#     first_line: "Well I daresay it's vulgar, but there's no other word for it...",
+#     user_id: rand(1..3)
+# }])
+mono1 = Monologue.create!(
     play: "As You Like It",
     playwright: "William Shakespeare",
     public: true,
@@ -162,8 +202,13 @@ Monologue.create!([{
     length: "90 seconds",
     first_line: "And why, I pray you? Who might be your mother...",
     user_id: rand(1..3)
-},
-{
+)
+mono1.mono_pdf.attach(
+    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
+    filename: 'Phase 2 Project Pitch.pdf',
+    content_type: 'application.pdf'
+)
+mono2 = Monologue.create!(
     play: "The Winter's Tale",
     playwright: "William Shakespeare",
     public: true,
@@ -172,8 +217,13 @@ Monologue.create!([{
     length: "1-2 minutes",
     first_line: "Since what I am to say must be but that...",
     user_id: rand(1..3)
-},
-{
+)
+mono2.mono_pdf.attach(
+    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
+    filename: 'Phase 2 Project Pitch.pdf',
+    content_type: 'application.pdf'
+)
+mono3 = Monologue.create!(
     play: "Gloria",
     playwright: "Branden Jacobs-Jenkins",
     public: true,
@@ -182,8 +232,14 @@ Monologue.create!([{
     length: "1-2 minutes",
     first_line: "If you have half a brain, you'd look around...",
     user_id: rand(1..3)
-},
-{
+)
+mono3.mono_pdf.attach(
+    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
+    filename: 'Phase 2 Project Pitch.pdf',
+    content_type: 'application.pdf'
+)
+
+mono4 = Monologue.create!(
     play: "Misalliance",
     playwright: "George Bernard Shaw",
     public: true,
@@ -192,7 +248,12 @@ Monologue.create!([{
     length: "1-2 minutes",
     first_line: "Well I daresay it's vulgar, but there's no other word for it...",
     user_id: rand(1..3)
-}])
+)
+mono4.mono_pdf.attach(
+    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
+    filename: 'Phase 2 Project Pitch.pdf',
+    content_type: 'application.pdf'
+)
 puts "created #{Monologue.count} monologues"
 
 Audition.create!([{

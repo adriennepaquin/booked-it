@@ -10,7 +10,7 @@ const DetailStyle = styled.div`
     
 `
 
-function AuditionDetails({ audition }) {
+function AuditionDetails({ audition, handleDeleteAud }) {
     // const [modify, setModify] = useState(false)
     const [form, setForm] = useState({
         id: audition.id,
@@ -97,23 +97,23 @@ function AuditionDetails({ audition }) {
     }
 
     // MAYBE A COUPLE LEVELS HIGHER?
-    function handleDeleteAud(e){
-        console.log(e.target.value)
-        const token = localStorage.getItem("token")
-        console.log(form)
-        fetch (`http://localhost:3000/auditions/${e.target.value}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            history.push("/auditions")
-        })
-    }
+    // function handleDeleteAud(e){
+    //     console.log(e.target.value)
+    //     const token = localStorage.getItem("token")
+    //     console.log(form)
+    //     fetch (`http://localhost:3000/auditions/${e.target.value}`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${token}`,
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data)
+    //         history.push("/auditions")
+    //     })
+    // }
 
     const displayPeople = audition.people.map(person => {
         return <DisplayPerson key={person.name} person={person}/>

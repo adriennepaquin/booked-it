@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import MonoDetails from './MonoDetails'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
 
 const MonoStyle = styled.div`
@@ -18,11 +19,21 @@ const MonoStyle = styled.div`
     }
 `
 
-function DisplayMonologue({ mono }) {
+function DisplayMonologue({ user, mono, handleDeleteMono }) {
     const [pdf, setPdf] = useState("")
+    const [details, setDetails] = useState(false)
+    // const [ownMono, setOwnMono] = useState(false)
+    // console.log(mono.public)
+    // console.log(user)
+    // console.log(mono.user_id)
+    // if (mono.user_id === user.id){
+    //     setOwnMono(true)
+    // }
+    // setOwnMono(mono.public)
 
     // fetch this monologue's PDF
-    useEffect(() => {
+    function getPdf() {
+        console.log("get pDF!")
         const token = localStorage.getItem("token")
         fetch(`http://localhost:3000/pdfs?mono_id=${mono.id}`, {
             Authorization: `Bearer ${token}`,
@@ -30,9 +41,12 @@ function DisplayMonologue({ mono }) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            setPdf(data)
+            setDetails(true)
             // setMyMonos(data)
         })
-    }, [])
+        // setDetails(!details)
+    }
 
     // console.log(mono)
     return (
@@ -50,8 +64,9 @@ function DisplayMonologue({ mono }) {
                             <p>Genre -- {mono.genre}</p>
                             <p>Length -- {mono.length}</p>
                             <p>"{mono.first_line}..."</p>
-                            
-                            <MonoDetails />
+                            {details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want PDF</Button>}
+                            {/* <Button variant="light" onClick={getPdf}>I want PDF</Button> */}
+                            {/* {ownMono ? <Button className="button" id="delete" variant="light" value={mono.id} onClick={handleDeleteMono}>Delete Monologue</Button> : null} */}
                         </Accordion.Body>
                     </Accordion.Item>
                 </Card.Text>

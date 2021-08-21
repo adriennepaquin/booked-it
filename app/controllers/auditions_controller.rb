@@ -260,7 +260,7 @@ class AuditionsController < ApplicationController
         if audition
             # byebug
             audition.destroy
-            head :no_content
+            render json: audition
         else
             render json: { error: "Audition not found" }, status: :not_found
         end

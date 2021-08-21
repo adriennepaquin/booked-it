@@ -22,9 +22,9 @@ const AudStyle = styled.div`
     }
 `
 
-function Auditions({ setAuditions, auditions, user, search, setSearch }) {
+function Auditions({ setAuditions, auditions, user, search, setSearch, handleDeleteAud }) {
     
-    console.log(user)
+    // console.log(user)
     console.log("Auditions")
     // fetch this user's auditions
     useEffect(() => {
@@ -35,12 +35,12 @@ function Auditions({ setAuditions, auditions, user, search, setSearch }) {
             setAuditions(data)
         })
     }, [])
-    console.log(search)
+    // console.log(search)
     console.log(auditions)
 
     const displayAuditions = auditions.map(audition => {
         // console.log(audition)
-        return <DisplayAudition key={audition.id} audition={audition}/>
+        return <DisplayAudition key={audition.id} audition={audition} handleDeleteAud={handleDeleteAud}/>
     })
 
     
