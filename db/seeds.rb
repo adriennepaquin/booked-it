@@ -204,8 +204,8 @@ mono1 = Monologue.create!(
     user_id: rand(1..3)
 )
 mono1.mono_pdf.attach(
-    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
-    filename: 'Phase 2 Project Pitch.pdf',
+    io: File.open('./public/monos/Rosalind.pdf'),
+    filename: 'Rosalind.pdf',
     content_type: 'application.pdf'
 )
 mono2 = Monologue.create!(
@@ -219,8 +219,8 @@ mono2 = Monologue.create!(
     user_id: rand(1..3)
 )
 mono2.mono_pdf.attach(
-    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
-    filename: 'Phase 2 Project Pitch.pdf',
+    io: File.open('./public/monos/Hermione.pdf'),
+    filename: 'Hermione.pdf',
     content_type: 'application.pdf'
 )
 mono3 = Monologue.create!(
@@ -234,8 +234,8 @@ mono3 = Monologue.create!(
     user_id: rand(1..3)
 )
 mono3.mono_pdf.attach(
-    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
-    filename: 'Phase 2 Project Pitch.pdf',
+    io: File.open('./public/monos/Gloria.pdf'),
+    filename: 'Gloria.pdf',
     content_type: 'application.pdf'
 )
 
@@ -250,8 +250,8 @@ mono4 = Monologue.create!(
     user_id: rand(1..3)
 )
 mono4.mono_pdf.attach(
-    io: File.open('./public/monos/Phase 2 Project Pitch.pdf'),
-    filename: 'Phase 2 Project Pitch.pdf',
+    io: File.open('./public/monos/Hypatia.pdf'),
+    filename: 'Hypatia.pdf',
     content_type: 'application.pdf'
 )
 puts "created #{Monologue.count} monologues"
