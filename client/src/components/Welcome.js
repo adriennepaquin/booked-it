@@ -38,8 +38,10 @@ const WelStyle = styled.div`
     
 `
 
-function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings, firstName, handleDeleteAud }) {
-
+function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings, firstName, handleDeleteAud, search, setSearch, searchMono, setSearchMono, ownMono, setOwnMono }) {
+    
+    setSearch("")
+    setSearchMono("")
     // fetch this user's auditions
     useEffect(() => {
         fetch(`http://localhost:3000/auditions/${user.id}`)
@@ -100,6 +102,12 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
     const displayMono2 = monos[monos.length - 2]
     const displayMono3 = monos[monos.length - 3]
     const displayMono4 = monos[monos.length - 4]
+
+    // random Welcome Page monologues
+    // const displayMono1 = monos[Math.floor(Math.random() * monos.length)]
+    // const displayMono2 = monos[Math.floor(Math.random() * monos.length)]
+    // const displayMono3 = monos[Math.floor(Math.random() * monos.length)]
+    // const displayMono4 = monos[Math.floor(Math.random() * monos.length)]
         
     return (
         <WelStyle>

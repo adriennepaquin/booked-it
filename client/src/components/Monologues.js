@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 import DisplayMonologue from './DisplayMonologue'
-
 import styled from 'styled-components'
 import Accordion from 'react-bootstrap/Accordion'
 
@@ -17,16 +17,18 @@ const MonoStyle = styled.div`
     }
 `
 
-function Monologues({ user, myMonos, firstName }) {
-    console.log("Monologues")
+function Monologues({ user, myMonos, firstName, search, setSearch, searchMono, setSearchMono, ownMono, setOwnMono, handleDeleteMono }) {
     const history = useHistory()
+    setSearch("")
+    setSearchMono("")
+    setOwnMono(true)
     
     console.log(myMonos)
 
     const displayMonos = myMonos.map(mono => {
         console.log(mono)
         console.log(user)
-        return <DisplayMonologue key={mono.first_line} user={user} mono={mono}/>
+        return <DisplayMonologue handleDeleteMono={handleDeleteMono} key={mono.first_line} user={user} mono={mono} ownMono={ownMono}/>
     })
 
     function handleClick(){

@@ -22,8 +22,9 @@ const AudStyle = styled.div`
     }
 `
 
-function Auditions({ setAuditions, auditions, user, search, setSearch, handleDeleteAud }) {
+function Auditions({ setAuditions, auditions, user, search, setSearch, handleDeleteAud, searchMono, setSearchMono }) {
     
+    setSearchMono("")
     // console.log(user)
     console.log("Auditions")
     // fetch this user's auditions

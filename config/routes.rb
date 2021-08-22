@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :monologues, only: [:index, :show, :create, :update]
+  resources :monologues, only: [:index, :show, :create, :update, :destroy]
   resources :people
   resources :in_the_rooms
   resources :castings, only: [:index, :create]

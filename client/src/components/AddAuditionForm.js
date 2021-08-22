@@ -53,7 +53,7 @@ const AddAudStyle = styled.div`
     }
 `
 
-function AddAuditionForm({ auditions, setAuditions, user, locations, castings, myMonos }) {
+function AddAuditionForm({ auditions, setAuditions, user, locations, castings, myMonos, search, setSearch, searchMono, setSearchMono }) {
     const [form, setForm] = useState({
         date: "",
         time: "",
@@ -108,6 +108,9 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     const [monoErrors, setMonoErrors] = useState([])
 
     const history = useHistory()
+
+    setSearch("")
+    setSearchMono("")
 
     function handleChange(e){
         // console.log(e)

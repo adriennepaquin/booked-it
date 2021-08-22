@@ -18,13 +18,15 @@ const AllMonoStyle = styled.div`
     }
 `
 
-function AllMonologues({ user, monos, searchMono, setSearchMono, filterMono, setFilterMono }) {
+function AllMonologues({ user, monos, searchMono, setSearchMono, filterMono, setFilterMono, search, setSearch }) {
     const history = useHistory()
     // console.log(monos)
+    setSearch("")
+    
 
     const displayMonos = monos.map(mono => {
         // console.log(mono)
-        return <DisplayMonologue user={user} mono={mono}/>
+        return <DisplayMonologue user={user} mono={mono} key={mono.role}/>
     })
 
     function handleClick(){

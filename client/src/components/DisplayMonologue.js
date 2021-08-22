@@ -19,7 +19,7 @@ const MonoStyle = styled.div`
     }
 `
 
-function DisplayMonologue({ user, mono, handleDeleteMono }) {
+function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
     const [pdf, setPdf] = useState("")
     const [details, setDetails] = useState(false)
     // const [ownMono, setOwnMono] = useState(false)
@@ -65,9 +65,9 @@ function DisplayMonologue({ user, mono, handleDeleteMono }) {
                             <p>Genre -- {mono.genre}</p>
                             <p>Length -- {mono.length}</p>
                             <p>"{mono.first_line}..."</p>
-                            {details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want PDF</Button>}
+                            {details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want the PDF</Button>}
                             {/* <Button variant="light" onClick={getPdf}>I want PDF</Button> */}
-                            {/* {ownMono ? <Button className="button" id="delete" variant="light" value={mono.id} onClick={handleDeleteMono}>Delete Monologue</Button> : null} */}
+                            {ownMono ? <Button className="button" id="delete" variant="light" value={mono.id} onClick={handleDeleteMono}>Delete Monologue</Button> : null}
                         </Accordion.Body>
                     </Accordion.Item>
                 </Card.Text>

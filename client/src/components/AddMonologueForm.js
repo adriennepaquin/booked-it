@@ -54,7 +54,7 @@ const AddMonoStyle = styled.div`
     }
 `
 
-function AddMonologueForm({ user, setMyMonos, myMonos }) {
+function AddMonologueForm({ user, setMyMonos, myMonos, search, setSearch, searchMono, setSearchMono }) {
     const [form, setForm] = useState({
         play: "",
         public: false,
@@ -70,6 +70,9 @@ function AddMonologueForm({ user, setMyMonos, myMonos }) {
     const [errors, setErrors] = useState([])
 
     const history = useHistory()
+
+    setSearch("")
+    setSearchMono("")
 
     // function handleChange(e){
     //     const key = e.target.name

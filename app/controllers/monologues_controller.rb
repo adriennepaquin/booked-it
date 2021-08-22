@@ -8,7 +8,7 @@ class MonologuesController < ApplicationController
 
     def pdf
         mono = Monologue.find_by(id: params[:mono_id])
-        byebug
+        # byebug
         mono_pdf = rails_blob_path(mono.mono_pdf)
         render json: { mono: mono, mono_pdf: mono_pdf }
     end
@@ -35,12 +35,25 @@ class MonologuesController < ApplicationController
 
     def update
         mono = Monologue.find_by(id: params[:id])
-        byebug
+        # byebug
         mono.update(mono_pdf: params[:mono_pdf])
-        byebug
+        # byebug
         mono_pdf = rails_blob_path(mono.mono_pdf)
-        byebug
+        # byebug
         render json: { mono: mono, mono_pdf: mono_pdf}
+    end
+
+    #DELETE /destroy
+    def destroy
+        # byebug
+        mono = Monologue.find_by(id: params[:id])
+        if mono
+            # byebug
+            mono.destroy
+            render json: mono
+        else
+            render json: { error: "Monologue not found" }, status: :not_found
+        end
     end
 
     private
