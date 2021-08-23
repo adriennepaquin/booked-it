@@ -12,6 +12,7 @@ const AllMonoStyle = styled.div`
         font-size: 35px;
         color: white;
     }
+
     #mono-header { 
         color: white;
         margin: 15px;
@@ -20,12 +21,10 @@ const AllMonoStyle = styled.div`
 
 function AllMonologues({ user, monos, searchMono, setSearchMono, filterMono, setFilterMono, search, setSearch }) {
     const history = useHistory()
-    // console.log(monos)
+
     setSearch("")
     
-
     const displayMonos = monos.map(mono => {
-        // console.log(mono)
         return <DisplayMonologue user={user} mono={mono} key={mono.role}/>
     })
 
@@ -33,25 +32,17 @@ function AllMonologues({ user, monos, searchMono, setSearchMono, filterMono, set
         history.push('/addmonologue')
     }
 
-    function handleChange(e){
-        console.log(e.target.value)
-        console.log("click")
-        setFilterMono(e.target.value)
-    }
+    // function handleChange(e){
+    //     console.log(e.target.value)
+    //     console.log("click")
+    //     setFilterMono(e.target.value)
+    // }
 
     return (
         <AllMonoStyle>
             <div id="mono-header">
                 <h3>All Monologues</h3>
                 <SearchMono searchMono={searchMono} onMonoChange={setSearchMono}/>
-                {/* <Form>
-                    <Form.Select aria-label="Default select example"  onChange={handleChange}>
-                        <option>Filter Alphabetically By:</option>
-                        <option name="play" value="play">Play Title</option>
-                        <option name="playwright "value="playwright">Playwright</option>
-                        <option name="role" value="role">Role</option>
-                    </Form.Select>
-                </Form> */}
             </div>
             <Accordion defaultActiveKey="0" flush>
                 {displayMonos}

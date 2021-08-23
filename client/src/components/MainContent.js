@@ -1,16 +1,10 @@
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import NavBar from './NavBar'
-import Footer from './Footer'
-import Home from './Home'
-import SignUp from './SignUp'
-import LogIn from './LogIn'
+import { useState } from 'react'
 import Auditions from './Auditions'
 import Monologues from './Monologues'
 import AllMonologues from './AllMonologues'
 import Welcome from './Welcome'
 import SideBar from './SideBar'
-import NotFound from './NotFound'
 import AddAuditionForm from './AddAuditionForm'
 import AddMonologueForm from './AddMonologueForm'
 import Container from 'react-bootstrap/Container'
@@ -18,34 +12,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, searchMono, setSearchMono, filterMono, setFilterMono, filteredAuditions, filteredMonos }) {
-
-    // console.log("MainContent")
-
-    // // fetch autologin
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token")
-    //     fetch(`http://localhost:3000/me`, {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`,
-    //         }
-    //     })
-    //     .then((res) => {
-    //         return res.json().then((data) => {
-    //           if (res.ok) {
-    //             return data
-    //           } else {
-    //             throw data
-    //           }
-    //         })
-    //       })
-    //     .then(data => {
-    //         console.log(data)
-    //         setUser({id: data.id,
-    //             name: data.name,
-    //             username: data.username
-    //         })
-    //     })
-    // }, [])
     const [ownMono, setOwnMono] = useState(false)
     const history = useHistory()
     const firstName = user.name.split(" ")
@@ -53,7 +19,6 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
     function handleDeleteAud(e){
         console.log(e.target.value)
         const token = localStorage.getItem("token")
-        // console.log(form)
         fetch (`http://localhost:3000/auditions/${e.target.value}`, {
             method: 'DELETE',
             headers: {
@@ -67,7 +32,6 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
             const newAuditions = auditions.filter(audition => audition.id !== data.id)
             console.log(newAuditions)
             setAuditions(newAuditions)
-            // history.push("/auditions")
         })
     }
 
@@ -103,11 +67,9 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                     <Switch>
                         <Route path="/welcome">
                             <Welcome user={user} firstName={firstName} auditions={filteredAuditions} monos={monos} setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings} handleDeleteAud={handleDeleteAud} search={search} setSearch={setSearch} searchMono={searchMono} setSearchMono={setSearchMono} ownMono={ownMono} setOwnMono={setOwnMono}/>
-                            {/* {!user ? <Redirect to="/"/> : <><Welcome user={user} auditions={auditions} monos={monos}setMonos={setMonos} setMyMonos={setMyMonos} setAuditions={setAuditions} locations={locations} setLocations={setLocations} setCastings={setCastings}/></> } */}
                         </Route>
                         <Route path="/auditions">
                             <Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch} handleDeleteAud={handleDeleteAud} searchMono={searchMono} setSearchMono={setSearchMono}/>
-                            {/* {!user ? <Redirect to="/"/> : <><Auditions auditions={filteredAuditions} setAuditions={setAuditions} user={user} search={search} setSearch={setSearch}/></>} */}
                         </Route>
                         <Route path="/addaudition">
                             {!user ? <Redirect to="/"/> : <><AddAuditionForm user={user} auditions={auditions} setAuditions={setAuditions} locations={locations} castings={castings} myMonos={myMonos} search={search} setSearch={setSearch} searchMono={searchMono} setSearchMono={setSearchMono}/></>}

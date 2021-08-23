@@ -1,30 +1,32 @@
 class MonologuesController < ApplicationController
     before_action :authenticate, except: [:index, :show, :pdf]
     
+    # GET 
     def index
         monos = Monologue.where(public: true)
         render json: monos
     end
 
+    # custom route for PDFs
     def pdf
         mono = Monologue.find_by(id: params[:mono_id])
-        # byebug
         mono_pdf = rails_blob_path(mono.mono_pdf)
         render json: { mono: mono, mono_pdf: mono_pdf }
     end
 
+    # GET /:id
     def show
         my_monos = Monologue.where(user_id: params[:id])
         render json: my_monos
     end
 
+    # POST /create
     def create
         monologue = Monologue.find_by(user_id: params[:user_id], role: params[:role], play: params[:play])
         if monologue
             render json: { errors: ["Monologue already exists"]}, status: :unprocessable_entity
         else
             new_monologue = Monologue.create(monologue_params)
-            # byebug
             if new_monologue.valid?
                 render json: new_monologue
             else
@@ -33,22 +35,18 @@ class MonologuesController < ApplicationController
         end
     end
 
+    # UPDATE /:id
     def update
         mono = Monologue.find_by(id: params[:id])
-        # byebug
         mono.update(mono_pdf: params[:mono_pdf])
-        # byebug
         mono_pdf = rails_blob_path(mono.mono_pdf)
-        # byebug
         render json: { mono: mono, mono_pdf: mono_pdf}
     end
 
     #DELETE /destroy
     def destroy
-        # byebug
         mono = Monologue.find_by(id: params[:id])
         if mono
-            # byebug
             mono.destroy
             render json: mono
         else

@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 const FootStyle = styled.div`
     font-family: 'Lobster', cursive;
-    padding-top: 10px;
-    font-size: 18px;
-    height: 50px;
+    padding-top: 8px;
+    font-size: 16px;
+    height: 40px;
     width: 100%;
     background-color: #03989e;
     color: black;

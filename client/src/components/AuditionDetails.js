@@ -1,17 +1,10 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import DisplayPerson from './DisplayPerson'
-import ModifyAudition from './ModifyAudition'
-import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const DetailStyle = styled.div`
-    
-`
-
 function AuditionDetails({ audition, handleDeleteAud }) {
-    // const [modify, setModify] = useState(false)
     const [form, setForm] = useState({
         id: audition.id,
         response: audition.response,
@@ -23,37 +16,23 @@ function AuditionDetails({ audition, handleDeleteAud }) {
 
     const history = useHistory()
     function handleChange(e){
-        console.log(e.target.name)
-        console.log(e.target.value)
         const key = e.target.name
         const value = e.target.value
-        console.log(key)
-        // console.log(value)
         let newData
         newData = {
             ...form, [key]: value
         }
         setForm(newData)
-        // console.log(newData)
     }
-
-    // function handleUpdate() {
-    //     console.log('click')
-    //     setModify(!modify)
-    // }
 
     function handleCheck(e) {
         const key = e.target.name
         const value = e.target.value
-        console.log(key)
-        console.log(value)
-        console.log(form.callback)
         let newData
         if (key === 'callback'){
             newData = {
                 ...form, [key]: !form.callback
             }            
-            console.log(form)
             setForm(newData)
         } else if (key === 'booked'){
             newData = {
@@ -66,7 +45,6 @@ function AuditionDetails({ audition, handleDeleteAud }) {
     function handleSubmit(e){
         e.preventDefault()
         const token = localStorage.getItem("token")
-        console.log(form)
         fetch (`http://localhost:3000/auditions/${form.id}`, {
             method: 'PATCH',
             headers: {
@@ -85,35 +63,14 @@ function AuditionDetails({ audition, handleDeleteAud }) {
             })
           })
         .then(data => {
-            console.log(data)
             history.push('/welcome')
         })
         .catch((data) => {
-            console.log(data)
             if (data.status === 500) {
                 setErrors("Make sure you've filled out all fields.")
             }
         })
     }
-
-    // MAYBE A COUPLE LEVELS HIGHER?
-    // function handleDeleteAud(e){
-    //     console.log(e.target.value)
-    //     const token = localStorage.getItem("token")
-    //     console.log(form)
-    //     fetch (`http://localhost:3000/auditions/${e.target.value}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: `Bearer ${token}`,
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         history.push("/auditions")
-    //     })
-    // }
 
     const displayPeople = audition.people.map(person => {
         return <DisplayPerson key={person.name} person={person}/>
@@ -122,7 +79,6 @@ function AuditionDetails({ audition, handleDeleteAud }) {
     return (
         <div>
             <p><label for="appointment">Appointment?</label>
-            {/* {audition.appointment ? <input type="checkbox" name="appointment" value={audition.appointment} defaultChecked/> : <input type="checkbox" name="appointment" value={audition.appointment} />} */}
             {audition.appointment ? " yes" : " no"}
             <br></br></p>
             <p>Casting: {audition.casting.agency === "none" ? "no agency" : audition.casting.agency}</p>

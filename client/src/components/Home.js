@@ -6,8 +6,6 @@ import Accordion from "react-bootstrap/Accordion"
 import styled from "styled-components"
 
 const HomeStyle = styled.div`
-    /* background-color: white; */
-    
     ul {
         text-align: left;
         list-style-type: circle;
@@ -19,7 +17,6 @@ const HomeStyle = styled.div`
 
     #home-text {
         background-color: white;
-        /* padding: 20px; */
         column-rule: 4px solid black;
         padding-bottom: 50px;
     }
@@ -29,7 +26,6 @@ const HomeStyle = styled.div`
     }
 
     #home-monos {
-        /* border-left: 1px solid black; */
         margin: 20px;
         padding: 30px;
     }
@@ -43,16 +39,6 @@ const HomeStyle = styled.div`
 `
 
 function Home({ monos }) {
-
-    // const displayMonos = monos.map(mono => {
-    //     console.log(mono)
-    //     return <div>
-    //         <p>{mono.role}</p>
-    //         <p>{mono.play}</p>
-    //         <p>{mono.first_line}</p>
-    //     </div>
-    // })
-
     const displayMono1 = monos[monos.length - 1]
     const displayMono2 = monos[monos.length - 2]
     const displayMono3 = monos[monos.length - 3]

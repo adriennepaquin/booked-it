@@ -1,5 +1,4 @@
 import { useHistory } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -16,7 +15,6 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
         setAuditions([])
         setMyMonos([])
         history.push('/login')
-        // alert("See you soon!")
     }
     return (
         <Navbar sticky="top" id="styled-navbar" bg="light" expand="sm">

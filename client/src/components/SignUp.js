@@ -12,7 +12,6 @@ const SignStyle = styled.div`
   .sign-container {
     padding: 30px;
     max-width: 350px;
-
   }
 
   h3 {
@@ -24,7 +23,6 @@ function SignUp({ setUser }) {
     const [name, setName] = useState("")
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [errors, setErrors] = useState([])
 
     const history = useHistory()
@@ -109,7 +107,6 @@ function SignUp({ setUser }) {
 
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                  {/* <Form.Label htmlFor="name">Name:</Form.Label> */}
                   <Form.Control
                       type="text"
                       placeholder="Enter your name..."
@@ -119,7 +116,6 @@ function SignUp({ setUser }) {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                {/* <Form.Label htmlFor="username">Username:</Form.Label> */}
                 <Form.Control
                     type="text"
                     placeholder="Choose a Username..."
@@ -129,7 +125,6 @@ function SignUp({ setUser }) {
                 />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                {/* <Form.Label htmlFor="password">Password:</Form.Label> */}
                 <Form.Control
                     type="password"
                     placeholder="Choose a password..."
@@ -138,13 +133,6 @@ function SignUp({ setUser }) {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 </Form.Group>
-                {/* <label htmlFor="password_confirmation">Confirm Password:</label>
-                <input
-                    type="password"
-                    id="password_confirmation"
-                    value={passwordConfirmation}
-                    onChange={(e) => setPasswordConfirmation(e.target.value)}
-                /> */}
                 <Button className="button" variant="light" type="submit">Create Account</Button>                
               </Form>
               {errors ? errors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}

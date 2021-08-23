@@ -44,7 +44,13 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
     setSearchMono("")
     // fetch this user's auditions
     useEffect(() => {
-        fetch(`http://localhost:3000/auditions/${user.id}`)
+        const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/auditions/${user.id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
             // console.log(data)
@@ -64,7 +70,13 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
 
     // fetch this user's monologues
     useEffect(() => {
-        fetch(`http://localhost:3000/monologues/${user.id}`)
+        const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/monologues/${user.id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
             // console.log(data)
@@ -74,7 +86,13 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
 
     // fetch all available locations
     useEffect(() => {
-        fetch(`http://localhost:3000/locations`)
+        const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/locations`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
             // console.log(data)
@@ -84,7 +102,13 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
 
     // fetch all available casting
     useEffect(() => {
-        fetch(`http://localhost:3000/castings`)
+        const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/castings`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
             // console.log(data)

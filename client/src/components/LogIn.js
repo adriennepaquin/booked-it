@@ -17,8 +17,6 @@ const LogStyle = styled.div`
   h3 {
     color: white;
   }
-
-  
 `
 
 function LogIn({ setUser }) {
@@ -64,7 +62,6 @@ function LogIn({ setUser }) {
           history.push('/welcome')
         })
         .catch((error) => {
-          // console.log(error.errors)
           setErrors(error.errors)
         })
       }
@@ -128,27 +125,7 @@ function LogIn({ setUser }) {
                     </Form.Group>
                     <Button className="button" variant="light" type="submit" value="Log in">Log In</Button>
                 </Form>
-                {/* {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null} */}
                 {errors ? errors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}
-
-              {/* <form onSubmit={handleSubmit}>
-                  <input
-                  type="text" 
-                  placeholder="User Name" 
-                  value={username} 
-                  name="username"
-                  onChange={(e) => setUsername(e.target.value)}
-                  />
-                  <input
-                  type="password" 
-                  placeholder="Password" 
-                  value={password}
-                  name="password" 
-                  onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <input submit id="submit" type="submit" value="Log in" />
-                  {errors ? errors.map(error => <div style={{ color: "red" }} key={error}>{error}</div>) : null}
-              </form> */}
               </Col>
             </Row>
         </Container>

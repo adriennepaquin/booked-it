@@ -14,7 +14,6 @@ const AddAudStyle = styled.div`
 
     .add-aud {
         max-width: 700px;
-        
     }
 
     h3 {
@@ -35,14 +34,11 @@ const AddAudStyle = styled.div`
         font-family: 'Lobster', cursive;
         color: #03989e;
         padding: 5px;
-        /* margin: 5px; */
         text-align: center;
         text-decoration: none;
         font-size: 18px;
         transition-duration: 0.4s;
         cursor: pointer;
-        /* float: center; */
-        /* display: block; */
         border-radius: 5px;
         border: 1px solid #03989e;
 
@@ -75,13 +71,11 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     const [location, setLocation] = useState({
         name: "",
         address: ""
-        // // notes: ""
     })
     const [newLoc, setNewLoc] = useState(false)
     const [locForm, setLocForm] = useState(false)
     const [casting, setCasting] = useState({
         agency: ""
-        // notes: ""
     })
     const [newCast, setNewCast] = useState(false)
     const [castForm, setCastForm] = useState(false)
@@ -97,9 +91,6 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     })
     const [newMono, setNewMono] = useState(false)
     const [monoForm, setMonoForm] = useState(false)
-    // const [monoId, setMonoId] = useState("")
-    // const [castId, setCastId] = useState("")
-    // const [locId, setLocId] = useState("")
     const [fields, setFields] = useState([{ value: null}])
 
     const [errors, setErrors] = useState([])
@@ -113,19 +104,10 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     setSearchMono("")
 
     function handleChange(e){
-        // console.log(e)
-        // console.log(e.target)
-        // console.log(e.target.key)
-        // console.log(e.target.value)
-        // console.log(e.target.name)
-        // console.log(e.target.id)
         const key = e.target.name
         const value = e.target.value
-        // console.log(key)
-        // console.log(value)
         let newData
         if (key === 'appointment' || key === 'callback' || key === 'booked') {
-            // console.log(value)
             newData = {
                 ...form, [key]: !form.value
             }
@@ -137,24 +119,16 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                 setForm(newData)
             }
         } else if (key === 'people'){
-            console.log(value)
-            console.log(key)
-            const index = parseInt(e.target.id)
-            console.log(index)
-         
+            const index = parseInt(e.target.id)         
             newData = {...form}
-            newData.people[index] = value
-            console.log(newData)
-                       
+            newData.people[index] = value                       
             setForm(newData)
-            // console.log(newData)
         } else {
             newData = {
                 ...form, [key]: value
             }
             setForm(newData)
         }
-        // console.log(newData)
     }
 
     function handleLocation(e){
@@ -163,23 +137,18 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
         const addLoc = {
             ...location, [key]: value
         }
-        // console.log(addLoc)
         setLocation(addLoc)
     }
 
     function addLocation(e){
         e.preventDefault()
         if (location.name === "" || location.address === "") {
-            console.log(location)
             setLocErrors(["New Location must exist"])
-            console.log(locErrors)
         } else {
-            console.log(location)
             setLocErrors([])
             setNewLoc(!newLoc)
             setLocForm(false)
         }
-        
     }
 
     function handleCasting(e){
@@ -188,16 +157,13 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
         const addCast = {
             ...casting, [key]: value
         }
-        // console.log(addCast)
         setCasting(addCast)
     }
 
     function addCasting(e){
         e.preventDefault()
         if (casting.agency === "") {
-            console.log(casting)
             setCastErrors(["New Agency must exist"])
-            console.log(castErrors)
         } else {
             setCastErrors([])
             setNewCast(!newCast)
@@ -210,7 +176,6 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
         const value = e.target.value
         let newData
         if (key === 'public') {
-            // console.log(value)
             newData = {
                 ...monologue, public: !monologue.public, user_id: user.id
             }
@@ -243,17 +208,12 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
     function handleSubmit(e){
         e.preventDefault()
         const token = localStorage.getItem("token")
-        console.log(form)
-        console.log(location)
-        console.log(casting)
-        console.log(monologue)
         const postData = {
             ...form,
             location: location,
             casting: casting,
             monologue: monologue
         }
-        console.log(postData)
         fetch (`http://localhost:3000/auditions`, {
             method: 'POST',
             headers: {
@@ -272,21 +232,14 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
             })
           })
         .then(data => {
-            console.log(data)
             setAuditions([...auditions, data])
             history.push('/auditions')
         })
         .catch((errors) => {
-            console.log(errors)
-            console.log(errors.errors)
             setErrors(errors.errors)
           })
     
     }
-    console.log(form)
-    console.log(location)
-    console.log(casting)
-    console.log(monologue)
 
     return (
         <AddAudStyle>
@@ -335,7 +288,6 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                             {/* add new location */}
                                 {locForm ? <div><Form.Control type="text" name="name" value={location.name} placeholder="Location Name" onChange={handleLocation}/>
                                 <Form.Control type="text" name="address" value={location.address} placeholder="Location Address" onChange={handleLocation}/>
-                                {/* <input type="text" name="notes" value={location.notes} placeholder="Location Notes" onChange={handleLocation}/><br></br> */}
                                 <button className="aud-button" onClick={addLocation}>Add</button><br></br></div> : null}
                                 {locErrors ? locErrors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}
                             </Form.Group>
@@ -356,35 +308,21 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
 
                             {/* add new casting */}
                                 {castForm ? <div><Form.Control type="text" name="agency" value={casting.agency} placeholder="Agency Name" onChange={handleCasting}/>
-                                {/* <input type="text" name="notes" value={casting.notes} placeholder="Notes" onChange={handleCasting}/><br></br> */}
                                 <button className="aud-button" onClick={addCasting}>Add</button><br></br></div> : null}
                                 {castErrors ? castErrors.map(error => <Alert variant="dark" key={error}>{error}</Alert>) : null}
                             </Form.Group>
                             <br></br>
                             <Form.Group as={Col}>
                             {/* in the room */}
-                                {/* <Form.Label for="people">In the Room:</Form.Label><br></br> */}
                                 {fields.map((field, idx) => {
                                     return (
-                                        // <div key={`${field}-${idx}`}>
-                                        //     <input
-                                        //     type="text"
-                                        //     placeholder="Name (Position)"
-                                        //     name="people"
-                                        //     id={idx}
-                                        //     // value={form.people[idx]}
-                                        //     onChange={handleChange}/>
-                                        // </div>
-                                        // <div key={`${field}-${idx}`}>
                                             <Form.Control 
                                             key={`${field}-${idx}`}
                                             type="text"
                                             placeholder="Name (Position)"
                                             name="people"
                                             id={idx + 1}
-                                            // value={form.people[idx]}
                                             onChange={handleChange}/>
-                                        // </div>
                                     )
                                 })}
                                 <button className="aud-button" onClick={handleAdd}>Add In The Room</button><br></br>
@@ -428,7 +366,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
 
                             <Form.Group as={Col}>
                             {/* response */}
-                                <Form.Control type="textarea" name="response" placeholder="Response" value={form.response} onChange={handleChange}/>
+                                <Form.Control type="text" name="response" placeholder="Response" value={form.response} onChange={handleChange}/>
                             </Form.Group>
                         </Row><br></br>
                         <Row>

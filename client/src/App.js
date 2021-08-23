@@ -7,11 +7,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background: black url("images/background.jpg") no-repeat fixed center;
-    /* background-blend-mode: lighten; */
-    /* background-color: white; */
-    /* background-repeat: repeat; */
-    /* background-attachment: fixed; */
-    /* background-position: center; */
   }
   
   h2 {
@@ -20,9 +15,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h3 {
-        font-family: 'Lobster', cursive;
-        font-size: 25px;
-    }
+      font-family: 'Lobster', cursive;
+      font-size: 25px;
+  }
 
   #styled-navbar {
     overflow: hidden;
@@ -103,8 +98,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 25px;
     transition-duration: 0.4s;
     cursor: pointer;
-    /* float: center; */
-    /* display: block; */
     border-radius: 5px;
 
     &:hover {

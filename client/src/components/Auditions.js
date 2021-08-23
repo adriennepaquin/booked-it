@@ -1,11 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import DisplayAudition from './DisplayAudition'
 import Search from './Search'
-import Accordion from 'react-bootstrap/Accordion'
-import CardColumns from 'react-bootstrap/CardColumns'
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import styled from 'styled-components'
 
 const AudStyle = styled.div`
@@ -23,30 +19,27 @@ const AudStyle = styled.div`
 `
 
 function Auditions({ setAuditions, auditions, user, search, setSearch, handleDeleteAud, searchMono, setSearchMono }) {
-    
     setSearchMono("")
-    // console.log(user)
-    console.log("Auditions")
+    
     // fetch this user's auditions
     useEffect(() => {
-        fetch(`http://localhost:3000/auditions/${user.id}`)
+        const token = localStorage.getItem("token")
+        fetch(`http://localhost:3000/auditions/${user.id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setAuditions(data)
         })
     }, [])
-    // console.log(search)
-    console.log(auditions)
 
     const displayAuditions = auditions.map(audition => {
-        // console.log(audition)
         return <DisplayAudition key={audition.id} audition={audition} handleDeleteAud={handleDeleteAud}/>
     })
 
-    
-    // | audition.people.toLowerCase().includes(search.toLowerCase()) 
-    console.log(auditions)
     return (
         <AudStyle>
             <div id="auditions-header">
@@ -65,18 +58,6 @@ function Auditions({ setAuditions, auditions, user, search, setSearch, handleDel
                 {displayAuditions}
                 </>
                 }
-            {/* <CardColumns>
-                {auditions.length === 0
-                ?
-                <>
-                <h3>No auditions found!</h3>
-                </>
-                :
-                <>
-                {displayAuditions}
-                </>
-                }
-            </CardColumns> */}
             </Row>
         </AudStyle>
     )

@@ -33,11 +33,7 @@ function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
 
     // fetch this monologue's PDF
     function getPdf() {
-        console.log("get pDF!")
-        const token = localStorage.getItem("token")
-        fetch(`http://localhost:3000/pdfs?mono_id=${mono.id}`, {
-            Authorization: `Bearer ${token}`,
-        })
+        fetch(`http://localhost:3000/pdfs?mono_id=${mono.id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -65,7 +61,8 @@ function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
                             <p>Genre -- {mono.genre}</p>
                             <p>Length -- {mono.length}</p>
                             <p>"{mono.first_line}..."</p>
-                            {details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want the PDF</Button>}
+                            {/* {details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want the PDF</Button>} */}
+                            {!user ? null : <div>{details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want the PDF</Button>}</div>}
                             {/* <Button variant="light" onClick={getPdf}>I want PDF</Button> */}
                             {ownMono ? <Button className="button" id="delete" variant="light" value={mono.id} onClick={handleDeleteMono}>Delete Monologue</Button> : null}
                         </Accordion.Body>
