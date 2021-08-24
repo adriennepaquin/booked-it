@@ -98,7 +98,6 @@ function PageContent() {
             <Container fluid={true}>
                 <Switch>
                     <Route exact path="/">
-                        {/* <Home monos={monos}/> */}
                         {!user ? <Home monos={monos}/> : <Redirect to="/welcome"/> }
                     </Route>
                     <Route path="/signup">

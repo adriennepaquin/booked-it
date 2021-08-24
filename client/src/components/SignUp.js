@@ -27,6 +27,7 @@ function SignUp({ setUser }) {
 
     const history = useHistory()
 
+    // create new user
     function handleSubmit(e){
       e.preventDefault()
       const user = {
@@ -67,36 +68,6 @@ function SignUp({ setUser }) {
         setErrors(error.errors)
       })
     }
-
-    // this was working!
-    // async function handleSubmit(e) {
-    //     e.preventDefault()
-    //     const res = await fetch(`http://localhost:3000/signup`, {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify({
-    //         name,
-    //         username,
-    //         password
-    //         // password_confirmation: passwordConfirmation
-    //       })
-    //     })
-    //     const userData = await res.json()
-    //     if (res.ok){
-    //     //   localStorage.setItem("user_id", userData.id)
-    //       setUser({
-    //         id: userData.id,
-    //         name: userData.name,
-    //         username: userData.username
-    //       })
-    //       history.push('/')
-    //       alert("Welcome to Booked It!")
-    //     } else {
-    //       setErrors(userData.errors)
-    //     }
-    //   }
 
     return (
       <SignStyle>

@@ -8,7 +8,6 @@ import styled from 'styled-components'
 const MonoStyle = styled.div`
     .mono-header {
         font-family: 'Noto Sans KR', sans-serif;
-        /* background-color: grey; */
     }
 
     .mono-header:hover {
@@ -22,14 +21,6 @@ const MonoStyle = styled.div`
 function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
     const [pdf, setPdf] = useState("")
     const [details, setDetails] = useState(false)
-    // const [ownMono, setOwnMono] = useState(false)
-    // console.log(mono.public)
-    // console.log(user)
-    // console.log(mono.user_id)
-    // if (mono.user_id === user.id){
-    //     setOwnMono(true)
-    // }
-    // setOwnMono(mono.public)
 
     // fetch this monologue's PDF
     function getPdf() {
@@ -40,12 +31,9 @@ function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
             console.log(data.mono_pdf)
             setPdf(data.mono_pdf)
             setDetails(true)
-            // setMyMonos(data)
         })
-        // setDetails(!details)
     }
 
-    // console.log(mono)
     return (
         <MonoStyle>
             <Card>
@@ -61,9 +49,7 @@ function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
                             <p>Genre -- {mono.genre}</p>
                             <p>Length -- {mono.length}</p>
                             <p>"{mono.first_line}..."</p>
-                            {/* {details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want the PDF</Button>} */}
                             {!user ? null : <div>{details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button variant="light" onClick={getPdf}>I want the PDF</Button>}</div>}
-                            {/* <Button variant="light" onClick={getPdf}>I want PDF</Button> */}
                             {ownMono ? <Button className="button" id="delete" variant="light" value={mono.id} onClick={handleDeleteMono}>Delete Monologue</Button> : null}
                         </Accordion.Body>
                     </Accordion.Item>

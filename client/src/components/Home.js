@@ -51,7 +51,6 @@ function Home({ monos }) {
                 <Row>
                     <Col>
                         <div id="home-border"></div>
-                    {/* <Col><img src="images/full_logo.png" alt="Booked It! Logo" height="300"/></Col> */}
                     </Col>
                 </Row>
                 <Row id="home-text">

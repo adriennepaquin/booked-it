@@ -6,7 +6,7 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    background: black url("images/background.jpg") no-repeat fixed center;
+    background: black url("images/background2.jpg") no-repeat fixed center;
   }
   
   h2 {

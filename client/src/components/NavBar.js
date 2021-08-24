@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 
 function NavBar({ user, setUser, setAuditions, setMyMonos }) {
-
     const history = useHistory()
 
     function handleLogOut(){

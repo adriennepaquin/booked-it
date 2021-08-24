@@ -26,6 +26,7 @@ function LogIn({ setUser }) {
 
     const history = useHistory()
 
+    // log in user
     function handleSubmit(e){
         e.preventDefault()
         console.log('click')
@@ -65,38 +66,6 @@ function LogIn({ setUser }) {
           setErrors(error.errors)
         })
       }
-
-      // this was working!
-      // async function handleSubmit(e){
-      //   e.preventDefault()
-      //   const user = {
-      //     username,
-      //     password
-      //   }
-      //   const res = await fetch(`http://localhost:3000/login`, {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify({user})
-      //   })
-      //   const userData = await res.json()
-      //   if(res.ok){
-      //   //   localStorage.setItem('user_id', userData.id)
-      //     // console.log(userData)
-      //     setUser({
-      //       id: userData.id,
-      //       name: userData.name,
-      //       username: userData.username
-      //     })
-      //     console.log(userData)
-      //     console.log(user)
-      //     history.push('/welcome')
-      //   } else {
-      //     // console.log(userData.errors)
-      //     setErrors(userData.errors)
-      //   }
-      // }
     
     return (
       <LogStyle>

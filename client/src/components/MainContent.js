@@ -10,12 +10,13 @@ import AddMonologueForm from './AddMonologueForm'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import styled from 'styled-components'
 
 function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, auditions, setAuditions, locations, setLocations, castings, setCastings, search, setSearch, searchMono, setSearchMono, filterMono, setFilterMono, filteredAuditions, filteredMonos }) {
     const [ownMono, setOwnMono] = useState(false)
-    const history = useHistory()
     const firstName = user.name.split(" ")
 
+    // delete audition
     function handleDeleteAud(e){
         console.log(e.target.value)
         const token = localStorage.getItem("token")
@@ -35,6 +36,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
         })
     }
 
+    // delete monologue
     function handleDeleteMono(e){
         console.log("click!")
         console.log(e.target.value)

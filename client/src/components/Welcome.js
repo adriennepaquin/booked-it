@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import SideBar from './SideBar'
 import DisplayAudition from './DisplayAudition'
 import DisplayMonologue from './DisplayMonologue'
 import Container from 'react-bootstrap/Container'
@@ -9,7 +8,6 @@ import Accordion from 'react-bootstrap/Accordion'
 import styled from 'styled-components'
 
 const WelStyle = styled.div`
-
     height: auto;
     color: white;
     margin: 20px;
@@ -18,9 +16,6 @@ const WelStyle = styled.div`
     h2 {
         text-shadow: 3px 3px 3px #03989e;
         font-size: 45px;
-    }
-    #welcome {
-        
     }
 
     .welcome-title{
@@ -39,9 +34,9 @@ const WelStyle = styled.div`
 `
 
 function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, locations, setLocations, setCastings, firstName, handleDeleteAud, search, setSearch, searchMono, setSearchMono, ownMono, setOwnMono }) {
-    
     setSearch("")
     setSearchMono("")
+
     // fetch this user's auditions
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -53,20 +48,9 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             setAuditions(data)
         })
     }, [])
-
-    // // fetch all the public monologues
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/monologues`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         setMonos(data)
-    //     })
-    // }, [])
 
     // fetch this user's monologues
     useEffect(() => {
@@ -79,7 +63,6 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             setMyMonos(data)
         })
     }, [])
@@ -95,7 +78,6 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             setLocations(data)
         })
     }, [])
@@ -111,14 +93,10 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         })
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             setCastings(data)
         })
     }, [])
 
-    
-    // console.log(firstName[0])
-    console.log(auditions)
     const displayAudition1 = auditions[0]
     const displayAudition2 = auditions[1]
 
@@ -126,12 +104,6 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
     const displayMono2 = monos[monos.length - 2]
     const displayMono3 = monos[monos.length - 3]
     const displayMono4 = monos[monos.length - 4]
-
-    // random Welcome Page monologues
-    // const displayMono1 = monos[Math.floor(Math.random() * monos.length)]
-    // const displayMono2 = monos[Math.floor(Math.random() * monos.length)]
-    // const displayMono3 = monos[Math.floor(Math.random() * monos.length)]
-    // const displayMono4 = monos[Math.floor(Math.random() * monos.length)]
         
     return (
         <WelStyle>
