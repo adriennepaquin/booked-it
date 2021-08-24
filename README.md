@@ -1,24 +1,6 @@
-# README
+# Booked It!
+## An audition tracking app for actors
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Booked It! is a React/Rails application to allow actors to track their auditions. Linked databases store all the information an actor could need (date, time, who was in the room), allowing the actor to easily search for future reference. The application also stores monologues, with the option of uploading a PDF, for reference by either individual users or any user on the platform.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is my Phase 5 Final Project with Flatiron School's Software Engineering Bootcamp!
