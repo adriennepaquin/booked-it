@@ -12,7 +12,7 @@ function DisplayAudition({ audition, handleDeleteAud }) {
         <Card>
             <Card.Body>
                 <Card.Text>
-                    <p>{audition.date} - {audition.producer}</p>
+                    <p>{audition.date} - <b>{audition.producer}</b></p>
                     <p></p>
                     <p>{audition.time} @ {audition.location.name}</p>
                     <Accordion>

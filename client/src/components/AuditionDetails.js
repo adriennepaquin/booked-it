@@ -78,25 +78,25 @@ function AuditionDetails({ audition, handleDeleteAud }) {
 
     return (
         <div>
-            <p><label for="appointment">Appointment?</label>
+            <p><label for="appointment"><b>Appointment?</b></label>
             {audition.appointment ? " yes" : " no"}
             <br></br></p>
-            <p>Casting: {audition.casting.agency === "none" ? "no agency" : audition.casting.agency}</p>
-            <p>In the Room: {displayPeople}</p>
-            <p>Shows: {audition.shows}</p>
-            <p>Monologue: {audition.monologue.role}</p>
-            <p>Outfit: {audition.outfit}</p>
+            <p><b>Casting:</b> {audition.casting.agency === "none" ? "no agency" : audition.casting.agency}</p>
+            <p><b>In the Room:</b> {displayPeople}</p>
+            <p><b>Shows:</b> {audition.shows}</p>
+            <p><b>Monologue:</b> {audition.monologue.role}</p>
+            <p><b>Outfit:</b> {audition.outfit}</p>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Label for="response">Response:</Form.Label><br></br>
+                    <Form.Label for="response"><b>Response:</b></Form.Label><br></br>
                     <Form.Control as="textarea" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label for="callback">Callback?</Form.Label>
+                    <Form.Label for="callback"><b>Callback?</b></Form.Label>
                     {form.callback ? <Form.Check type="checkbox" name="callback" value={form.callback} checked onChange={handleCheck} /> : <Form.Check type="checkbox" name="callback" value={form.callback} onChange={handleCheck} />}<br></br>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label for="booked">Booked?</Form.Label>
+                    <Form.Label for="booked"><b>Booked?</b></Form.Label>
                     {form.booked ? <Form.Check type="checkbox" name="booked" value={form.booked} checked onChange={handleCheck} /> : <Form.Check type="checkbox" name="booked" value={form.booked} onChange={handleCheck} />}<br></br>
                 </Form.Group>
                 <Button className="button" id="update_submit" variant="light" type="submit" value="Update">Update Response</Button>
