@@ -86,7 +86,7 @@ function AuditionDetails({ audition, handleDeleteAud }) {
             <p><b>Shows:</b> {audition.shows}</p>
             <p><b>Monologue:</b> {audition.monologue.role}</p>
             <p><b>Outfit:</b> {audition.outfit}</p>
-            <Form onSubmit={handleSubmit}>
+            <Form id="update" onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label for="response"><b>Response:</b></Form.Label><br></br>
                     <Form.Control as="textarea" name="response" placeholder="Response" value={form.response} onChange={handleChange}/><br></br>
@@ -100,9 +100,8 @@ function AuditionDetails({ audition, handleDeleteAud }) {
                     {form.booked ? <Form.Check type="checkbox" name="booked" value={form.booked} checked onChange={handleCheck} /> : <Form.Check type="checkbox" name="booked" value={form.booked} onChange={handleCheck} />}<br></br>
                 </Form.Group>
                 <Button className="button" id="update_submit" variant="light" type="submit" value="Update">Update Response</Button>
-                <Button className="button" id="delete" variant="light" value={audition.id} onClick={handleDeleteAud}>Delete Audition</Button>
-
             </Form>
+            <Button className="button" id="delete" variant="light" value={audition.id} onClick={handleDeleteAud}>Delete Audition</Button>
         </div>
     )
 }

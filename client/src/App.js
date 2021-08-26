@@ -105,6 +105,12 @@ const GlobalStyle = createGlobalStyle`
       color: white;
     }
   }
+
+  #update {
+    border: 3px solid #03989e;
+    padding: 10px;
+    border-radius: 5px;
+  }
 `
 
 function App() {

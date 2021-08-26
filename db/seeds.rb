@@ -60,7 +60,23 @@ Casting.create!([{
     notes: "in house casting"
 },
 {
-    agency: "Tara Rubin",
+    agency: "Tara Rubin Casting",
+    notes: "none"
+},
+{
+    agency: "Jack Doulin",
+    notes: "none"
+},
+{
+    agency: "McCorkle Casting",
+    notes: "none"
+},
+{
+    agency: "Judy Henderson Casting",
+    notes: "none"
+},
+{
+    agency: "Caparelliotis Casting",
     notes: "none"
 }])
 puts "created #{Casting.count} castings"
@@ -142,6 +158,57 @@ Person.create!([{
 },
 {
     name: "Robert Shea (AD)"
+},
+{
+    name: "Kaytlin McIntyre (CD)"
+},
+{
+    name: "Jack Doulin (CD)"
+},
+{
+    name: "Michael Paddon (Cast Asst)"
+},
+{
+    name: "Jeffrey Dreisbach (CD)"
+},
+{
+    name: "Emma Goldman (Asst)"
+},
+{
+    name: "Emily Goeler (Art/Mgmt Assc)"
+},
+{
+    name: "Cheyenne Barboza (House Mgr)"
+},
+{
+    name: "Charlie Owens (Comp Mgr)"
+},
+{
+    name: "Naija Anttila (Producer)"
+},
+{
+    name: "Dep Kirkland (Author)"
+},
+{
+    name: "Annie Hartkemeyer (Asst Dir)"
+},
+{
+    name: "Judy Henderson (CD)"
+},
+{
+    name: "Jason Brubaker (Assc CD)"
+},
+{
+    name: "Ciaran O'Reilly (Prod Dir)"
+},
+{
+    name: "Daniel Hasse (Assc AD)"
+},
+{
+    name: "Nathan Winkelstein (Cast Consultant)"
+},
+{
+    name: "Joe Gery (CD)"
 }])
 puts "created #{Person.count} people"
 
@@ -238,7 +305,6 @@ mono3.mono_pdf.attach(
     filename: 'Gloria.pdf',
     content_type: 'application.pdf'
 )
-
 mono4 = Monologue.create!(
     play: "Misalliance",
     playwright: "George Bernard Shaw",
@@ -251,6 +317,21 @@ mono4 = Monologue.create!(
 )
 mono4.mono_pdf.attach(
     io: File.open('./public/monos/Hypatia.pdf'),
+    filename: 'Hypatia.pdf',
+    content_type: 'application.pdf'
+)
+mono5 = Monologue.create!(
+    play: "The Merchant of Venice",
+    playwright: "William Shakespeare",
+    public: true,
+    genre: "romantic",
+    role: "Portia",
+    length: "2 minutes",
+    first_line: "You see me, Lord Bassanio, where I stand...",
+    user_id: rand(1..3)
+)
+mono5.mono_pdf.attach(
+    io: File.open('./public/monos/Portia.pdf'),
     filename: 'Hypatia.pdf',
     content_type: 'application.pdf'
 )
@@ -366,6 +447,118 @@ Audition.create!([{
     response: "almost cried because... covid19",
     callback: false,
     booked: false
+},
+{
+    date: "2019/12/16",
+    time: "12:30 pm",
+    appointment: false,
+    location_id: 2,
+    producer: "The Minutes (Broadway)",
+    monologue_id: 3,
+    casting_id: 6,
+    shows: "The Minutes",
+    outfit: "blue skinny jeans, cream tie back top, brown boots",
+    response: "",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/11/15",
+    time: "11:50 am",
+    appointment: false,
+    location_id: 1,
+    producer: "American Shakespeare Center",
+    monologue_id: 1,
+    casting_id: 1,
+    shows: "Much Ado/Henrys/Othello/Merchant",
+    outfit: "blue skinny jeans, grey tank, black boots",
+    response: "got laughs, forgot a word - they couldn't remember it either so I made something up",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/10/15",
+    time: "11:30 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Irish Repertory Theatre",
+    monologue_id: 4,
+    casting_id: 1,
+    shows: "London Assurance",
+    outfit: "green romper, Coach flats",
+    response: "",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/09/06",
+    time: "2:00 pm",
+    appointment: false,
+    location_id: 1,
+    producer: "Ms. Trial (Off-Broadway)",
+    monologue_id: 3,
+    casting_id: 5,
+    shows: "Ms. Trial",
+    outfit: "green romper, black sandals",
+    response: "",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/06/07",
+    time: "10:30 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Long Wharf Theatre",
+    monologue_id: 5,
+    casting_id: 1,
+    shows: "Pride & Prejudice etc",
+    outfit: "navy ruffle dress, black belt, black sandals",
+    response: "mentioned my new show, great chat -- fucked up the mono a little but seemed good",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/05/23",
+    time: "12:10 pm",
+    appointment: false,
+    location_id: 1,
+    producer: "Repetory Theatre of St. Louis",
+    monologue_id: 4,
+    casting_id: 4,
+    shows: "Angels/Pride/Cake/Thanksgiving",
+    outfit: "jean dress, sandals",
+    response: "",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/05/21",
+    time: "4:50 pm",
+    appointment: false,
+    location_id: 1,
+    producer: "Theatre for a New Audience",
+    monologue_id: 1,
+    casting_id: 3,
+    shows: "Timon of Athens",
+    outfit: "blue jean dress, sandals",
+    response: "lovely chat, told him about Midsummer",
+    callback: false,
+    booked: false
+},
+{
+    date: "2019/05/14",
+    time: "11:10 am",
+    appointment: false,
+    location_id: 1,
+    producer: "Seattle Repertory Theatre",
+    monologue_id: 4,
+    casting_id: 1,
+    shows: "Earnest, etc",
+    outfit: "blue skinny jeans, cream tie back top, black boots",
+    response: "",
+    callback: false,
+    booked: false
 }])
 puts "created #{Audition.count} auditions"
 
@@ -400,6 +593,38 @@ UserAudition.create!([{
 {
     user_id: rand(1..3),
     audition_id: 8
+},
+{
+    user_id: rand(1..3),
+    audition_id: 9
+},
+{
+    user_id: rand(1..3),
+    audition_id: 10
+},
+{
+    user_id: rand(1..3),
+    audition_id: 11
+},
+{
+    user_id: rand(1..3),
+    audition_id: 12
+},
+{
+    user_id: rand(1..3),
+    audition_id: 13
+},
+{
+    user_id: rand(1..3),
+    audition_id: 14
+},
+{
+    user_id: rand(1..3),
+    audition_id: 15
+},
+{
+    user_id: rand(1..3),
+    audition_id: 16
 }])
 puts "created #{UserAudition.count} user/auditions"
 
@@ -458,6 +683,74 @@ InTheRoom.create!([{
 {
     audition_id: 5,
     person_id: 14
+},
+{
+    audition_id: 9,
+    person_id: 31
+},
+{
+    audition_id: 10,
+    person_id: 30
+},
+{
+    audition_id: 10,
+    person_id: 29
+},
+{
+    audition_id: 11,
+    person_id: 28
+},
+{
+    audition_id: 11,
+    person_id: 27
+},
+{
+    audition_id: 12,
+    person_id: 26
+},
+{
+    audition_id: 12,
+    person_id: 25
+},
+{
+    audition_id: 12,
+    person_id: 24
+},
+{
+    audition_id: 12,
+    person_id: 23
+},
+{
+    audition_id: 13,
+    person_id: 22
+},
+{
+    audition_id: 13,
+    person_id: 21
+},
+{
+    audition_id: 13,
+    person_id: 20
+},
+{
+    audition_id: 14,
+    person_id: 19
+},
+{
+    audition_id: 14,
+    person_id: 18
+},
+{
+    audition_id: 15,
+    person_id: 17
+},
+{
+    audition_id: 15,
+    person_id: 16
+},
+{
+    audition_id: 16,
+    person_id: 15
 }])
 puts "created #{InTheRoom.count} people in the rooms"
 

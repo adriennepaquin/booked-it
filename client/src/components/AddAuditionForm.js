@@ -313,6 +313,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                             </Form.Group>
                             <br></br>
                             <Form.Group as={Col}>
+
                             {/* in the room */}
                                 {fields.map((field, idx) => {
                                     return (
@@ -325,7 +326,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                                             onChange={handleChange}/>
                                     )
                                 })}
-                                <button className="aud-button" onClick={handleAdd}>Add In The Room</button><br></br>
+                                <button className="aud-button" onClick={handleAdd}>Add "In The Room"</button><br></br>
                             </Form.Group>
                         </Row><br></br>
                         <Row>
@@ -350,7 +351,7 @@ function AddAuditionForm({ auditions, setAuditions, user, locations, castings, m
                                 <Form.Control type="text" name="playwright" value={monologue.playwright} placeholder="Playwright" onChange={handleMonologue}/>
                                 <Form.Control type="text" name="role" value={monologue.role} placeholder="Role" onChange={handleMonologue}/>
                                 <Form.Control type="text" name="first_line" value={monologue.first_line} placeholder="First Line" onChange={handleMonologue}/>
-                                <Form.Control type="text" name="length" value={monologue.length} placeholder="Length" onChange={handleMonologue}/>
+                                <Form.Control type="text" name="length" value={monologue.length} placeholder="Length (time)" onChange={handleMonologue}/>
                                 <Form.Control type="text" name="genre" value={monologue.genre} placeholder="Genre" onChange={handleMonologue}/>
                                 <Form.Check type="checkbox" name="public" value={monologue.public} onChange={handleMonologue}/>
                                 <Form.Label for="public">Make Public?</Form.Label><br></br>

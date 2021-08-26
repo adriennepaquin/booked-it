@@ -163,7 +163,7 @@ function AddMonologueForm({ user, setMyMonos, myMonos, search, setSearch, search
                             <Form.Control type="text" name="first_line" value={form.first_line} placeholder="First Line" onChange={handleChange}/>
                         </Form.Group><br></br>
                         <Form.Group>
-                            <Form.Control type="text" name="length" value={form.length} placeholder="Length" onChange={handleChange}/>
+                            <Form.Control type="text" name="length" value={form.length} placeholder="Length (time)" onChange={handleChange}/>
                         </Form.Group><br></br>
                         <Form.Group>
                             <Form.Control type="text" name="genre" value={form.genre} placeholder="Genre" onChange={handleChange}/>

@@ -121,7 +121,7 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
                         </Accordion>
                     </Col>
                     <Col lg={6}>
-                        <h3 className="welcome-headers">New Monologues:</h3>
+                        <h3 className="welcome-headers">Available Monologues:</h3>
                         <Accordion className="accordions" defaultActiveKey="0" flush>
                                 {displayMono1 ? <DisplayMonologue user={user} mono={displayMono1}/> : null}
                                 {displayMono2 ? <DisplayMonologue user={user} mono={displayMono2}/> : null}

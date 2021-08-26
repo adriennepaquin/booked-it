@@ -12,7 +12,7 @@ const HomeStyle = styled.div`
     }
 
     #home-border {
-        height: 250px;
+        height: 200px;
     }
 
     #home-text {
@@ -64,7 +64,7 @@ function Home({ monos }) {
                             <p>Or</p>
                             <p>"Did I wear this dress for James Calleri last time?"</p>
                             <p>Worry no more! </p>
-                            <ul>With Booked It! you can:
+                            <ul><b>With Booked It! you can:</b>
                                 <li>Log audition details</li>
                                 <li>Search auditions by people/theatre</li>
                                 <li>Update audition outcomes</li>
