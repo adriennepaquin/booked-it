@@ -1,5 +1,5 @@
 function MonoDetails({ mono, pdf}) {
-    console.log(pdf)
+    // console.log(pdf)
     
     return (
         <div>

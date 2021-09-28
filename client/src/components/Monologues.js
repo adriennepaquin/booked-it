@@ -23,11 +23,11 @@ function Monologues({ user, myMonos, firstName, search, setSearch, searchMono, s
     setSearchMono("")
     setOwnMono(true)
     
-    console.log(myMonos)
+    // console.log(myMonos)
 
     const displayMonos = myMonos.map(mono => {
-        console.log(mono)
-        console.log(user)
+        // console.log(mono)
+        // console.log(user)
         return <DisplayMonologue handleDeleteMono={handleDeleteMono} key={mono.first_line} user={user} mono={mono} ownMono={ownMono}/>
     })
 

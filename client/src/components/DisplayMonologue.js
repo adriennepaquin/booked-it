@@ -27,8 +27,8 @@ function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
         fetch(`http://localhost:3000/pdfs?mono_id=${mono.id}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            console.log(data.mono_pdf)
+            // console.log(data)
+            // console.log(data.mono_pdf)
             setPdf(data.mono_pdf)
             setDetails(true)
         })

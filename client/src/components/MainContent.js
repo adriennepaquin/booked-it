@@ -18,7 +18,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
 
     // delete audition
     function handleDeleteAud(e){
-        console.log(e.target.value)
+        // console.log(e.target.value)
         const token = localStorage.getItem("token")
         fetch (`http://localhost:3000/auditions/${e.target.value}`, {
             method: 'DELETE',
@@ -29,17 +29,17 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data.id)
+            // console.log(data.id)
             const newAuditions = auditions.filter(audition => audition.id !== data.id)
-            console.log(newAuditions)
+            // console.log(newAuditions)
             setAuditions(newAuditions)
         })
     }
 
     // delete monologue
     function handleDeleteMono(e){
-        console.log("click!")
-        console.log(e.target.value)
+        // console.log("click!")
+        // console.log(e.target.value)
         const token = localStorage.getItem("token")
         fetch (`http://localhost:3000/monologues/${e.target.value}`, {
             method: 'DELETE',
@@ -50,10 +50,10 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data.id)
+            // console.log(data.id)
             const newMyMonos = myMonos.filter(mono => mono.id !== data.id)
             const newMonos = monos.filter(mono => mono.id !== data.id)
-            console.log(newMyMonos)
+            // console.log(newMyMonos)
             setMonos(newMonos)
             setMyMonos(newMyMonos)
         })
@@ -83,7 +83,7 @@ function MainContent({ user, setUser, monos, setMonos, myMonos, setMyMonos, audi
                             {!user ? <Redirect to="/"/> : <><AllMonologues monos={filteredMonos} searchMono={searchMono} setSearchMono={setSearchMono} filterMono={filterMono} setFilterMono={setFilterMono} user={user} search={search} setSearch={setSearch}  ownMono={ownMono} setOwnMono={setOwnMono}/> </>}
                         </Route>
                         <Route path="/addmonologue">
-                            {!user ? <Redirect to="/"/> : <><AddMonologueForm user={user} myMonos={myMonos} setMyMonos={setMyMonos} search={search} setSearch={setSearch} searchMono={searchMono} setSearchMono={setSearchMono}/></>}
+                            {!user ? <Redirect to="/"/> : <><AddMonologueForm user={user} monos={monos} setMonos={setMonos} myMonos={myMonos} setMyMonos={setMyMonos} search={search} setSearch={setSearch} searchMono={searchMono} setSearchMono={setSearchMono}/></>}
                         </Route>
                     </Switch>
                 </Col>

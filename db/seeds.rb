@@ -81,42 +81,7 @@ Casting.create!([{
 }])
 puts "created #{Casting.count} castings"
 
-# Person.create!([{
-#     name: "Dennis Razze",
-#     position: "Penn Shakes Festival Assc AD"
-# },
-# {
-#     name: "Chalin Tulyathan",
-#     position: "Casting Assc"
-# },
-# {
-#     name: "Dawn McAndrews",
-#     position: "Theatre at Monmouth Producing AD"
-# },
-# {
-#     name: "James Noel Huban",
-#     position: "Theatre at Monmouth Assc AD"
-# },
-# {
-#     name: "Robert J McGuire",
-#     position: "Theatre at Monmouth Treasurer, Board of Directors"
-# },
-# {
-#     name: "Jake Loewenthal",
-#     position: "Theatre at Monmouth Company Manager"
-# },
-# {
-#     name: "David Dreyfoos",
-#     position: "Westport County Playhouse Assc Producer"
-# },
-# {
-#     name: "Liam Lonegan",
-#     position: "Westport County Playhouse Asst AD"
-# },
-# {
-#     name: "Laura Schutzel",
-#     position: "Tara Rubin CD"
-# }])
+
 Person.create!([{
     name: "Dennis Razze (Penn Shakes Festival Assc AD)"
 },
@@ -212,54 +177,7 @@ Person.create!([{
 }])
 puts "created #{Person.count} people"
 
-# Playwright.create!([{
-#     name: "William Shakespeare"
-# },
-# {
-#     name: "George Bernard Shaw"
-# }])
-# puts "created #{Playwright.count} playwrights"
 
-# Monologue.create!([{
-#     play: "As You Like It",
-#     playwright: "William Shakespeare",
-#     public: true,
-#     genre: "comedic",
-#     role: "Rosalind",
-#     length: "90 seconds",
-#     first_line: "And why, I pray you? Who might be your mother...",
-#     user_id: rand(1..3)
-# },
-# {
-#     play: "The Winter's Tale",
-#     playwright: "William Shakespeare",
-#     public: true,
-#     genre: "dramatic",
-#     role: "Hermione",
-#     length: "1-2 minutes",
-#     first_line: "Since what I am to say must be but that...",
-#     user_id: rand(1..3)
-# },
-# {
-#     play: "Gloria",
-#     playwright: "Branden Jacobs-Jenkins",
-#     public: true,
-#     genre: "comedic",
-#     role: "Kendra",
-#     length: "1-2 minutes",
-#     first_line: "If you have half a brain, you'd look around...",
-#     user_id: rand(1..3)
-# },
-# {
-#     play: "Misalliance",
-#     playwright: "George Bernard Shaw",
-#     public: true,
-#     genre: "comedic",
-#     role: "Hypatia",
-#     length: "1-2 minutes",
-#     first_line: "Well I daresay it's vulgar, but there's no other word for it...",
-#     user_id: rand(1..3)
-# }])
 mono1 = Monologue.create!(
     play: "As You Like It",
     playwright: "William Shakespeare",

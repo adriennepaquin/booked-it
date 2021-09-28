@@ -49,6 +49,7 @@ function Welcome({ user, monos, setMonos, setMyMonos, auditions, setAuditions, l
         .then(res => res.json())
         .then(data => {
             setAuditions(data)
+            console.log(data)
         })
     }, [])
 

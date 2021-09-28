@@ -9,8 +9,8 @@ function NavBar({ user, setUser, setAuditions, setMyMonos }) {
     function handleLogOut(){
         localStorage.removeItem("token")
         setUser(null)
-        console.log('click')
-        console.log(user)
+        // console.log('click')
+        // console.log(user)
         setAuditions([])
         setMyMonos([])
         history.push('/login')

@@ -12,7 +12,7 @@ function AuditionDetails({ audition, handleDeleteAud }) {
         booked: audition.booked
     })
     const [errors, setErrors] = useState([])
-    console.log(audition.people)
+    // console.log(audition.people)
 
     const history = useHistory()
     function handleChange(e){
@@ -63,7 +63,9 @@ function AuditionDetails({ audition, handleDeleteAud }) {
             })
           })
         .then(data => {
-            history.push('/welcome')
+            // history.push('/welcome')
+            audition = data
+            console.log(data)
         })
         .catch((data) => {
             if (data.status === 500) {

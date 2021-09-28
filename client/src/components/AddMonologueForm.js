@@ -48,7 +48,7 @@ const AddMonoStyle = styled.div`
     }
 `
 
-function AddMonologueForm({ user, setMyMonos, myMonos, search, setSearch, searchMono, setSearchMono }) {
+function AddMonologueForm({ user, monos, setMonos, setMyMonos, myMonos, search, setSearch, searchMono, setSearchMono }) {
     const [form, setForm] = useState({
         play: "",
         public: false,
@@ -111,7 +111,11 @@ function AddMonologueForm({ user, setMyMonos, myMonos, search, setSearch, search
             })
           })
         .then(data => {
+            console.log(data)
             setMyMonos([...myMonos, data])
+            if (data.public) {
+                setMonos([...monos, data])
+            }
             uploadFile(form.mono_pdf, data)
             history.push('/monologues')
         })

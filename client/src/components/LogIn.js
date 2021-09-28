@@ -29,7 +29,7 @@ function LogIn({ setUser }) {
     // log in user
     function handleSubmit(e){
         e.preventDefault()
-        console.log('click')
+        // console.log('click')
         const user = {
           username,
           password
@@ -58,8 +58,8 @@ function LogIn({ setUser }) {
             name: data.user.name,
             username: data.user.username
           })
-          console.log(data)
-          console.log(user)
+          // console.log(data)
+          // console.log(user)
           history.push('/welcome')
         })
         .catch((error) => {

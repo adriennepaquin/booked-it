@@ -38,7 +38,7 @@ function PageContent() {
             })
           })
         .then(data => {
-            console.log(data)
+            // console.log(data)
             setUser({id: data.id,
                 name: data.name,
                 username: data.username

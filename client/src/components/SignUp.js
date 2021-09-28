@@ -59,12 +59,12 @@ function SignUp({ setUser }) {
           name: data.user.name,
           username: data.user.username
         })
-        console.log(data)
-        console.log(user)
+        // console.log(data)
+        // console.log(user)
         history.push('/welcome')
       })
       .catch((error) => {
-        console.log(error.errors)
+        // console.log(error.errors)
         setErrors(error.errors)
       })
     }
