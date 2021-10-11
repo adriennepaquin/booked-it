@@ -45,9 +45,9 @@ function DisplayMonologue({ user, mono, handleDeleteMono, ownMono }) {
                             </div>
                         </Accordion.Header>
                         <Accordion.Body className="mono-body">
-                            <p><b>Playwright</b> -- {mono.playwright}</p>
-                            <p><b>Genre</b> -- {mono.genre}</p>
-                            <p><b>Length</b> -- {mono.length}</p>
+                            <p><b>Playwright</b> --- {mono.playwright}</p>
+                            <p><b>Genre</b> --- {mono.genre}</p>
+                            <p><b>Length</b> --- {mono.length}</p>
                             <p>"{mono.first_line}..."</p>
                             {!user ? null : <div>{details ? <MonoDetails mono={mono} pdf={pdf}/> : <Button className="button" variant="light" onClick={getPdf}>I want the PDF</Button>}</div>}
                             {ownMono ? <Button className="button" id="delete" variant="light" value={mono.id} onClick={handleDeleteMono}>Delete Monologue</Button> : null}
