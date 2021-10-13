@@ -17,7 +17,7 @@ const FootStyle = styled.div`
 function Footer() {
     return (
         <FootStyle>
-            Created by Adrienne Paquin -- github.com/adriennepaquin
+            Created by Adrienne Paquin -- <a href="https://github.com/adriennepaquin" target="_blank">GitHub</a>
         </FootStyle>
     )
 }
